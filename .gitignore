@@ -5,3 +5,7 @@ renders/
 *.log
 tokens.json
 data.db
+pagina_googlebot.html
+src/test.ts
+*.html
+*.db
