@@ -9,3 +9,26 @@ pagina_googlebot.html
 src/test.ts
 *.html
 *.db
+
+backup/
+
+cookies-ml.json
+
+browser-profile/
+
+# --- Credenciais Google ---
+google-key*.json
+*-key.json
+*-credentials.json
+
+# --- SQLite (todos os variantes) ---
+*.db-shm
+*.db-wal
+*.db-journal
+data.backup-*
+
+# --- Videos de teste ---
+teste_*.mp4
+
+# --- Repos embedados ---
+spidpost-legal/
