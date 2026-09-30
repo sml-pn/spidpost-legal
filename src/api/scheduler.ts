@@ -34,9 +34,9 @@ const MIN = 60 * 1000;
 
 const JOBS: Job[] = [
   { name: 'refresh', file: 'src/jobs/refresh-ml.ts', intervalMs: 5 * HORA, runOnStart: true, category: 'secondary', maxDurationMs: 2 * MIN },
-  { name: 'harvest', file: 'src/jobs/harvester.ts', intervalMs: 24 * HORA, runOnStart: false, category: 'secondary', maxDurationMs: 10 * MIN },
-  { name: 'render', file: 'src/jobs/renderer.ts', intervalMs: 5 * MIN, runOnStart: false, category: 'critical', maxDurationMs: 10 * MIN },
-  { name: 'publish', file: 'src/jobs/publisher.ts', intervalMs: 30 * MIN, runOnStart: false, category: 'critical', maxDurationMs: 10 * MIN },
+  { name: 'harvest', file: 'src/jobs/harvester.ts', intervalMs: 6 * HORA, runOnStart: true,  category: 'secondary', maxDurationMs: 10 * MIN },
+  { name: 'render', file: 'src/jobs/renderer.ts', intervalMs: 5 * MIN, runOnStart: false, category: 'secondary', maxDurationMs: 10 * MIN },
+  { name: 'publish', file: 'src/jobs/publisher.ts', intervalMs: 5 * MIN, runOnStart: false, category: 'critical', maxDurationMs: 15 * MIN },
   { name: 'cleanup', file: 'src/jobs/cleanup.ts', intervalMs: 24 * HORA, runOnStart: false, category: 'secondary', maxDurationMs: 5 * MIN },
 ];
 

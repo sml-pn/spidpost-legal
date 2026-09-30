@@ -32,3 +32,13 @@ teste_*.mp4
 
 # --- Repos embedados ---
 spidpost-legal/
+
+# --- Backups de .env (seguranca) ---
+.env.backup-*
+.env.backup
+*.env.backup
+
+# --- Backups de codigo (locais) ---
+*.backup
+*.backup2
+*.backup-*

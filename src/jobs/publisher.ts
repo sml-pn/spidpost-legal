@@ -11,9 +11,13 @@
 import path from 'node:path';
 import { db, proximaVariacao, type Variacao } from '../lib/db.js';
 import { publicarReel, publicarStoryVideo, publicarFeedImagem, comentarPost } from '../services/instagram.js';
+import { slotAtual, getPending, setPending, clearPending, proximoBackoff, ensureScheduleTable } from '../lib/schedule.js';
+import { uploadImageKit } from '../services/imagekit.js';
 
-const MINUTOS_ENTRE_POSTS = Number(process.env.FORCE_MINUTOS || 30);
-const HORAS_BACKOFF_APOS_ERRO = 3;
+const MINUTOS_ENTRE_POSTS   = Number(process.env.FORCE_MINUTOS || 25);
+const MINUTOS_APERTADO      = Number(process.env.MINUTOS_APERTADO || 60);
+const LIMITE_DIARIO_24H     = Number(process.env.LIMITE_DIARIO || 15);
+const HORAS_BACKOFF_NIVEIS  = [3, 6, 12, 24];
 
 function montarUrl(caminhoLocal: string): string {
   const base = process.env.PUBLIC_VIDEO_BASE_URL;
@@ -21,6 +25,25 @@ function montarUrl(caminhoLocal: string): string {
   const fileName = path.basename(caminhoLocal);
   const subDir = fileName.startsWith('story-') ? 'stories' : fileName.startsWith('feed-') ? 'feed' : 'reels';
   return `${base}/${subDir}/${fileName}`;
+}
+
+/**
+ * Faz upload do ficheiro ao ImageKit e devolve a URL publica.
+ * Fallback: se IMAGEKIT_PRIVATE_KEY nao estiver definida, usa montarUrl (Tailscale).
+ */
+async function uploadPublico(caminhoLocal: string): Promise<string> {
+  // Fallback: sem ImageKit configurado, usa URL do Tailscale
+  if (!process.env.IMAGEKIT_PRIVATE_KEY) {
+    console.log("  [imagekit] Sem chave configurada — a usar Tailscale");
+    return montarUrl(caminhoLocal);
+  }
+
+  const fileName = caminhoLocal.split(/[\\/]/).pop() || "";
+  const pasta = fileName.startsWith("story-") ? "stories"
+              : fileName.startsWith("feed-")  ? "feed"
+              : "reels";
+
+  return await uploadImageKit(caminhoLocal, pasta);
 }
 
 function tipoDoRender(p: string): 'reel' | 'story' | 'feed' | 'unknown' {
@@ -40,26 +63,51 @@ function montarLegenda(caption: string, hashtags: string): string {
  * Verifica se podemos publicar agora.
  * Retorna { ok: true } ou { ok: false, motivo, minutosAtePoder }
  */
+function contarPosts24h(): number {
+  const r = db.prepare(`
+    SELECT COUNT(*) as c FROM posts_log
+    WHERE datetime(posted_at) > datetime('now', '-24 hours')
+  `).get() as any;
+  return r?.c ?? 0;
+}
+
+function estaEmModoApertado(): boolean {
+  const r = db.prepare(`
+    SELECT COUNT(*) as c FROM products
+    WHERE error LIKE '%2207077%'
+      AND datetime(updated_at) > datetime('now', '-24 hours')
+  `).get() as any;
+  return (r?.c ?? 0) > 0;
+}
+
 function podePublicarAgora(): { ok: boolean; motivo?: string; minutosAte?: number } {
+  const posts24h = contarPosts24h();
+  if (posts24h >= LIMITE_DIARIO_24H) {
+    return {
+      ok: false,
+      motivo: `Limite diario atingido (${posts24h}/${LIMITE_DIARIO_24H} posts em 24h)`,
+    };
+  }
+
+  const apertado = estaEmModoApertado();
+  const minutosExigidos = apertado ? MINUTOS_APERTADO : MINUTOS_ENTRE_POSTS;
+
   const ultimo = db.prepare(`
     SELECT posted_at FROM renders
     WHERE status = 'POSTED'
     ORDER BY posted_at DESC LIMIT 1
   `).get() as any;
 
-  if (!ultimo?.posted_at) {
-    return { ok: true };
-  }
+  if (!ultimo?.posted_at) return { ok: true };
 
-  const agora = Date.now();
-  const ultimoMs = new Date(ultimo.posted_at).getTime();
-  const diffMin = (agora - ultimoMs) / 1000 / 60;
+  const diffMin = (Date.now() - new Date(ultimo.posted_at).getTime()) / 1000 / 60;
 
-  if (diffMin < MINUTOS_ENTRE_POSTS) {
+  if (diffMin < minutosExigidos) {
+    const modo = apertado ? ' [MODO APERTADO]' : '';
     return {
       ok: false,
-      motivo: `Ultimo post ha ${Math.round(diffMin)}min (minimo ${MINUTOS_ENTRE_POSTS}min)`,
-      minutosAte: Math.round(MINUTOS_ENTRE_POSTS - diffMin),
+      motivo: `Ultimo post ha ${Math.round(diffMin)}min (minimo ${minutosExigidos}min${modo})`,
+      minutosAte: Math.round(minutosExigidos - diffMin),
     };
   }
 
@@ -70,21 +118,23 @@ function podePublicarAgora(): { ok: boolean; motivo?: string; minutosAte?: numbe
  * Verifica se o produto esta em backoff (erro recente).
  */
 function produtoEmBackoff(productId: number): { emBackoff: boolean; minutosAte?: number } {
-  const recente = db.prepare(`
-    SELECT error, updated_at FROM products
-    WHERE id = ? AND error IS NOT NULL AND error LIKE '%2207077%'
+  const p = db.prepare(`
+    SELECT error, updated_at, COALESCE(attempts, 0) as attempts
+    FROM products WHERE id = ?
   `).get(productId) as any;
 
-  if (!recente?.updated_at) return { emBackoff: false };
+  if (!p?.error || !p.updated_at) return { emBackoff: false };
+  if (!String(p.error).includes('2207077')) return { emBackoff: false };
 
-  const agora = Date.now();
-  const updated = new Date(recente.updated_at).getTime();
-  const diffHoras = (agora - updated) / 1000 / 60 / 60;
+  const nivelIdx = Math.max(0, Math.min(p.attempts, HORAS_BACKOFF_NIVEIS.length) - 1);
+  const horasExigidas = HORAS_BACKOFF_NIVEIS[nivelIdx];
 
-  if (diffHoras < HORAS_BACKOFF_APOS_ERRO) {
+  const diffHoras = (Date.now() - new Date(p.updated_at).getTime()) / 1000 / 60 / 60;
+
+  if (diffHoras < horasExigidas) {
     return {
       emBackoff: true,
-      minutosAte: Math.round((HORAS_BACKOFF_APOS_ERRO - diffHoras) * 60),
+      minutosAte: Math.round((horasExigidas - diffHoras) * 60),
     };
   }
 
@@ -123,10 +173,63 @@ async function publicarStoryComRetry(url: string): Promise<string | null> {
   }
 }
 
+/**
+ * [LOCK] Recupera produtos presos em PUBLISHING ha mais de 15 min.
+ * Acontece quando um servidor crasha ou fica pendurado a meio.
+ */
+function recuperarPublishingPresos(): number {
+  const r = db.prepare(`
+    UPDATE products
+    SET status = 'READY', updated_at = datetime('now')
+    WHERE status = 'PUBLISHING'
+      AND datetime(updated_at) < datetime('now', '-15 minutes')
+  `).run();
+  if (r.changes > 0) {
+    console.log(`  [lock] ${r.changes} produto(s) PUBLISHING presos -> READY`);
+  }
+  return r.changes;
+}
+
 async function main() {
   console.log('Publisher iniciado...\n');
 
   // ─── Protecção 1: intervalo minimo entre posts ───
+  // [LOCK] Libertar produtos presos em PUBLISHING
+  recuperarPublishingPresos();
+
+  // [SLOTS] Verificar se estamos num slot valido ou a retomar um pending
+  ensureScheduleTable();
+  const slot = slotAtual();
+  const pending = getPending();
+  let slotParaPublicar: string | null = null;
+
+  if (slot) {
+    // Dentro de um slot — publicar normalmente
+    slotParaPublicar = slot;
+    if (pending) {
+      console.log(`  [slot] ${slot} — limpando pendente anterior`);
+      clearPending();
+    }
+    console.log(`  [slot] Dentro da janela: ${slot}`);
+  } else if (pending) {
+    // Fora de slot mas ha pending — verificar backoff
+    const backoff = proximoBackoff(pending.retry_count);
+    const decorrido = (Date.now() - new Date(pending.pending_since).getTime()) / 60000;
+    if (decorrido >= backoff) {
+      slotParaPublicar = pending.pending_slot;
+      console.log(`  [slot] Retomar pendente ${pending.pending_slot} (tentativa ${pending.retry_count + 1}, backoff ${backoff}min)`);
+    } else {
+      const faltam = Math.round(backoff - decorrido);
+      console.log(`  [slot] Fora de janela. Retry em ${faltam} min.`);
+      return;
+    }
+  } else {
+    const agora = new Date();
+    const hhmm = String(agora.getHours()).padStart(2, "0") + ":" + String(agora.getMinutes()).padStart(2, "0");
+    console.log(`  [slot] Fora de janela (${hhmm}). Aguarda proximo slot.`);
+    return;
+  }
+
   const check = podePublicarAgora();
   if (!check.ok) {
     console.log('⏸ Bloqueado:', check.motivo);
@@ -152,7 +255,19 @@ async function main() {
       console.log(`⏭ Produto ${c.id} em backoff (${backoff.minutosAte}min restantes)`);
       continue;
     }
-    produto = c;
+    // [LOCK] Reclamar produto atomicamente
+    const claim = db.prepare(`
+      UPDATE products
+      SET status = 'PUBLISHING', updated_at = datetime('now')
+      WHERE id = ? AND status IN ('READY', 'PARTIAL')
+    `).run(c.id);
+
+    if (claim.changes === 0) {
+      console.log(`  [lock] Produto ${c.id} ja reclamado por outro servidor`);
+      continue;
+    }
+
+    produto = { ...c, status: 'PUBLISHING' };
     break;
   }
 
@@ -183,7 +298,7 @@ async function main() {
   const primeiro = renders[0];
   const caption = montarLegenda(primeiro.caption, primeiro.hashtags);
 
-  const publicados: number[] = [];
+  const publicados: { id: number; mediaId: string }[] = [];
   let reelId: string | null = null;
   let storyId: string | null = null;
   let feedId: string | null = null;
@@ -193,10 +308,10 @@ async function main() {
   if (porTipo.reel) {
     console.log('[1/3] Publicando Reel...');
     try {
-      const url = montarUrl(porTipo.reel.reel_path);
+      const url = await uploadPublico(porTipo.reel.reel_path);
       console.log('  URL:', url);
       reelId = await publicarReel({ videoUrl: url, caption });
-      publicados.push(porTipo.reel.id);
+      publicados.push({ id: porTipo.reel.id, mediaId: reelId! });
 
       await new Promise((r) => setTimeout(r, 5000));
       console.log('  A postar comentario com link...');
@@ -213,10 +328,10 @@ async function main() {
   // ─── Story ───
   if (porTipo.story && !erro2207077) {
     console.log('[2/3] Publicando Story...');
-    const url = montarUrl(porTipo.story.reel_path);
+    const url = await uploadPublico(porTipo.story.reel_path);
     console.log('  URL:', url);
     storyId = await publicarStoryComRetry(url);
-    if (storyId) publicados.push(porTipo.story.id);
+    if (storyId) publicados.push({ id: porTipo.story.id, mediaId: storyId });
     console.log('');
   } else if (erro2207077) {
     console.log('[2/3] Story saltado (rate limit detectado no reel)\n');
@@ -226,10 +341,10 @@ async function main() {
   if (porTipo.feed && !erro2207077) {
     console.log('[3/3] Publicando Feed...');
     try {
-      const url = montarUrl(porTipo.feed.reel_path);
+      const url = await uploadPublico(porTipo.feed.reel_path);
       console.log('  URL:', url);
       feedId = await publicarFeedImagem({ imageUrl: url, caption });
-      publicados.push(porTipo.feed.id);
+      publicados.push({ id: porTipo.feed.id, mediaId: feedId! });
       console.log('');
     } catch (err) {
       console.log('  ERRO feed:', (err as Error).message.slice(0, 250), '\n');
@@ -243,12 +358,25 @@ async function main() {
   if (publicados.length === 0) {
     console.log('═══════════════════════════════════════════════════════════');
     if (erro2207077) {
-      console.log('  RATE LIMIT DETECTADO — produto marcado em backoff 3h');
+      const tentativas = (produto.attempts ?? 0) + 1;
+      const nivelIdx = Math.min(tentativas, HORAS_BACKOFF_NIVEIS.length) - 1;
+      const horas = HORAS_BACKOFF_NIVEIS[nivelIdx];
+      console.log(`  RATE LIMIT DETECTADO — produto em backoff ${horas}h (tentativa ${tentativas})`);
       db.prepare(`
         UPDATE products
-        SET error = 'rate_limit_2207077', updated_at = datetime('now')
+        SET status = 'COOLDOWN',
+            error = 'rate_limit_2207077',
+            attempts = COALESCE(attempts, 0) + 1,
+            updated_at = datetime('now')
         WHERE id = ?
       `).run(produto.id);
+
+      // [SLOTS] Marcar slot como pendente para retry
+      if (slotParaPublicar) {
+        setPending(slotParaPublicar);
+        const proximo = proximoBackoff((getPending()?.retry_count ?? 1));
+        console.log(`  [slot] Slot ${slotParaPublicar} guardado. Retry em ${proximo} min.`);
+      }
     } else {
       console.log('  NADA FOI PUBLICADO — produto mantido como READY');
     }
@@ -256,8 +384,8 @@ async function main() {
     return;
   }
 
-  for (const id of publicados) {
-    db.prepare(`UPDATE renders SET status = 'POSTED', posted_at = ? WHERE id = ?`).run(agora, id);
+  for (const p of publicados) {
+    db.prepare(`UPDATE renders SET status = 'POSTED', posted_at = ?, ig_media_id = ? WHERE id = ?`).run(agora, p.mediaId, p.id);
   }
 
   const proxima = proximaVariacao(variacao);
@@ -268,7 +396,8 @@ async function main() {
     UPDATE products
     SET status = ?, last_variation = ?, variations_done = ?,
         next_variation = COALESCE(?, next_variation),
-        last_posted_at = ?, updated_at = datetime('now'), error = NULL
+        last_posted_at = ?, updated_at = datetime('now'),
+        error = NULL, attempts = 0
     WHERE id = ?
   `).run(novoStatus, variacao, novoVariationsDone, proxima, agora, produto.id);
 
@@ -280,6 +409,9 @@ async function main() {
   db.prepare(`
     INSERT INTO category_rotation (category, product_id) VALUES (?, ?)
   `).run(produto.category, produto.id);
+
+  // [SLOTS] Publicou com sucesso — limpar estado pendente
+  clearPending();
 
   console.log('═══════════════════════════════════════════════════════════');
   console.log(`  ${publicados.length} formato(s) publicados`);
