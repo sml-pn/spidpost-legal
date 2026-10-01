@@ -2,11 +2,9 @@
 
 on:
   schedule:
-    # A cada 10 min (GitHub pode atrasar 5-20 min em picos)
     - cron: '*/10 * * * *'
-  workflow_dispatch:  # Permite correr manualmente pelo botao no GitHub
+  workflow_dispatch:
 
-# Um workflow por vez (evita race conditions)
 concurrency:
   group: spidpost-publish
   cancel-in-progress: false
@@ -15,15 +13,13 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     permissions:
-      contents: write  # Precisa para fazer commit do data.db
+      contents: write
 
     steps:
       - name: 1. Checkout do codigo
         uses: actions/checkout@v4
         with:
-          # Importante: pega o estado mais recente do repo
           fetch-depth: 0
 
       - name: 2. Setup Node.js 20
@@ -41,7 +37,10 @@ jobs:
       - name: 4. Instalar dependencias
         run: npm ci
 
-      - name: 5. Criar ficheiro .env
+      - name: 5. Rebuild modulos nativos
+        run: npm rebuild better-sqlite3 libsodium-wrappers
+
+      - name: 6. Criar ficheiro .env
         run: |
           cat > .env << 'EOF'
           NODE_ENV=production
@@ -70,15 +69,15 @@ jobs:
           MINUTOS_APERTADO=60
           EOF
 
-      - name: 6. Escrever chave Google
+      - name: 7. Escrever chave Google
         run: |
           echo '${{ secrets.GOOGLE_SERVICE_KEY_JSON }}' > /tmp/google-key.json
           node -e "JSON.parse(require('fs').readFileSync('/tmp/google-key.json')); console.log('JSON valido')"
 
-      - name: 7. Correr publisher
+      - name: 8. Correr publisher
         run: npm run publish
 
-      - name: 8. Commit data.db atualizado
+      - name: 9. Commit data.db atualizado
         run: |
           git config user.name "spidpost-bot"
           git config user.email "bot@spidpost.local"
