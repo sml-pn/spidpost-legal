@@ -1,0 +1,92 @@
+﻿name: SpidPost Publish
+
+on:
+  schedule:
+    # A cada 10 min (GitHub pode atrasar 5-20 min em picos)
+    - cron: '*/10 * * * *'
+  workflow_dispatch:  # Permite correr manualmente pelo botao no GitHub
+
+# Um workflow por vez (evita race conditions)
+concurrency:
+  group: spidpost-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    permissions:
+      contents: write  # Precisa para fazer commit do data.db
+
+    steps:
+      - name: 1. Checkout do codigo
+        uses: actions/checkout@v4
+        with:
+          # Importante: pega o estado mais recente do repo
+          fetch-depth: 0
+
+      - name: 2. Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 3. Instalar FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -1
+
+      - name: 4. Instalar dependencias
+        run: npm ci
+
+      - name: 5. Criar ficheiro .env
+        run: |
+          cat > .env << 'EOF'
+          NODE_ENV=production
+          ML_CLIENT_ID=${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET=${{ secrets.ML_CLIENT_SECRET }}
+          ML_REDIRECT_URI=${{ secrets.ML_REDIRECT_URI }}
+          ML_USER_ID=${{ secrets.ML_USER_ID }}
+          ML_ACCESS_TOKEN=${{ secrets.ML_ACCESS_TOKEN }}
+          ML_REFRESH_TOKEN=${{ secrets.ML_REFRESH_TOKEN }}
+          META_APP_ID=${{ secrets.META_APP_ID }}
+          META_APP_SECRET=${{ secrets.META_APP_SECRET }}
+          IG_USER_ID=${{ secrets.IG_USER_ID }}
+          IG_USERNAME=${{ secrets.IG_USERNAME }}
+          PAGE_ID=${{ secrets.PAGE_ID }}
+          PAGE_TOKEN=${{ secrets.PAGE_TOKEN }}
+          USER_TOKEN_LONGO=${{ secrets.USER_TOKEN_LONGO }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEETS_ID=${{ secrets.GOOGLE_SHEETS_ID }}
+          GOOGLE_DRIVE_FOLDER_ID=${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
+          GOOGLE_SERVICE_KEY_FILE=/tmp/google-key.json
+          IMAGEKIT_URL_ENDPOINT=${{ secrets.IMAGEKIT_URL_ENDPOINT }}
+          IMAGEKIT_PUBLIC_KEY=${{ secrets.IMAGEKIT_PUBLIC_KEY }}
+          IMAGEKIT_PRIVATE_KEY=${{ secrets.IMAGEKIT_PRIVATE_KEY }}
+          PUBLIC_VIDEO_BASE_URL=${{ secrets.PUBLIC_VIDEO_BASE_URL }}
+          LIMITE_DIARIO=15
+          MINUTOS_APERTADO=60
+          EOF
+
+      - name: 6. Escrever chave Google
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICE_KEY_JSON }}' > /tmp/google-key.json
+          node -e "JSON.parse(require('fs').readFileSync('/tmp/google-key.json')); console.log('JSON valido')"
+
+      - name: 7. Correr publisher
+        run: npm run publish
+
+      - name: 8. Commit data.db atualizado
+        run: |
+          git config user.name "spidpost-bot"
+          git config user.email "bot@spidpost.local"
+          git add data.db
+          if git diff --cached --quiet; then
+            echo "data.db sem alteracoes"
+          else
+            git commit -m "chore: atualiza data.db [skip ci]"
+            git push
+            echo "data.db commitado e enviado"
+          fi
