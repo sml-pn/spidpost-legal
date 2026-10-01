@@ -28,19 +28,30 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: 3. Instalar FFmpeg
+      - name: 3. Instalar FFmpeg e build tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg build-essential python3
           ffmpeg -version | head -1
+          gcc --version | head -1
 
       - name: 4. Instalar dependencias
         run: npm ci
 
-      - name: 5. Rebuild modulos nativos
-        run: npm rebuild better-sqlite3 libsodium-wrappers
+      - name: 5. Remover node_modules nativos e reconstruir
+        run: |
+          rm -rf node_modules/better-sqlite3
+          rm -rf node_modules/libsodium-wrappers
+          rm -rf node_modules/libsodium
+          npm install better-sqlite3 --build-from-source
+          npm install libsodium-wrappers
 
-      - name: 6. Criar ficheiro .env
+      - name: 6. Verificar bindings Linux
+        run: |
+          file node_modules/better-sqlite3/build/Release/better_sqlite3.node
+          node -e "const D=require('better-sqlite3'); const db=new D(':memory:'); db.exec('CREATE TABLE t(x)'); console.log('SQLite OK')"
+
+      - name: 7. Criar ficheiro .env
         run: |
           cat > .env << 'EOF'
           NODE_ENV=production
@@ -69,15 +80,15 @@ jobs:
           MINUTOS_APERTADO=60
           EOF
 
-      - name: 7. Escrever chave Google
+      - name: 8. Escrever chave Google
         run: |
           echo '${{ secrets.GOOGLE_SERVICE_KEY_JSON }}' > /tmp/google-key.json
           node -e "JSON.parse(require('fs').readFileSync('/tmp/google-key.json')); console.log('JSON valido')"
 
-      - name: 8. Correr publisher
+      - name: 9. Correr publisher
         run: npm run publish
 
-      - name: 9. Commit data.db atualizado
+      - name: 10. Commit data.db atualizado
         run: |
           git config user.name "spidpost-bot"
           git config user.email "bot@spidpost.local"
@@ -87,5 +98,5 @@ jobs:
           else
             git commit -m "chore: atualiza data.db [skip ci]"
             git push
-            echo "data.db commitado e enviado"
+            echo "data.db commitado"
           fi
