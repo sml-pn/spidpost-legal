@@ -12,9 +12,12 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     permissions:
       contents: write
+
+    env:
+      npm_config_build_from_source: true
 
     steps:
       - name: 1. Checkout do codigo
@@ -35,21 +38,27 @@ jobs:
           ffmpeg -version | head -1
           gcc --version | head -1
 
-      - name: 4. Instalar dependencias
-        run: npm ci
+      - name: 4. Instalar dependencias (sem scripts)
+        run: npm ci --ignore-scripts
 
-      - name: 5. Remover node_modules nativos e reconstruir
+      - name: 5. Compilar modulos nativos do zero
         run: |
-          rm -rf node_modules/better-sqlite3
-          rm -rf node_modules/libsodium-wrappers
-          rm -rf node_modules/libsodium
-          npm install better-sqlite3 --build-from-source
-          npm install libsodium-wrappers
+          echo "=== A compilar better-sqlite3 de fonte ==="
+          npm rebuild better-sqlite3 --build-from-source --verbose 2>&1 | tail -30
+          echo ""
+          echo "=== A compilar libsodium de fonte ==="
+          npm rebuild libsodium --build-from-source 2>&1 | tail -10 || echo "libsodium sem native (ok)"
 
-      - name: 6. Verificar bindings Linux
+      - name: 6. Verificar binario Linux
         run: |
-          file node_modules/better-sqlite3/build/Release/better_sqlite3.node
-          node -e "const D=require('better-sqlite3'); const db=new D(':memory:'); db.exec('CREATE TABLE t(x)'); console.log('SQLite OK')"
+          echo "=== Ficheiros em build/Release ==="
+          ls -la node_modules/better-sqlite3/build/Release/ || echo "PASTA NAO EXISTE"
+          echo ""
+          echo "=== Tipo de ficheiro ==="
+          file node_modules/better-sqlite3/build/Release/better_sqlite3.node || echo "BINARIO NAO EXISTE"
+          echo ""
+          echo "=== Teste SQLite ==="
+          node -e "const D=require('better-sqlite3'); const db=new D(':memory:'); db.exec('CREATE TABLE t(x)'); db.prepare('INSERT INTO t VALUES (?)').run(42); console.log('SQLite OK:', db.prepare('SELECT x FROM t').get())"
 
       - name: 7. Criar ficheiro .env
         run: |
