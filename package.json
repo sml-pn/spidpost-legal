@@ -1,33 +1,35 @@
 {
-  "name": "spidpost",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "tsx watch src/api/server.ts",
-    "harvest": "tsx src/jobs/harvester.ts",
-    "render": "tsx src/jobs/renderer.ts",
-    "publish": "tsx src/jobs/publisher.ts",
-    "refresh": "tsx src/jobs/refresh-ml.ts",
-    "cleanup": "tsx src/jobs/cleanup.ts",
-    "server": "tsx src/api/server.ts",
-    "scheduler": "tsx src/api/scheduler.ts",
-    "rotate": "tsx src/jobs/rotate.ts",
-    "clean-files": "tsx clean-files.ts"
-  },
-  "dependencies": {
-    "@afilimax/mercado-livre-provider": "^0.1.4",
-    "@fastify/static": "^10.1.4",
-    "better-sqlite3": "11.5.0",
-    "dotenv": "^18.0.1",
-    "fastify": "^5.12.5",
-    "node-edge-tts": "^1.2.10",
-    "playwright": "^1.63.0",
-    "zod": "^4.6.5"
-  },
-  "devDependencies": {
-    "@types/better-sqlite3": "^9.6.0",
-    "@types/node": "^22.10.0",
-    "tsx": "^4.23.13",
-    "typescript": "^5.7.3"
-  }
+    "name":  "spidpost",
+    "version":  "1.0.0",
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "tsx watch src/api/server.ts",
+                    "harvest":  "tsx src/jobs/harvester.ts",
+                    "render":  "tsx src/jobs/renderer.ts",
+                    "publish":  "tsx src/jobs/publisher.ts",
+                    "refresh":  "tsx src/jobs/refresh-ml.ts",
+                    "cleanup":  "tsx src/jobs/cleanup.ts",
+                    "server":  "tsx src/api/server.ts",
+                    "scheduler":  "tsx src/api/scheduler.ts",
+                    "rotate":  "tsx src/jobs/rotate.ts",
+                    "clean-files":  "tsx clean-files.ts",
+                    "sync":  "tsx src/jobs/sync-github.ts",
+                    "daily":  "tsx src/jobs/daily.ts"
+                },
+    "dependencies":  {
+                         "@afilimax/mercado-livre-provider":  "^0.1.4",
+                         "@fastify/static":  "^10.1.4",
+                         "better-sqlite3":  "11.5.0",
+                         "dotenv":  "^18.0.1",
+                         "fastify":  "^5.12.5",
+                         "node-edge-tts":  "^1.2.10",
+                         "playwright":  "^1.63.0",
+                         "zod":  "^4.6.5"
+                     },
+    "devDependencies":  {
+                            "@types/better-sqlite3":  "^9.6.0",
+                            "@types/node":  "^22.10.0",
+                            "tsx":  "^4.23.13",
+                            "typescript":  "^5.7.3"
+                        }
 }
