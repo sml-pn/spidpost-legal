@@ -24,20 +24,63 @@ export const SLOTS = [
 /** Backoff (minutos) para cada tentativa de retry. */
 export const BACKOFFS_MIN = [3, 10, 30, 60];
 
+/** Data local no formato YYYY-MM-DD. */
+function dataLocal(d: Date = new Date()): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/** Garante que a tabela schedule_used existe. */
+export function ensureScheduleUsedTable(): void {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS schedule_used (
+      slot TEXT NOT NULL,
+      data TEXT NOT NULL,
+      used_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (slot, data)
+    )
+  `);
+}
+
 /**
- * Devolve o slot atual (HH:MM), ou null se estivermos fora de algum slot.
- * Tolerancia: +-7 min (para dar margem ao scheduler de 5 min).
+ * Devolve o slot MAIS RECENTE que ja passou hoje e ainda nao foi usado.
+ *
+ * Permite publicar mesmo com atrasos de 30min-2h do GitHub Actions:
+ * se o slot das 08:00 foi perdido, publica em 08:35 e marca como usado.
+ *
+ * Se todos os slots que ja passaram ja foram usados, devolve null.
  */
-export function slotAtual(toleranciaMin = 7): string | null {
+export function slotAtual(): string | null {
+  ensureScheduleUsedTable();
+
   const agora = new Date();
+  const hoje = dataLocal(agora);
   const minutosAgora = agora.getHours() * 60 + agora.getMinutes();
 
-  for (const slot of SLOTS) {
-    const partes = slot.split(':');
-    const minutosSlot = Number(partes[0]) * 60 + Number(partes[1]);
-    if (Math.abs(minutosAgora - minutosSlot) <= toleranciaMin) return slot;
+  const passados = SLOTS.filter((s) => {
+    const partes = s.split(':');
+    return Number(partes[0]) * 60 + Number(partes[1]) <= minutosAgora;
+  });
+
+  if (passados.length === 0) return null;
+
+  for (let i = passados.length - 1; i >= 0; i--) {
+    const s = passados[i];
+    const usado = db.prepare(
+      'SELECT 1 FROM schedule_used WHERE slot = ? AND data = ? LIMIT 1'
+    ).get(s, hoje);
+    if (!usado) return s;
   }
+
   return null;
+}
+
+/** Marca um slot como usado hoje (para nao repetir). */
+export function markSlotUsado(slot: string): void {
+  ensureScheduleUsedTable();
+  const hoje = dataLocal();
+  db.prepare(
+    `INSERT OR IGNORE INTO schedule_used (slot, data) VALUES (?, ?)`
+  ).run(slot, hoje);
 }
 
 /** Garante que a tabela schedule_state existe. */

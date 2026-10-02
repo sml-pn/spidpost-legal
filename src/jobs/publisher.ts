@@ -11,7 +11,7 @@
 import path from 'node:path';
 import { db, proximaVariacao, type Variacao } from '../lib/db.js';
 import { publicarReel, publicarStoryVideo, publicarFeedImagem, comentarPost } from '../services/instagram.js';
-import { slotAtual, getPending, setPending, clearPending, proximoBackoff, ensureScheduleTable } from '../lib/schedule.js';
+import { slotAtual, getPending, setPending, clearPending, proximoBackoff, ensureScheduleTable, markSlotUsado } from '../lib/schedule.js';
 import { uploadImageKit } from '../services/imagekit.js';
 
 const MINUTOS_ENTRE_POSTS   = Number(process.env.FORCE_MINUTOS || 25);
@@ -412,6 +412,12 @@ async function main() {
 
   // [SLOTS] Publicou com sucesso — limpar estado pendente
   clearPending();
+
+  // [SLOTS] Marcar slot como usado hoje (para nao repetir)
+  if (slotParaPublicar) {
+    markSlotUsado(slotParaPublicar);
+    console.log(`  [slot] Slot ${slotParaPublicar} marcado como usado`);
+  }
 
   console.log('═══════════════════════════════════════════════════════════');
   console.log(`  ${publicados.length} formato(s) publicados`);
