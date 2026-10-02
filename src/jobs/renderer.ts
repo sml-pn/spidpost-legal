@@ -11,6 +11,7 @@ import { db, type Variacao, ANGULOS } from '../lib/db.js';
 import { gerarRoteiro } from '../services/gemini.js';
 import { gerarAudio } from '../services/tts.js';
 import { baixarImagem, montarVideo, montarFeed } from '../services/ffmpeg.js';
+import { uploadImageKit } from '../services/imagekit.js';
 
 const RENDERS_DIR = path.join(process.cwd(), 'renders');
 const TEMP_DIR = path.join(RENDERS_DIR, 'temp');
@@ -96,16 +97,20 @@ async function main() {
       selo: roteiro.selo, beneficios: roteiro.beneficios, cta: roteiro.cta,
     });
 
-    console.log('\n[5/5] Registrando no banco...');
+    console.log('\n[5/5] Upload ImageKit + registrando no banco...');
+    const reelUrl = await uploadImageKit(reelPath, 'reels');
+    const storyUrl = await uploadImageKit(storyPath, 'stories');
+    const feedUrl = await uploadImageKit(feedPath, 'feed');
+
     const insertRender = db.prepare(`
       INSERT INTO renders
-        (product_id, variation, reel_path, caption, hashtags, status, variation_angle, image_used)
-      VALUES (?, ?, ?, ?, ?, 'READY', ?, ?)
+        (product_id, variation, reel_path, reel_url, caption, hashtags, status, variation_angle, image_used)
+      VALUES (?, ?, ?, ?, ?, ?, 'READY', ?, ?)
     `);
     const angulo = ANGULOS[variacao];
-    insertRender.run(produto.id, variacao, reelPath, roteiro.legenda, roteiro.hashtags.join(' '), angulo, produto.thumbnail);
-    insertRender.run(produto.id, variacao, storyPath, roteiro.legenda, roteiro.hashtags.join(' '), angulo, produto.thumbnail);
-    insertRender.run(produto.id, variacao, feedPath, roteiro.legenda, roteiro.hashtags.join(' '), angulo, produto.thumbnail);
+    insertRender.run(produto.id, variacao, reelPath, reelUrl, roteiro.legenda, roteiro.hashtags.join(' '), angulo, produto.thumbnail);
+    insertRender.run(produto.id, variacao, storyPath, storyUrl, roteiro.legenda, roteiro.hashtags.join(' '), angulo, produto.thumbnail);
+    insertRender.run(produto.id, variacao, feedPath, feedUrl, roteiro.legenda, roteiro.hashtags.join(' '), angulo, produto.thumbnail);
 
     db.prepare(`
       UPDATE products

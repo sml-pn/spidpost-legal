@@ -150,6 +150,7 @@ export type Render = {
   product_id: number;
   variation: string;
   reel_path: string | null;
+  reel_url: string | null;
   drive_file_id: string | null;
   caption: string | null;
   hashtags: string | null;
