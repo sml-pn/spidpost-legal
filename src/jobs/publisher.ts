@@ -47,7 +47,8 @@ async function uploadPublico(caminhoLocal: string): Promise<string> {
 }
 
 function tipoDoRender(p: string): 'reel' | 'story' | 'feed' | 'unknown' {
-  const n = path.basename(p);
+  // [FIX] Aceita '/' e '\\' — path.basename do Linux nao corta em '\\'
+  const n = p.split(/[\\/]/).pop() ?? p;
   if (n.startsWith('reel-')) return 'reel';
   if (n.startsWith('story-')) return 'story';
   if (n.startsWith('feed-')) return 'feed';
