@@ -1,4 +1,4 @@
-﻿name: SpidPost Publish
+name: SpidPost Publish
 
 on:
   schedule:
