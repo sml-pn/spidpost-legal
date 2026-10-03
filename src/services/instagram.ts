@@ -77,6 +77,11 @@ async function aguardarEPublicar(containerId: string, maxPoll = 60): Promise<str
     console.log(`  [IG] Status: ${statusCode} (${tentativas}/${maxPoll})`);
 
     if (statusCode === 'ERROR') {
+    if (statusDetail.includes('2207082')) {
+      console.log('  [IG] 2207082 - retry em 5 min...');
+      await new Promise((r) => setTimeout(r, 5 * 60 * 1000));
+      throw new Error(`IG_RETRY_2207082: ${statusDetail}`);
+    }
       throw new Error(`IG processamento falhou: ${statusDetail}`);
     }
     if (statusCode === 'EXPIRED') {

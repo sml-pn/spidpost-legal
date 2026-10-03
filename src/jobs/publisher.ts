@@ -304,6 +304,7 @@ async function main() {
   let storyId: string | null = null;
   let feedId: string | null = null;
   let erro2207077 = false;
+  let erro2207082 = false;
 
   // ─── Reel ───
   if (porTipo.reel) {
@@ -323,6 +324,7 @@ async function main() {
       const msg = (err as Error).message;
       console.error('  ERRO reel:', msg.slice(0, 250), '\n');
       if (msg.includes('2207077')) erro2207077 = true;
+    if (msg.includes('IG_RETRY_2207082')) erro2207082 = true;
     }
   }
 
@@ -358,7 +360,16 @@ async function main() {
 
   if (publicados.length === 0) {
     console.log('═══════════════════════════════════════════════════════════');
-    if (erro2207077) {
+    if (erro2207082 && !erro2207077) {
+      console.log('  2207082 - COOLDOWN 5 min (retry automatico)');
+      db.prepare(`
+        UPDATE products
+        SET status = 'COOLDOWN',
+            error = 'retry_2207082',
+            updated_at = datetime('now')
+        WHERE id = ?
+      `).run(produto.id);
+    } else if (erro2207077) {
       const tentativas = (produto.attempts ?? 0) + 1;
       const nivelIdx = Math.min(tentativas, HORAS_BACKOFF_NIVEIS.length) - 1;
       const horas = HORAS_BACKOFF_NIVEIS[nivelIdx];
