@@ -1,10 +1,19 @@
 @echo off
-title SpidPost
+title SpidPost - Atualizacao Diaria
 cd /d "%~dp0"
 
 echo.
 echo ============================================
-echo   SPIDPOST - Arranque
+echo   SPIDPOST - Atualizacao Diaria
+echo ============================================
+echo.
+echo   1. refresh  (tokens ML)
+echo   2. harvest  (favoritos ML)
+echo   3. render   (videos + ImageKit)
+echo   4. sync     (push para GitHub)
+echo.
+echo   Tempo estimado: 15-30 min.
+echo   Podes deixar a correr e ir fazer outra coisa.
 echo ============================================
 echo.
 
@@ -13,52 +22,17 @@ if not exist ".env"        ( echo [ERRO] Ficheiro .env nao encontrado.    & paus
 where node >nul 2>nul
 if errorlevel 1 ( echo [ERRO] Node.js nao encontrado. & pause & exit /b 1 )
 
-REM --- PROTECAO: verificar se ja ha servidor a correr ---
-echo [1/3] A verificar se ja existe servidor...
-curl.exe -s -o NUL -w "%%{http_code}" http://localhost:3000/api/health > "%TEMP%\sp_health.txt" 2>nul
-set /p CODE=<"%TEMP%\sp_health.txt"
-
-if "%CODE%"=="200" (
-    echo.
-    echo ============================================
-    echo   ATENCAO: JA EXISTE UM SPIDPOST A CORRER
-    echo ============================================
-    echo.
-    echo   Nao vou arrancar outro. Se quiseres reiniciar:
-    echo     1. Fecha a janela "SpidPost Server" antiga
-    echo     2. Volta a clicar neste START.bat
-    echo.
-    echo   OU se nao sabes onde esta a janela antiga:
-    echo     Abre PowerShell e corre:
-    echo       Get-Process node ^| Stop-Process -Force
-    echo.
-    pause
-    exit /b 0
-)
-
-echo [OK] Nenhum servidor a correr
+echo A arrancar... (Ctrl+C para cancelar)
 echo.
-
-REM --- [2/3] Tailscale Funnel ---
-echo [2/3] A ativar Tailscale Funnel...
-tailscale funnel --bg 3000 >nul 2>nul
-timeout /t 2 >nul
-
-REM --- [3/3] Servidor + Browser ---
-echo [3/3] A arrancar servidor SpidPost...
-start "SpidPost Server" cmd /k "cd /d %CD% && npm run server"
-timeout /t 5 >nul
-timeout /t 3 >nul
-start https://samuel.tailebbd35.ts.net
+npm run daily
 
 echo.
 echo ============================================
-echo   SPIDPOST ARRANCADO
+echo   CONCLUIDO
 echo ============================================
-echo   Painel: https://samuel.tailebbd35.ts.net
-echo   Login:  samuel / spidpost2026
-echo.
-echo   No painel, clica em INICIAR SISTEMA.
+echo   O GitHub Actions vai publicar nos slots
+echo   08:00-22:00 automaticamente.
+echo   Podes desligar o PC.
 echo ============================================
-timeout /t 5 >nul
+timeout /t 15
 exit /b 0
