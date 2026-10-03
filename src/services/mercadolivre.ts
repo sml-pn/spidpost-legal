@@ -1,5 +1,15 @@
-﻿import { env } from '../lib/env.js';
+import { env } from '../lib/env.js';
 import { chromium } from 'playwright';
+import fs from 'node:fs';
+import path from 'node:path';
+const COOKIES_PATH = path.join(process.cwd(), 'cookies-ml.json');
+function lerCookies(): string {
+  try {
+    const raw = JSON.parse(fs.readFileSync(COOKIES_PATH, 'utf-8'));
+    const lista = Array.isArray(raw) ? raw : (raw.cookies ?? []);
+    return lista.map((c: any) => c.name + '=' + c.value).join('; ');
+  } catch { return ''; }
+}
 
 const API = 'https://api.mercadolibre.com';
 const USER_AGENT_GOOGLEBOT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
@@ -42,18 +52,27 @@ export async function getBookmarks(): Promise<Bookmark[]> {
 }
 
 export async function getItem(itemId: string): Promise<ItemData | null> {
-  console.log(`  [1/2] Googlebot: ${itemId}...`);
+  console.log(`  [1/3] Googlebot: ${itemId}...`);
   const viaGooglebot = await fetchViaGooglebot(itemId);
   if (viaGooglebot) {
-    console.log(`  [1/2] Googlebot OK`);
+    console.log(`  [1/3] Googlebot OK`);
     return viaGooglebot;
   }
-  console.log(`  [2/2] Playwright: ${itemId}...`);
+
+  console.log(`  [2/3] Playwright: ${itemId}...`);
   const viaPlaywright = await fetchViaPlaywright(itemId);
   if (viaPlaywright) {
-    console.log(`  [2/2] Playwright OK`);
+    console.log(`  [2/3] Playwright OK`);
     return viaPlaywright;
   }
+
+  console.log(`  [3/3] Catalogo (anuncio de catalogo): ${itemId}...`);
+  const viaCatalogo = await fetchViaCatalogo(itemId);
+  if (viaCatalogo) {
+    console.log(`  [3/3] Catalogo OK`);
+    return viaCatalogo;
+  }
+
   console.log(`  [x] Nenhum metodo funcionou para ${itemId}`);
   return null;
 }
@@ -63,7 +82,7 @@ async function fetchViaGooglebot(itemId: string): Promise<ItemData | null> {
     const idNumerico = itemId.replace('MLB', '');
     const url = `https://produto.mercadolivre.com.br/MLB-${idNumerico}`;
     const res = await fetch(url, {
-      headers: { 'User-Agent': USER_AGENT_GOOGLEBOT, Accept: 'text/html' },
+      headers: { 'User-Agent': USER_AGENT_GOOGLEBOT, Accept: 'text/html', Cookie: lerCookies() },
       redirect: 'follow',
     });
     if (!res.ok) {
@@ -101,6 +120,61 @@ async function fetchViaPlaywright(itemId: string): Promise<ItemData | null> {
     return { id: itemId, title, price, original_price: null, thumbnail: imageUrl, permalink: url, category, category_raw: categoryRaw };
   } finally {
     await browser.close();
+  }
+}
+
+/**
+ * [ANTI-FALHA] Tenta ler anuncios de catalogo.
+ * O ML redireciona produto.mercadolivre.com.br/MLB-XXXX para
+ * mercadolivre.com.br/.../p/{catalog_id}?pdp_filters=item_id:MLB-XXXX
+ * Este metodo le o redirect e vai buscar a pagina do catalogo.
+ */
+async function fetchViaCatalogo(itemId: string): Promise<ItemData | null> {
+  const idNumerico = itemId.replace('MLB', '');
+  const urlOriginal = `https://produto.mercadolivre.com.br/MLB-${idNumerico}`;
+
+  try {
+    // Passo 1: descobrir o redirect (catalog_id)
+    const resRedirect = await fetch(urlOriginal, {
+      headers: { 'User-Agent': USER_AGENT_CHROME, Accept: 'text/html', Cookie: lerCookies() },
+      redirect: 'manual',
+    });
+
+    const location = resRedirect.headers.get('location') || '';
+    console.log(`  [debug] redirect: ${location.slice(0, 80)}...`);
+
+    // Se nao houver redirect, o produto pode estar noutro formato
+    if (!location) {
+      console.log(`  [debug] sem redirect - produto nao encontrado no catalogo`);
+      return null;
+    }
+
+    // Passo 2: ir buscar a pagina do catalogo
+    const resCatalogo = await fetch(location, {
+      headers: { 'User-Agent': USER_AGENT_CHROME, Accept: 'text/html', Cookie: lerCookies() },
+      redirect: 'follow',
+    });
+
+    if (!resCatalogo.ok) {
+      console.log(`  [debug] Catalogo HTTP ${resCatalogo.status}`);
+      return null;
+    }
+
+    const html = await resCatalogo.text();
+    if (html.length < 100_000) {
+      console.log(`  [debug] Catalogo HTML pequeno (${html.length})`);
+      return null;
+    }
+
+    // Passo 3: extrair dados do HTML do catalogo
+    const item = parseHtml(html, itemId, location);
+    if (item) {
+      item.permalink = location; // usar o URL do catalogo
+    }
+    return item;
+  } catch (err) {
+    console.log(`  [debug] Catalogo erro: ${(err as Error).message}`);
+    return null;
   }
 }
 
