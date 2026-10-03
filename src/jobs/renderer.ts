@@ -41,6 +41,18 @@ async function main() {
     return;
   }
 
+  // [FIX] Se ja tem renders READY desta variacao, nao gerar duplicados
+  const variacaoAtual = (produto.next_variation ?? 'A') as Variacao;
+  const jaTemRender = db.prepare(
+    `SELECT COUNT(*) as c FROM renders WHERE product_id = ? AND variation = ? AND status = 'READY'`
+  ).get(produto.id, variacaoAtual) as { c: number };
+
+  if (jaTemRender.c > 0) {
+    console.log('[SKIP] Produto ' + produto.id + ' ja tem ' + jaTemRender.c + ' render(s) READY para variacao ' + variacaoAtual);
+    db.prepare(`UPDATE products SET status = 'READY', updated_at = datetime('now') WHERE id = ? AND status = 'PENDING'`).run(produto.id);
+    return;
+  }
+
   console.log(`Produto: [${produto.category}] ${produto.name}`);
   console.log(`Preco: R$ ${produto.price}`);
 
