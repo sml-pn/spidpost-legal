@@ -1,4 +1,4 @@
-﻿name: SpidPost Publish
+name: SpidPost Publish
 
 on:
   schedule:
@@ -22,12 +22,12 @@ jobs:
 
     steps:
       - name: 1. Checkout do codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: 2. Setup Node.js 20
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22'
           cache: 'npm'
