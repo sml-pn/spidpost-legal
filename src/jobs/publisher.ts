@@ -9,6 +9,7 @@
  */
 
 import path from 'node:path';
+import fs from 'node:fs';
 import { db, proximaVariacao, type Variacao } from '../lib/db.js';
 import { publicarReel, publicarStoryVideo, publicarFeedImagem, comentarPost } from '../services/instagram.js';
 import { slotAtual, getPending, setPending, clearPending, proximoBackoff, ensureScheduleTable, markSlotUsado } from '../lib/schedule.js';
@@ -34,16 +35,26 @@ function montarUrl(caminhoLocal: string): string {
 async function uploadPublico(caminhoLocal: string): Promise<string> {
   // Fallback: sem ImageKit configurado, usa URL do Tailscale
   if (!process.env.IMAGEKIT_PRIVATE_KEY) {
-    console.log("  [imagekit] Sem chave configurada — a usar Tailscale");
+    console.log('  [imagekit] Sem chave configurada - a usar Tailscale');
     return montarUrl(caminhoLocal);
   }
 
-  const fileName = caminhoLocal.split(/[\\/]/).pop() || "";
-  const pasta = fileName.startsWith("story-") ? "stories"
-              : fileName.startsWith("feed-")  ? "feed"
-              : "reels";
+  const fileName = caminhoLocal.split(/[\\/]/).pop() || '' ;
+  const pasta = fileName.startsWith('story-') ? 'stories'
+              : fileName.startsWith('feed-')  ? 'feed'
+              : 'reels';
 
-  return await uploadImageKit(caminhoLocal, pasta);
+  const url = await uploadImageKit(caminhoLocal, pasta);
+
+  // [FIX] Apagar ficheiro local apos upload bem-sucedido
+  try {
+    await fs.promises.unlink(caminhoLocal);
+    console.log('  [cleanup] ficheiro local apagado: ' + fileName);
+  } catch (err) {
+    console.log('  [cleanup] aviso: nao consegui apagar ' + fileName + ': ' + (err as Error).message);
+  }
+
+  return url;
 }
 
 function tipoDoRender(p: string): 'reel' | 'story' | 'feed' | 'unknown' {

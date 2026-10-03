@@ -1,4 +1,4 @@
-﻿import { spawn } from 'node:child_process';
+import { spawn } from 'node:child_process';
 
 const ROOT = process.cwd();
 
@@ -8,6 +8,7 @@ const STEPS: Step[] = [
   { nome: 'refresh', cmd: 'npx', args: ['tsx', 'src/jobs/refresh-ml.ts'], fatal: false },
   { nome: 'harvest', cmd: 'npx', args: ['tsx', 'src/jobs/harvester.ts'], fatal: true },
   { nome: 'render',  cmd: 'npx', args: ['tsx', 'src/jobs/renderer.ts'],  fatal: true },
+  { nome: 'cleanup', cmd: 'npx', args: ['tsx', 'src/jobs/cleanup.ts'],    fatal: false },
   { nome: 'sync',    cmd: 'npx', args: ['tsx', 'src/jobs/sync-github.ts'], fatal: false },
 ];
 
