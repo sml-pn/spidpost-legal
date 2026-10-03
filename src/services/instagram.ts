@@ -35,10 +35,15 @@ async function fetchComRetry(
   for (let tentativa = 1; tentativa <= maxTentativas; tentativa++) {
     try {
       const res = await fetchComTimeout(url, options);
+
+      // Se nao for 5xx, devolve logo
       if (res.status < 500) return res;
+
+      // 5xx: guarda e retenta
       console.log(`  [http] ${res.status}, retry (${tentativa}/${maxTentativas})...`);
       ultimoErro = new Error(`HTTP ${res.status}`);
     } catch (err) {
+      // Erro de rede (ECONNRESET, UND_ERR_SOCKET, timeout, etc.)
       const e = err as Error & { cause?: unknown };
       ultimoErro = e;
       const causa = e.cause ? ` (causa: ${JSON.stringify(e.cause)})` : '';
@@ -46,7 +51,7 @@ async function fetchComRetry(
     }
 
     if (tentativa < maxTentativas) {
-      const delay = 2000 * Math.pow(2, tentativa - 1);
+      const delay = 2000 * Math.pow(2, tentativa - 1); // 2s, 4s, 8s
       await new Promise((r) => setTimeout(r, delay));
     }
   }
@@ -72,11 +77,6 @@ async function aguardarEPublicar(containerId: string, maxPoll = 60): Promise<str
     console.log(`  [IG] Status: ${statusCode} (${tentativas}/${maxPoll})`);
 
     if (statusCode === 'ERROR') {
-      if (statusDetail.includes('2207082')) {
-        console.log('  [IG] Erro 2207082 - retry em 5 min...');
-        await new Promise((r) => setTimeout(r, 5 * 60 * 1000));
-        throw new Error(`IG_RETRY_2207082: ${statusDetail}`);
-      }
       throw new Error(`IG processamento falhou: ${statusDetail}`);
     }
     if (statusCode === 'EXPIRED') {
