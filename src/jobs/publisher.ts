@@ -352,19 +352,9 @@ async function main() {
   }
 
   // ─── Feed ───
-  if (porTipo.feed && !erro2207077) {
-    console.log('[3/3] Publicando Feed...');
-    try {
-      const url = porTipo.feed.reel_url || await uploadPublico(porTipo.feed.reel_path);
-      console.log('  URL:', url);
-      feedId = await publicarFeedImagem({ imageUrl: url, caption });
-      publicados.push({ id: porTipo.feed.id, mediaId: feedId! });
-      console.log('');
-    } catch (err) {
-      console.log('  ERRO feed:', (err as Error).message.slice(0, 250), '\n');
-    }
-  } else if (erro2207077) {
-    console.log('[3/3] Feed saltado (rate limit detectado no reel)\n');
+  // [FIX] Feed desativado para evitar rate limit 2207051 (3 formatos no mesmo slot)
+  if (porTipo.feed) {
+    console.log('[3/3] Feed saltado (desativado para evitar rate limit)\n');
   }
 
   const agora = new Date().toISOString();
