@@ -321,7 +321,7 @@ async function main() {
   if (porTipo.reel) {
     console.log('[1/3] Publicando Reel...');
     try {
-      const url = porTipo.reel.reel_url || await uploadPublico(porTipo.reel.reel_path);
+      const url = (porTipo.reel.reel_url || await uploadPublico(porTipo.reel.reel_path)) + '?tr=orig-true';
       console.log('  URL:', url);
       reelId = await publicarReel({ videoUrl: url, caption });
       publicados.push({ id: porTipo.reel.id, mediaId: reelId! });
@@ -342,7 +342,7 @@ async function main() {
   // ─── Story ───
   if (porTipo.story && !erro2207077) {
     console.log('[2/3] Publicando Story...');
-    const url = porTipo.story.reel_url || await uploadPublico(porTipo.story.reel_path);
+    const url = (porTipo.story.reel_url || await uploadPublico(porTipo.story.reel_path)) + '?tr=orig-true';
     console.log('  URL:', url);
     storyId = await publicarStoryComRetry(url);
     if (storyId) publicados.push({ id: porTipo.story.id, mediaId: storyId });
