@@ -15,7 +15,7 @@
 
 import { db } from '../lib/db.js';
 
-const FILA_MINIMA = 3; // Manter pelo menos N produtos na fila
+const FILA_MINIMA = 15; // Manter pelo menos N produtos na fila
 
 async function main() {
   console.log('Rotate iniciado...\n');
