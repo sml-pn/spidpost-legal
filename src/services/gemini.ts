@@ -92,13 +92,23 @@ function montarPrompt(params: GerarParams): string {
   return `Voce e um copywriter de afiliados brasileiro. Gere um roteiro de video de 18 segundos para Instagram Reels.
 
 Produto: ${nome}
-Preco: R$ ${preco.toFixed(2)}
-${precoOriginal ? `Preco original: R$ ${precoOriginal.toFixed(2)}` : ''}
+Preco: R$ ${preco.toFixed(2).replace('.', ',')}
+${precoOriginal ? `Preco original: R$ ${precoOriginal.toFixed(2).replace('.', ',')}` : ''}
 Categoria: ${categoria}
 
 Angulo: ${angulo}
 
 REGRA CRITICA: NUNCA menciones "link na bio" ou "link abaixo". O unico CTA permitido e "Comenta QUERO".
+
+REGRA DE PRECO (OBRIGATORIA): Quando falares o preco na "fala", dize-lo COMPLETO, incluindo os centavos.
+Exemplos corretos:
+  R$ 26,90 -> "vinte e seis reais e noventa centavos"
+  R$ 149,99 -> "cento e quarenta e nove reais e noventa e nove centavos"
+  R$ 95,00 -> "noventa e cinco reais" (sem centavos quando sao zeros)
+Exemplos ERRADOS (nunca facas):
+  R$ 26,90 -> "vinte e seis reais" (falta os centavos)
+  R$ 26,90 -> "vinte e sete reais" (arredondado)
+  R$ 149,99 -> "cento e cinquenta reais" (arredondado)
 
 Regras:
 - "fala"         : maximo 45 palavras. DEVE terminar com "Comenta QUERO que eu envio o link no teu privado."

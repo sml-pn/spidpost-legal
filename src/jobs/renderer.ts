@@ -6,6 +6,7 @@
  */
 
 import fs from 'node:fs/promises';
+import { SELO_FIXO, CTA_FIXO } from '../config/brand.js';
 import path from 'node:path';
 import { db, type Variacao, ANGULOS } from '../lib/db.js';
 import { gerarRoteiro } from '../services/gemini.js';
@@ -92,21 +93,21 @@ async function main() {
       titulo: produto.name, preco: produto.price,
       outputPath: reelPath, formato: 'reel',
       estilo: roteiro.estilo, cor: roteiro.cor,
-      selo: roteiro.selo, beneficios: roteiro.beneficios, cta: roteiro.cta,
+      selo: SELO_FIXO, beneficios: roteiro.beneficios, cta: CTA_FIXO, categoria: produto.category,
     });
     await montarVideo({
       imagemPath, audioPath,
       titulo: produto.name, preco: produto.price,
       outputPath: storyPath, formato: 'story',
       estilo: roteiro.estilo, cor: roteiro.cor,
-      selo: roteiro.selo, beneficios: roteiro.beneficios, cta: roteiro.cta,
+      selo: SELO_FIXO, beneficios: roteiro.beneficios, cta: CTA_FIXO, categoria: produto.category,
     });
     await montarFeed({
       imagemPath,
       titulo: produto.name, preco: produto.price,
       outputPath: feedPath,
       estilo: roteiro.estilo, cor: roteiro.cor,
-      selo: roteiro.selo, beneficios: roteiro.beneficios, cta: roteiro.cta,
+      selo: SELO_FIXO, beneficios: roteiro.beneficios, cta: CTA_FIXO, categoria: produto.category,
     });
 
     console.log('\n[5/5] Upload ImageKit + registrando no banco...');

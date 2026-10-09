@@ -35,6 +35,7 @@ import fs from 'node:fs/promises';
 import fsSync from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { BG_BASE, TEXT_DARK, TEXT_MEDIUM, TEXT_STARS, AVALIACAO, getCategoryTint, toFfmpegColor, CATEGORY_TINT_ALPHA } from '../config/brand.js';
 
 // ──────────────────────────────────────────────────────────────────────
 // Configuração
@@ -82,6 +83,9 @@ const FONTES: Record<Estilo, string> = {
 
 /** Fonte de último recurso se a preferida não existir. [ROBUSTO] */
 const FONTE_FALLBACK = 'arialbd.ttf';
+
+/** Fonte com glifos Unicode (estrelas, simbolos). [FIX estrelas] */
+const FONTE_SIMBOLOS = 'seguisym.ttf';
 
 /** Cores padrão por estilo (formato #RRGGBB). */
 const CORES_PADRAO: Record<Estilo, string> = {
@@ -224,6 +228,10 @@ function escaparPath(p: string): string {
  * [ROBUSTO] Resolve o caminho da fonte preferida. Se não existir no sistema,
  * devolve o fallback. Se nem o fallback existir, lança (não dá para desenhar texto).
  */
+/** Escapa caminho de fonte para uso em filtros ffmpeg. */
+function escapeFont(p: string): string {
+  return p.replace(/\\/g, '/').replace(/:/g, '\\:');
+}
 function resolverFonte(estilo: Estilo): string {
   const preferida = FONTES[estilo] ?? FONTE_FALLBACK;
   const caminhoPreferido = path.join(FONT_DIR, preferida);
@@ -324,6 +332,8 @@ type LayoutParams = {
   base: 'vertical' | 'feed';
   /** [ROBUSTO] Se true, desenha o CTA "Link na bio" no vídeo (usado em Story). */
   mostrarCta: boolean;
+  /** Categoria do produto (tint subtil de fundo). */
+  categoria?: string;
 };
 
 /**
@@ -356,8 +366,9 @@ async function montarFiltrosLayout(p: LayoutParams): Promise<{
 
   // ─── Posições verticais (fração da altura) ───
   const posSelo   = isFeed ? 0.72 : 0.67;
-  const posTitulo = isFeed ? 0.78 : 0.72;
-  const posBenef  = isFeed ? 0.85 : 0.78;
+  const posStars  = isFeed ? 0    : 0.72;   // logo abaixo do selo
+  const posTitulo = isFeed ? 0.78 : 0.76;
+  const posBenef  = isFeed ? 0.85 : 0.82;
   const posPreco  = isFeed ? 0.94 : 0.89;
   const posCta    = isFeed ? 0.99 : 0.945;
 
@@ -406,17 +417,26 @@ async function montarFiltrosLayout(p: LayoutParams): Promise<{
   // ────────────────────────────────────────────────────────────────
   const filters: string[] = [];
 
-  // 1. Base: imagem inteira (sem crop) + padding preto
+  // 1. Fundo creme + tint por categoria
+  const bgFfmpeg = toFfmpegColor(BG_BASE);
+  const alturaCanvas = isFeed ? 1350 : 1920;
+
+  // 1. Base: imagem inteira (sem crop) + padding creme
   if (isFeed) {
     filters.push(
       `[0:v]scale=1080:${imgAltura}:force_original_aspect_ratio=decrease,` +
-      `pad=1080:1350:(ow-iw)/2:${imgTopo}:black`
+      `pad=1080:1350:(ow-iw)/2:${imgTopo}:${bgFfmpeg}`
     );
   } else {
     filters.push(
       `[0:v]scale=1080:${imgAltura}:force_original_aspect_ratio=decrease,` +
-      `pad=1080:1920:(ow-iw)/2:${imgTopo}:black`
+      `pad=1080:1920:(ow-iw)/2:${imgTopo}:${bgFfmpeg}`
     );
+  }
+  // 1b. Tint subtil por categoria
+  if (p.categoria) {
+    const tintFfmpeg = toFfmpegColor(getCategoryTint(p.categoria));
+    filters.push(`drawbox=x=0:y=0:w=1080:h=${alturaCanvas}:color=${tintFfmpeg}@${CATEGORY_TINT_ALPHA}:t=fill`);
   }
 
   // 2. Pill do selo (fundo colorido + texto branco)
@@ -431,7 +451,7 @@ async function montarFiltrosLayout(p: LayoutParams): Promise<{
   );
   // Corpo
   filters.push(
-    `drawbox=x=(iw-${larguraPill})/2:y=${yPillBox}:w=${larguraPill}:h=${alturaPill}:color=${corFfmpeg}@1:t=fill`
+    `drawbox=x=(iw-${larguraPill})/2:y=${yPillBox}:w=${larguraPill}:h=${alturaPill}:color=0x1a1a1a@1:t=fill`
   );
   // Texto
   filters.push(
@@ -440,26 +460,35 @@ async function montarFiltrosLayout(p: LayoutParams): Promise<{
 
   // 3. Título
   filters.push(
-    `drawtext=fontfile='${font}':textfile='${esc.titulo}':expansion=none:fontcolor=white:fontsize=${fsTitulo}:x=(w-text_w)/2:y=h*${posTitulo}:shadowx=2:shadowy=2:shadowcolor=black@0.7:line_spacing=8`
+    `drawtext=fontfile='${font}':textfile='${esc.titulo}':expansion=none:fontcolor=${toFfmpegColor(TEXT_DARK)}:fontsize=${fsTitulo}:x=(w-text_w)/2:y=h*${posTitulo}:line_spacing=8`
   );
 
   // 4. Benefícios
   for (let i = 0; i < benefFiles.length; i++) {
     const y = `h*${posBenef}+${i * (fsBenef + 6)}`;
     filters.push(
-      `drawtext=fontfile='${font}':textfile='${benefFiles[i]}':expansion=none:fontcolor=${corFfmpeg}:fontsize=${fsBenef}:x=(w-text_w)/2:y=${y}:shadowx=2:shadowy=2:shadowcolor=black@0.6`
+      `drawtext=fontfile='${font}':textfile='${benefFiles[i]}':expansion=none:fontcolor=${toFfmpegColor(TEXT_MEDIUM)}:fontsize=${fsBenef}:x=(w-text_w)/2:y=${y}`
+    );
+  }
+
+  // 4b. Estrelas de avaliacao (fixas, douradas) - SO no vertical (Reel/Story)
+  if (!isFeed) {
+    const fonteSimbolosPath = path.join(FONT_DIR, FONTE_SIMBOLOS);
+    const fonteSimbolos = fsSync.existsSync(fonteSimbolosPath) ? fonteSimbolosPath : resolverFonte(p.estilo);
+    filters.push(
+      `drawtext=fontfile='${escapeFont(fonteSimbolos)}':text=${AVALIACAO}:expansion=none:fontcolor=${toFfmpegColor(TEXT_STARS)}:fontsize=${fsBenef + 10}:x=(w-text_w)/2:y=h*${posStars}`
     );
   }
 
   // 5. Preço
   filters.push(
-    `drawtext=fontfile='${font}':textfile='${esc.preco}':expansion=none:fontcolor=${corFfmpeg}:fontsize=${fsPreco}:x=(w-text_w)/2:y=h*${posPreco}:shadowx=3:shadowy=3:shadowcolor=black@0.7`
+    `drawtext=fontfile='${font}':textfile='${esc.preco}':expansion=none:fontcolor=${toFfmpegColor(TEXT_DARK)}:fontsize=${fsPreco}:x=(w-text_w)/2:y=h*${posPreco}`
   );
 
   // 6. CTA ("Link na bio") — só quando pedido explicitamente (Story) [ROBUSTO]
   if (p.mostrarCta) {
     filters.push(
-      `drawtext=fontfile='${font}':textfile='${esc.cta}':expansion=none:fontcolor=white:fontsize=${fsCta}:x=(w-text_w)/2:y=h*${posCta}:shadowx=2:shadowy=2:shadowcolor=black@0.6`
+      `drawtext=fontfile='${font}':textfile='${esc.cta}':expansion=none:fontcolor=${toFfmpegColor(TEXT_MEDIUM)}:fontsize=${fsCta}:x=(w-text_w)/2:y=h*${posCta}`
     );
   }
 
@@ -490,12 +519,14 @@ export async function montarVideo(params: {
   selo?: string;
   beneficios?: string[];
   cta?: string;
+  categoria?: string;
 }): Promise<string> {
   const {
     imagemPath, audioPath, titulo, preco, outputPath,
     duracao = 18, formato,
     estilo = 'moderno', cor,
-    selo = 'OFERTA', beneficios = [], cta = 'Link na bio',
+    selo = 'OFERTA', beneficios = [], cta = '→ Link na descrição',
+    categoria,
   } = params;
 
   // [ROBUSTO] Validar que os ficheiros de entrada existem
@@ -510,7 +541,7 @@ export async function montarVideo(params: {
   }
 
   // CTA removido de TODOS os formatos — link só vai na legenda/comentário
-  const mostrarCta = false;
+  const mostrarCta = true;
 
   const { filter, tempFiles } = await montarFiltrosLayout({
     titulo, preco, selo, beneficios, cta,
@@ -573,11 +604,13 @@ export async function montarFeed(params: {
   selo?: string;
   beneficios?: string[];
   cta?: string;
+  categoria?: string;
 }): Promise<string> {
   const {
     imagemPath, titulo, preco, outputPath,
     estilo = 'moderno', cor,
-    selo = 'OFERTA', beneficios = [], cta = 'Link na bio',
+    selo = 'OFERTA', beneficios = [], cta = '→ Link na descrição',
+    categoria,
   } = params;
 
   // [ROBUSTO] Validar entrada
