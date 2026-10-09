@@ -101,6 +101,41 @@ async function limparRendersAntigos(): Promise<number> {
   return removidos + velhos;
 }
 
+/**
+ * Limpeza da base de dados (lixo acumulado):
+ *   1. Feed renders orfaos (Feed desactivado) -> DELETED
+ *   2. Renders DELETED com mais de 7 dias -> removidos da DB
+ *   3. Produtos POSTED com mais de 30 dias -> ARCHIVED
+ */
+async function limparDB(): Promise<void> {
+  // 1. Feed renders orfaos (Feed desactivado)
+  const feeds = db.prepare(`
+    UPDATE renders
+    SET status = 'DELETED'
+    WHERE status = 'READY'
+      AND reel_path LIKE '%feed%'
+  `).run();
+  console.log(`  DB feed orfaos: ${feeds.changes} marcados como DELETED`);
+
+  // 2. Renders DELETED com mais de 7 dias
+  const oldDeleted = db.prepare(`
+    DELETE FROM renders
+    WHERE status = 'DELETED'
+      AND rendered_at < datetime('now', '-7 days')
+  `).run();
+  console.log(`  DB renders DELETED >7d: ${oldDeleted.changes} removidos`);
+
+  // 3. Produtos POSTED com mais de 30 dias
+  const oldPosted = db.prepare(`
+    UPDATE products
+    SET status = 'ARCHIVED'
+    WHERE status = 'POSTED'
+      AND last_posted_at IS NOT NULL
+      AND last_posted_at < datetime('now', '-30 days')
+  `).run();
+  console.log(`  DB produtos POSTED >30d: ${oldPosted.changes} arquivados`);
+}
+
 async function main() {
   console.log('Cleanup iniciado...\n');
 
@@ -108,6 +143,7 @@ async function main() {
   total += await limparPasta(TEMP_DIR, TEMP_MAX_IDADE_MS, 'Temp (>1h)');
   total += await limparPasta(LOGS_DIR, LOGS_MAX_IDADE_MS, 'Logs (>7 dias)');
   total += await limparRendersAntigos();
+  await limparDB();
 
   console.log(`\nTotal: ${total} ficheiro(s) removido(s)`);
 }
