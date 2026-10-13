@@ -66,10 +66,10 @@ export const env = schema.parse(process.env);
 // | gemini-3.1-flash-lite   | 15  | 500 | Cota gigante       |
 // ──────────────────────────────────────────────────────────────────────
 export const GEMINI_MODELOS = [
-  'gemini-3.8-flash',
-  'gemini-3.5-flash',
-  'gemini-2.5-flash',
   'gemini-3.1-flash-lite',
+  'gemini-3.5-flash-lite',
+  'gemini-3.5-flash',
+  'gemini-3.8-flash',
 ] as const;
 
 export type GeminiModelo = (typeof GEMINI_MODELOS)[number];
