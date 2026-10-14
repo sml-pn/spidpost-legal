@@ -66,9 +66,10 @@ function tipoDoRender(p: string): 'reel' | 'story' | 'feed' | 'unknown' {
   return 'unknown';
 }
 
-function montarLegenda(caption: string, hashtags: string): string {
+function montarLegenda(caption: string, hashtags: string, link?: string): string {
   const cta = '💬 Comenta QUERO que eu envio o link com desconto no teu privado!';
-  return `${caption}\n\n${cta}\n\n${hashtags}`;
+  const linkBloco = link ? `\n\n🛒 Link com desconto:\n${link}` : '';
+  return `${caption}${linkBloco}\n\n${cta}\n\n${hashtags}`;
 }
 
 /**
@@ -308,7 +309,7 @@ async function main() {
   console.log('');
 
   const primeiro = renders[0];
-  const caption = montarLegenda(primeiro.caption, primeiro.hashtags);
+  const caption = montarLegenda(primeiro.caption, primeiro.hashtags, produto.affiliate_url);
 
   const publicados: { id: number; mediaId: string }[] = [];
   let reelId: string | null = null;
