@@ -250,16 +250,48 @@ async function main() {
     return;
   }
 
+  // ─── [VARIEDADE] Evitar publicar 2x a mesma categoria seguida ───
+  const ultimoPost = db.prepare(`
+    SELECT p.category FROM posts_log pl
+    INNER JOIN products p ON p.id = pl.product_id
+    ORDER BY pl.id DESC LIMIT 1
+  `).get() as any;
+  const ultimaCategoria = ultimoPost?.category || null;
+
   // ─── Encontrar produto READY que não esteja em backoff ───
-  const candidatos = db.prepare(`
-    SELECT DISTINCT p.* FROM products p
-    INNER JOIN renders r ON r.product_id = p.id
-    WHERE p.status IN ('READY', 'PARTIAL')
-      AND p.removed_from_ml = 0
-      AND r.status = 'READY'
-    ORDER BY p.created_at ASC
-    LIMIT 5
-  `).all() as any[];
+  // [VARIEDADE] Primeiro tenta uma categoria DIFERENTE da ultima
+  let candidatos: any[] = [];
+  if (ultimaCategoria) {
+    candidatos = db.prepare(`
+      SELECT DISTINCT p.* FROM products p
+      INNER JOIN renders r ON r.product_id = p.id
+      WHERE p.status IN ('READY', 'PARTIAL')
+        AND p.removed_from_ml = 0
+        AND r.status = 'READY'
+        AND (p.category IS NULL OR p.category != ?)
+      ORDER BY p.created_at ASC
+      LIMIT 5
+    `).all(ultimaCategoria) as any[];
+    if (candidatos.length > 0) {
+      console.log(`  [variedade] Ultima categoria: "${ultimaCategoria}" — a escolher outra`);
+    }
+  }
+
+  // Fallback: se nao houver de outra categoria, aceita qualquer um
+  if (candidatos.length === 0) {
+    if (ultimaCategoria) {
+      console.log(`  [variedade] Sem alternativa a "${ultimaCategoria}" — a repetir categoria`);
+    }
+    candidatos = db.prepare(`
+      SELECT DISTINCT p.* FROM products p
+      INNER JOIN renders r ON r.product_id = p.id
+      WHERE p.status IN ('READY', 'PARTIAL')
+        AND p.removed_from_ml = 0
+        AND r.status = 'READY'
+      ORDER BY p.created_at ASC
+      LIMIT 5
+    `).all() as any[];
+  }
 
   let produto: any = null;
   for (const c of candidatos) {
