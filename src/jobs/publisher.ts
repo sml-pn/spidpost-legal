@@ -98,7 +98,7 @@ function podePublicarAgora(): { ok: boolean; motivo?: string; minutosAte?: numbe
   if (posts24h >= LIMITE_DIARIO_24H) {
     return {
       ok: false,
-      motivo: `Limite diario atingido (${posts24h}/${LIMITE_DIARIO_24H} posts em 24h)`,
+      motivo: `Limite diario atingido (${posts24h}/${LIMITE_DIARIO_24H} posts hoje)`,
     };
   }
 
