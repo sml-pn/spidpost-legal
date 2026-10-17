@@ -312,6 +312,13 @@ async function main() {
       continue;
     }
 
+    // [PROTECAO] Verificar se tem link de afiliado valido (meli.la)
+    if (!c.affiliate_url || !c.affiliate_url.includes('meli.la')) {
+      console.log(`⏭ Produto ${c.id} sem link meli.la — a ignorar`);
+      db.prepare(`UPDATE products SET status = 'PENDING', error = 'link_afiliado_invalido' WHERE id = ?`).run(c.id);
+      continue;
+    }
+
     produto = { ...c, status: 'PUBLISHING' };
     break;
   }
