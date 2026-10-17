@@ -79,7 +79,7 @@ function montarLegenda(caption: string, hashtags: string, link?: string): string
 function contarPosts24h(): number {
   const r = db.prepare(`
     SELECT COUNT(*) as c FROM posts_log
-    WHERE datetime(posted_at) > datetime('now', '-24 hours')
+    WHERE date(posted_at) = date('now', 'localtime')
   `).get() as any;
   return r?.c ?? 0;
 }
