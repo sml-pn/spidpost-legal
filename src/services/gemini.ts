@@ -31,6 +31,7 @@ type GerarParams = {
   nome: string;
   preco: number;
   precoOriginal?: number | null;
+  descricao?: string | null;
   categoria: string;
   variacao: Variacao;
 };
@@ -56,7 +57,7 @@ const CORES_POR_ESTILO: Record<Estilo, string> = {
 // ──────────────────────────────────────────────────────────────────────
 
 function roteiroFallback(params: GerarParams): Roteiro {
-  const { nome, preco, categoria } = params;
+  const { nome, preco, precoOriginal, categoria, variacao, descricao } = params;
   const nomeCurto = nome.split(/\s+/).slice(0, 5).join(' ');
   const precoFmt = `R$ ${preco.toFixed(2).replace('.', ',')}`;
 
@@ -86,42 +87,35 @@ function roteiroFallback(params: GerarParams): Roteiro {
 // ──────────────────────────────────────────────────────────────────────
 
 function montarPrompt(params: GerarParams): string {
-  const { nome, preco, precoOriginal, categoria, variacao } = params;
+  const { nome, preco, precoOriginal, categoria, variacao, descricao } = params;
   const angulo = ANGULOS[variacao];
 
-  return `Voce e um copywriter de afiliados brasileiro. Gere um roteiro de video de 18 segundos para Instagram Reels.
+  return `Voce e um copywriter de elite brasileiro. Seu trabalho e criar um roteiro curto e MAGNÉTICO para Reels.
 
 Produto: ${nome}
-Preco: R$ ${preco.toFixed(2).replace('.', ',')}
-${precoOriginal ? `Preco original: R$ ${precoOriginal.toFixed(2).replace('.', ',')}` : ''}
+Preco Atual: R$ ${preco.toFixed(2).replace('.', ',')}
+${precoOriginal ? `Preco Original: R$ ${precoOriginal.toFixed(2).replace('.', ',')}` : ''}
 Categoria: ${categoria}
-
+Descricao: ${descricao || '(sem descricao)'}
 Angulo: ${angulo}
 
-REGRA CRITICA: NUNCA menciones "link na bio" ou "link abaixo". O unico CTA permitido e "Comenta QUERO".
+REGRAS CRÍTICAS DE VERACIDADE (SE DESOBEDECER, O ROTEIRO SERÁ REJEITADO):
+1. LEIA O NOME DO PRODUTO COM ATENÇÃO. Extraia os fatos reais.
+   - Se o nome tem "Refletor 400w", "Holofote", "Lampada", saiba que ele DA LUZ (e gasta energia). NUNCA diga que ele economiza energia elétrica.
+   - Se o nome tem "Air Fryer", "Fritadeira", ela frita sem oleo.
+   - Se o nome tem "Painel Solar", ai sim voce pode falar de economia de energia.
+   - NUNCA invente uma dor (ex: conta de luz alta) se o produto nao resolve essa dor.
+2. O gancho (primeira frase) deve ser baseado em algo REAL do produto (sua potencia, seu material, sua utilidade).
+3. VOCE ESTA PROIBIDO de usar as frases: "Quer economizar", "Quer arrumar", "Voce sabia", "Cansado de", "Olha so", "Imagina so", "A conta de luz".
 
-REGRA DE PRECO (OBRIGATORIA): Quando falares o preco na "fala", dize-lo COMPLETO, incluindo os centavos.
-Exemplos corretos:
-  R$ 26,90 -> "vinte e seis reais e noventa centavos"
-  R$ 149,99 -> "cento e quarenta e nove reais e noventa e nove centavos"
-  R$ 95,00 -> "noventa e cinco reais" (sem centavos quando sao zeros)
-Exemplos ERRADOS (nunca facas):
-  R$ 26,90 -> "vinte e seis reais" (falta os centavos)
-  R$ 26,90 -> "vinte e sete reais" (arredondado)
-  R$ 149,99 -> "cento e cinquenta reais" (arredondado)
+ESTILO DA VARIACAO:
+- Variacao A (Educacional): Ensine algo tecnico real sobre o produto.
+- Variacao B (Economico): Fale do desconto (de X por Y), mas sem inventar que o produto gera economia de contas.
+- Variacao C (Lifestyle): Fale da emocao, beleza, praticidade de usar o produto (ex: "Deixe seu quintal iluminado como um estadio").
 
-Regras:
-- "fala"         : maximo 45 palavras. DEVE terminar com "Comenta QUERO que eu envio o link no teu privado."
-- "legenda"      : descricao do produto (max 120 caracteres). NAO incluir CTA (sera adicionado automaticamente)
-- "hashtags"     : 5 hashtags relevantes (com #)
-- "selo"         : SELO curto em MAIUSCULAS (max 12 chars). Ex: "OFERTA", "SUPER DESCONTO"
-- "beneficios"   : array com 2-3 bullets CURTOS (max 32 chars cada)
-- "cta"          : sempre exatamente "Comenta QUERO"
-
-Estilo visual: moderno | elegante | vibrante | tecnico | aconchegante
-
-Responda APENAS com JSON valido, sem markdown:
-{"fala":"...","legenda":"...","hashtags":["#a","#b","#c","#d","#e"],"estilo":"tecnico","cor":"#00d9ff","selo":"OFERTA","beneficios":["B1","B2","B3"],"cta":"Comenta QUERO"}`;
+Maximo de 45 palavras. Termine com: "Comenta QUERO que eu envio o link no teu privado."
+Responda APENAS com JSON valido:
+{"fala":"...","legenda":"...","hashtags":["#a","#b","#c","#d","#e"],"estilo":"moderno","cor":"#00d9ff","selo":"OFERTA","beneficios":["B1","B2","B3"],"cta":"Comenta QUERO"}`;
 }
 
 // ──────────────────────────────────────────────────────────────────────

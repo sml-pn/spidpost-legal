@@ -70,6 +70,7 @@ async function main() {
   try {
     console.log('[1/5] Gerando roteiro via Gemini...');
     const roteiro = await gerarRoteiro({
+    descricao: (produto as any).description || (produto as any).descricao || null,
       nome: produto.name,
       preco: produto.price,
       precoOriginal: produto.original_price,
