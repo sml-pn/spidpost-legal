@@ -89,31 +89,31 @@ function roteiroFallback(params: GerarParams): Roteiro {
 function montarPrompt(params: GerarParams): string {
   const { nome, preco, precoOriginal, categoria, variacao, descricao } = params;
   const angulo = ANGULOS[variacao];
+  const precoNum = preco.toFixed(2).replace('.', ',');
 
   return `Voce e um copywriter de elite brasileiro. Seu trabalho e criar um roteiro curto e MAGNÉTICO para Reels.
 
 Produto: ${nome}
-Preco Atual: R$ ${preco.toFixed(2).replace('.', ',')}
+Preco Atual: R$ ${precoNum}
 ${precoOriginal ? `Preco Original: R$ ${precoOriginal.toFixed(2).replace('.', ',')}` : ''}
 Categoria: ${categoria}
 Descricao: ${descricao || '(sem descricao)'}
 Angulo: ${angulo}
 
-REGRAS CRÍTICAS DE VERACIDADE (SE DESOBEDECER, O ROTEIRO SERÁ REJEITADO):
-1. LEIA O NOME DO PRODUTO COM ATENÇÃO. Extraia os fatos reais.
-   - Se o nome tem "Refletor 400w", "Holofote", "Lampada", saiba que ele DA LUZ (e gasta energia). NUNCA diga que ele economiza energia elétrica.
-   - Se o nome tem "Air Fryer", "Fritadeira", ela frita sem oleo.
-   - Se o nome tem "Painel Solar", ai sim voce pode falar de economia de energia.
-   - NUNCA invente uma dor (ex: conta de luz alta) se o produto nao resolve essa dor.
-2. O gancho (primeira frase) deve ser baseado em algo REAL do produto (sua potencia, seu material, sua utilidade).
-3. VOCE ESTA PROIBIDO de usar as frases: "Quer economizar", "Quer arrumar", "Voce sabia", "Cansado de", "Olha so", "Imagina so", "A conta de luz".
+REGRAS CRÍTICAS DE INTELIGÊNCIA, VERACIDADE E ÁUDIO:
+1. VERACIDADE ABSOLUTA: Se o nome tem "Refletor" ou "Holofote", ele DA LUZ e GASTA energia. NUNCA diga que economiza energia. Se tem "Painel Solar", ai sim fala de economia. Use o bom senso baseado no nome e descricao.
+2. GANCHO ÚNICO: PROIBIDO usar as frases: "Quer economizar", "Voce sabia", "Cansado de", "Olha so", "Imagina so", "A conta de luz".
+3. PREÇO NA FALA: Escreva o preço POR EXTENSO na "fala" (Ex: "quarenta e tres reais e setenta e sete centavos"). Isso e obrigatorio para o audio.
+4. PREÇO NA LEGENDA: Na "legenda", use o formato numerico (Ex: "R$ 43,77").
+5. PRONÚNCIA DE SIGLAS: O sintetizador de voz soletra "L-E-D". Para ler naturalmente, escreva "Lédi" na "fala" (Ex: "refletor de Lédi"). Na "legenda", mantenha "LED".
+6. Maximo de 50 palavras na fala. Termine EXATAMENTE com: "Comenta QUERO que eu envio o link no teu privado."
+7. NUNCA mencione "link na bio".
 
 ESTILO DA VARIACAO:
-- Variacao A (Educacional): Ensine algo tecnico real sobre o produto.
-- Variacao B (Economico): Fale do desconto (de X por Y), mas sem inventar que o produto gera economia de contas.
-- Variacao C (Lifestyle): Fale da emocao, beleza, praticidade de usar o produto (ex: "Deixe seu quintal iluminado como um estadio").
+- Variacao A (Educacional): Ensine algo tecnico real.
+- Variacao B (Economico): Destaque o desconto (de X por Y), com o preco falado por extenso.
+- Variacao C (Lifestyle): Emocao, beleza, praticidade.
 
-Maximo de 45 palavras. Termine com: "Comenta QUERO que eu envio o link no teu privado."
 Responda APENAS com JSON valido:
 {"fala":"...","legenda":"...","hashtags":["#a","#b","#c","#d","#e"],"estilo":"moderno","cor":"#00d9ff","selo":"OFERTA","beneficios":["B1","B2","B3"],"cta":"Comenta QUERO"}`;
 }
