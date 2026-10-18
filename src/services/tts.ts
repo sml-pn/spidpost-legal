@@ -1,4 +1,4 @@
-﻿import { spawn } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -42,7 +42,7 @@ export async function gerarAudio(options: TTSOptions): Promise<string> {
     texto,
     outputPath,
     voice = VOZES_PTBR.masculina,
-    rate = '-5%',
+    rate = '+0%',
   } = options;
 
   const MAX_TENTATIVAS = 3;
