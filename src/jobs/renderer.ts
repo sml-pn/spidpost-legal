@@ -15,15 +15,15 @@ import { baixarImagem, montarVideo, montarFeed } from '../services/ffmpeg.js';
 import { uploadImageKit } from '../services/imagekit.js';
 
 async function uploadComRetry(path: string, folder: string, nome: string): Promise<string> {
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 5; i++) {
     try {
       return await uploadImageKit(path, folder);
     } catch (e: any) {
-      console.log(`  [imagekit] Falha no upload do ${nome} (tentativa ${i}/3): ${e.message}`);
-      if (i < 3) await new Promise(r => setTimeout(r, i * 2000));
+      console.log(`  [imagekit] Falha no upload do ${nome} (tentativa ${i}/5): ${e.message}`);
+      if (i < 3) await new Promise(r => setTimeout(r, i * 5000));
     }
   }
-  throw new Error(`Upload do ${nome} falhou apos 3 tentativas`);
+  throw new Error(`Upload do ${nome} falhou apos 5 tentativas`);
 }
 
 const RENDERS_DIR = path.join(process.cwd(), 'renders');
