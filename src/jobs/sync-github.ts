@@ -86,7 +86,7 @@ async function main() {
   for (let tent = 1; tent <= MAX_TENTATIVAS; tent++) {
     log(`A fazer pull --rebase (tentativa ${tent}/${MAX_TENTATIVAS})...`);
 
-    const pull = runSilent('git pull --rebase origin main');
+    const pull = runSilent('git pull --rebase --autostash origin main');
 
     if (pull.ok) {
       log('Pull OK.');
@@ -131,7 +131,7 @@ async function main() {
     // Se o push falhou porque ficou atras (rebase nao chegou), tenta rebase outra vez
     if (push.out.includes('rejected') || push.out.includes('fetch first')) {
       log('Push rejeitado (atras do remoto). A tentar rebase novamente...');
-      const pull2 = runSilent('git pull --rebase origin main');
+      const pull2 = runSilent('git pull --rebase --autostash origin main');
       if (!pull2.ok && (pull2.out.includes('CONFLICT') || pull2.out.includes('conflict'))) {
         resolverConflitoDataDb();
       }
