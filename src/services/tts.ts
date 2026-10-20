@@ -37,7 +37,25 @@ function executarEdgeTts(args: string[]): Promise<void> {
  * Gera audio usando edge-tts (Python CLI).
  * Voz neural pt-BR nativa, sem dependencia de bibliotecas Node.
  */
+/**
+ * Naturaliza medidas e unidades para o TTS ler de forma humana.
+ * Ex: "400w" -> "400 watts"; "127/220v" -> "127 ou 220 volts"; "IP67" -> "IP 67".
+ */
+export function naturalizarMedidas(texto: string): string {
+  return texto
+    .replace(/\bIP\s*(\d+)\b/gi, 'IP $1')
+    .replace(/\b(\d+)\s*[kK][wW]\b/g, '$1 quilowatts')
+    .replace(/\b(\d+(?:[.,]\d+)?)\s*[wW]\b/g, '$1 watts')
+    .replace(/\b(\d+)\s*\/\s*(\d+)\s*[vV]\b/g, '$1 ou $2 volts')
+    .replace(/\b(\d+)\s*[vV]\b/g, '$1 volts')
+    .replace(/\b(\d+)\s*[hH][zZ]\b/g, '$1 hertz')
+    .replace(/\b(\d+)\s*[bB][tT][uU]s?\b/g, '$1 BTUs');
+}
+
 export async function gerarAudio(options: TTSOptions): Promise<string> {
+  // [MEDIDAS] Naturalizar 400w -> 400 watts, 127/220v -> 127 ou 220 volts, IP67 -> IP 67
+  options = { ...options, texto: naturalizarMedidas(options.texto) };
+
   const {
     texto,
     outputPath,

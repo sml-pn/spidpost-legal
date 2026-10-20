@@ -107,7 +107,7 @@ REGRAS CRÍTICAS DE INTELIGÊNCIA, VERACIDADE E ÁUDIO:
 4. PREÇO NA LEGENDA: Na "legenda", use o formato numerico (Ex: "R$ 43,77").
 5. PRONÚNCIA DE SIGLAS: O sintetizador de voz soletra "L-E-D". Para ler naturalmente, escreva "Lédi" na "fala" (Ex: "refletor de Lédi"). Na "legenda", mantenha "LED".
 6. Maximo de 50 palavras na fala. Termine EXATAMENTE com: "Comenta QUERO que eu envio o link no teu privado."
-7. NUNCA mencione "link na bio".
+7. TOM PROFISSIONAL E AMIGÁVEL: Use linguagem natural, confiante e respeitosa. NUNCA use gírias forçadas, abreviações de internet ("vc", "pq"), ou frases exageradas ("não olha o preço", "vai querer comprar três"). Seja persuasivo sem apelar para impulsividade irracional.
 
 ESTILO DA VARIACAO:
 - Variacao A (Educacional): Ensine algo tecnico real.
