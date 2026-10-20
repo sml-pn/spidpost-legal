@@ -506,6 +506,26 @@ async function montarFiltrosLayout(p: LayoutParams): Promise<{
  * @param formato   'reel' (sem CTA visual) ou 'story' (com "Link na bio")
  * @param duracao   duração em segundos (padrão 18)
  */
+async function obterDuracaoAudio(caminho: string): Promise<number> {
+  return new Promise((resolve) => {
+    const proc = spawn(FFMPEG, ['-i', caminho, '-f', 'null', '-'], { windowsHide: true });
+    let stderr = '';
+    proc.stderr.on('data', (c) => { stderr += c.toString(); });
+    proc.on('close', () => {
+      const match = stderr.match(/Duration: (\d+):(\d+):(\d+\.\d+)/);
+      if (match) {
+        const h = parseInt(match[1], 10);
+        const m = parseInt(match[2], 10);
+        const s = parseFloat(match[3]);
+        resolve(h * 3600 + m * 60 + s);
+      } else {
+        resolve(0);
+      }
+    });
+    proc.on('error', () => resolve(0));
+  });
+}
+
 export async function montarVideo(params: {
   imagemPath: string;
   audioPath: string;
@@ -551,12 +571,19 @@ export async function montarVideo(params: {
     mostrarCta,
   });
 
+  // [FIX] Ler a duracao real do audio para nao cortar a fala
+  const duracaoAudio = await obterDuracaoAudio(audioPath);
+  const duracaoFinalDinamica = duracaoAudio > 0 ? duracaoAudio + 0.8 : duracao; // +0.8s de respiro
+  if (duracaoAudio > 0) {
+    console.log(`  [ffmpeg] Duracao do audio: ${duracaoAudio.toFixed(1)}s -> video final: ${duracaoFinalDinamica.toFixed(1)}s`);
+  }
+
   const args = [
     '-y',
     '-loop', '1',
     '-i', imagemPath,
     '-i', audioPath,
-    '-t', String(duracao),
+    '-t', String(duracaoFinalDinamica),
     '-filter_complex', filter,
     '-map', '[v]',
     '-map', '1:a',

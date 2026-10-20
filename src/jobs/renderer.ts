@@ -14,6 +14,18 @@ import { gerarAudio } from '../services/tts.js';
 import { baixarImagem, montarVideo, montarFeed } from '../services/ffmpeg.js';
 import { uploadImageKit } from '../services/imagekit.js';
 
+async function uploadComRetry(path: string, folder: string, nome: string): Promise<string> {
+  for (let i = 1; i <= 3; i++) {
+    try {
+      return await uploadImageKit(path, folder);
+    } catch (e: any) {
+      console.log(`  [imagekit] Falha no upload do ${nome} (tentativa ${i}/3): ${e.message}`);
+      if (i < 3) await new Promise(r => setTimeout(r, i * 2000));
+    }
+  }
+  throw new Error(`Upload do ${nome} falhou apos 3 tentativas`);
+}
+
 const RENDERS_DIR = path.join(process.cwd(), 'renders');
 const TEMP_DIR = path.join(RENDERS_DIR, 'temp');
 const REELS_DIR = path.join(RENDERS_DIR, 'reels');
@@ -112,9 +124,9 @@ async function main() {
     });
 
     console.log('\n[5/5] Upload ImageKit + registrando no banco...');
-    const reelUrl = await uploadImageKit(reelPath, 'reels');
-    const storyUrl = await uploadImageKit(storyPath, 'stories');
-    const feedUrl = await uploadImageKit(feedPath, 'feed');
+    const reelUrl = await uploadComRetry(reelPath, 'reels', 'reel');
+    const storyUrl = await uploadComRetry(storyPath, 'stories', 'story');
+    const feedUrl = await uploadComRetry(feedPath, 'feed', 'feed');
 
     const insertRender = db.prepare(`
       INSERT INTO renders
