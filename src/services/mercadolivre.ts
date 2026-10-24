@@ -1,5 +1,5 @@
 import { env } from '../lib/env.js';
-import { chromium } from 'playwright';
+import { abrirBrowser, fecharBrowser } from '../lib/browser-persistente.js';
 import fs from 'node:fs';
 import path from 'node:path';
 const COOKIES_PATH = path.join(process.cwd(), 'cookies-ml.json');
@@ -104,22 +104,35 @@ async function fetchViaGooglebot(itemId: string): Promise<ItemData | null> {
 async function fetchViaPlaywright(itemId: string): Promise<ItemData | null> {
   const idNumerico = itemId.replace('MLB', '');
   const url = `https://produto.mercadolivre.com.br/MLB-${idNumerico}`;
-  const browser = await chromium.launch({ headless: true });
+  console.log(`  [PW] A abrir Chrome real (headless:false)...`);
+  const { context, page } = await abrirBrowser(false);
   try {
-    const page = await browser.newPage({ userAgent: USER_AGENT_CHROME, locale: 'pt-BR' });
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
-    await page.waitForSelector('h1.ui-pdp-title', { timeout: 15_000 }).catch(() => {});
-    const title = await page.$eval('h1.ui-pdp-title', (el) => el.textContent?.trim() || '').catch(() => '');
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.waitForTimeout(2000 + Math.random() * 2000);
+    if (page.url().includes('captcha')) {
+      console.log(`  [PW] CAPTCHA detetado. Resolve no Chrome aberto (max 2 min)...`);
+      for (let i = 0; i < 60; i++) {
+        await page.waitForTimeout(2000);
+        if (!page.url().includes('captcha')) break;
+      }
+    }
+    await page.waitForSelector('h1.ui-pdp-title, h1', { timeout: 15_000 }).catch(() => {});
+    let title = await page.$eval('h1.ui-pdp-title', (el) => el.textContent?.trim() || '').catch(() => '');
+    if (!title) title = await page.$eval('h1', (el) => el.textContent?.trim() || '').catch(() => '');
     if (!title || title.length < 5) return null;
     const priceText = await page.$eval('meta[itemprop="price"]', (el) => el.getAttribute('content') || '0').catch(() => '0');
-    const price = parseFloat(priceText) || 0;
-    const imageUrl = await page.$eval('img.ui-pdp-gallery__figure__image', (el) => el.getAttribute('data-zoom') || el.getAttribute('src') || '').catch(() => '');
+    let price = parseFloat(priceText) || 0;
+    if (price === 0) {
+      const ptxt = await page.$eval('.andes-money-amount__fraction', (el) => el.textContent || '').catch(() => '');
+      if (ptxt) price = parseFloat(ptxt.replace(/\./g, '').replace(',', '.')) || 0;
+    }
+    const imageUrl = await page.$eval('img.ui-pdp-gallery__figure__image, img[class*="gallery"]', (el) => el.getAttribute('data-zoom') || el.getAttribute('src') || '').catch(() => '');
     const breadcrumb = await page.$$eval('.andes-breadcrumb__link', (els) => els.map((e) => e.textContent?.trim() || '')).catch(() => [] as string[]);
     const categoryRaw = breadcrumb.length > 0 ? breadcrumb[breadcrumb.length - 1] : null;
     const category = mapCategory(breadcrumb);
     return { id: itemId, title, price, original_price: null, thumbnail: imageUrl, permalink: url, category, category_raw: categoryRaw };
   } finally {
-    await browser.close();
+    try { await fecharBrowser(context); } catch {}
   }
 }
 
