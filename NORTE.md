@@ -1,6 +1,6 @@
-﻿═══════════════════════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════════════════════════
   SPIDPOST — Documento Norte (Bússola do Projecto)
-  Última actualização: 2026-10-12
+  Última actualização: 2026-10-25
 ═══════════════════════════════════════════════════════════════════════════════
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -9,21 +9,22 @@
 
 O SpidPost é um sistema de afiliação automática para Instagram. Ele:
 
-  1. Lê os favoritos do utilizador no Mercado Livre (via browser real)
-  2. Gera roteiros de vídeo com IA (Gemini)
-  3. Gera áudio narrado (Edge TTS)
+  1. Lê os favoritos do utilizador no Mercado Livre (via Chrome real)
+  2. Gera roteiros de vídeo com IA (Gemini "Super Cérebro")
+  3. Gera áudio narrado (Edge TTS com naturalização de medidas)
   4. Monta vídeos verticais 1080×1920 (Reel + Story) e imagens (Feed)
   5. Faz upload para o ImageKit (CDN)
   6. Guarda tudo numa base de dados SQLite local
-  7. Sincroniza com o GitHub
-  8. Publica automaticamente no Instagram nos slots 08:00–22:00
+  7. Sincroniza com o GitHub (com --autostash)
+  8. Publica automaticamente no Instagram nos slots 06:00–21:45
 
-O PC do utilizador só é necessário 15–30 min por dia (para harvest + render).
+O PC do utilizador só é necessário 15–30 min/dia (para harvest + render).
 Depois disso, o GitHub Actions publica sozinho, mesmo com o PC desligado.
 
 Conta alvo: @idealegenial (Instagram)
 Caminho local: C:\Users\smlpn\spidpost
 Repositório: https://github.com/sml-pn/spidpost-legal
+SaaS (fork separado): C:\Users\smlpn\spidpost-saas
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   2. ARQUITECTURA — VISÃO GERAL
@@ -36,11 +37,13 @@ Repositório: https://github.com/sml-pn/spidpost-legal
   │        ↓                                                             │
   │   npm run daily                                                      │
   │        ├── refresh    → renova tokens do Mercado Livre               │
-  │        ├── harvest    → lê favoritos do ML via Playwright            │
+  │        ├── harvest    → lê favoritos do ML via Chrome real           │
+  │        │               (aborta após 3 captchas consecutivos)         │
   │        ├── rotate     → COOLDOWN vira PENDING (mantém fila ≥ 15)     │
-  │        ├── render ×10 → gera vídeos + upload ImageKit                │
+  │        ├── render ×30 → gera vídeos + upload ImageKit                │
+  │        │               (RENDERS_POR_RUN configurável)                │
   │        ├── cleanup    → apaga ficheiros locais + lixo na DB          │
-  │        └── sync       → git add data.db + commit + push              │
+  │        └── sync       → git add data.db + commit + push (--autostash)│
   │                                                                      │
   └───────────────────────────────┬──────────────────────────────────────┘
                                   │ git push (data.db)
@@ -56,9 +59,10 @@ Repositório: https://github.com/sml-pn/spidpost-legal
   │        ↓ npm run publish                                             │
   │                                                                      │
   │   publisher.ts lê data.db do repo → publica no Instagram             │
-  │        • 1 produto por slot                                           │
+  │        • 1 produto por slot                                          │
   │        • Reel + Story (Feed desactivado)                             │
-  │        • Comentário com link de afiliado                             │
+  │        • Comentário com link de afiliado (meli.la)                   │
+  │        • Bloqueia produtos sem link meli.la válido                   │
   │        • Marca como COOLDOWN após publicar                           │
   │        • Commit do data.db actualizado de volta                      │
   │                                                                      │
@@ -83,11 +87,21 @@ Repositório: https://github.com/sml-pn/spidpost-legal
     rapidíssimo para leituras. Perfeito para versionar no git (ficheiro
     binário pequeno). Não precisa de servidor de BD.
 
-  ▸ AUTOMAÇÃO DE BROWSER: Playwright
-    Porquê: o Mercado Livre bloqueia IPs de datacenter. Só um browser
-    real com cookies de sessão consegue ler os favoritos. Playwright
-    corre Chromium com perfil persistente (browser-profile/), imitando
-    um utilizador real. Substitui Selenium com melhor detecção anti-bot.
+  ▸ AUTOMAÇÃO DE BROWSER: Playwright com Chrome real
+    Porquê: o Mercado Livre bloqueia IPs de datacenter e o Chromium
+    headless do Playwright. A solução é usar o Chrome REAL do sistema
+    (channel: 'chrome') com perfil persistente (browser-profile/), em
+    modo visível (headless: false). Isso imita um utilizador real e
+    resolve o captcha com intervenção humana (janela abre, utilizador
+    resolve, browser continua).
+    Ficheiro: src/lib/browser-persistente.ts
+    Perfil: browser-profile/ (NUNCA vai para o git)
+
+  ▸ DNS FIX: dns.setServers(['8.8.8.8', '8.8.4.4'])
+    Porquê: alguns routers (ex: Intelbras) não resolvem
+    api.mercadolibre.com. O DNS fix força o Node.js a usar Google DNS
+    apenas no processo dele — sem mexer no Windows.
+    Ficheiro: src/lib/dns-fix.ts (importado no topo do env.ts)
 
   ▸ PROCESSAMENTO DE VÍDEO: FFmpeg (via child_process)
     Porquê: é o standard de facto para manipulação de vídeo. Junta
@@ -95,23 +109,28 @@ Repositório: https://github.com/sml-pn/spidpost-legal
     gradientes, sombras e animações. Sem ele seria impossível garantir
     que o preço (R$ 26,90) é renderizado exactamente como texto legível
     — as IAs de imagem erram preços.
+    Config: timeout 10 min + preset veryfast + tune stillimage
 
-  ▸ IA DE TEXTO: Google Gemini (gemini-3.8-flash / gemini-3.5-flash)
+  ▸ IA DE TEXTO: Google Gemini ("Super Cérebro" — 3.1-flash-lite primeiro)
     Porquê: gera roteiros de venda em português brasileiro natural.
-    Fallback automático entre modelos quando um devolve HTTP 503.
-    Usado APENAS para texto (roteiro, benefícios, hashtags) — nunca
-    para desenhar imagens, porque erraria o preço.
+    Fallback entre modelos quando um devolve HTTP 503.
+    Modelos (ordem): gemini-3.1-flash-lite (500 req/dia) →
+    3.5-flash-lite (500/dia) → 3.5-flash (20/dia) → 3.8-flash (20/dia)
+    Usado APENAS para texto — nunca para desenhar imagens.
+    "Super Cérebro": proíbe frases repetitivas, preço por extenso,
+    medidas naturalizadas, anti-alucinação, tom profissional.
 
   ▸ SÍNTESE DE VOZ: Edge TTS (Microsoft Edge Text-to-Speech)
     Porquê: vozes neurais gratuitas, sem API key, qualidade próxima
     de narração humana. Alternativa gratuita ao ElevenLabs.
+    Config: rate 0%, voz pt-BR-AntonioNeural
+    Extra: naturalizarMedidas() converte "400w" → "400 watts"
 
   ▸ HOSPEDAGEM DE MÍDIA: ImageKit.io
     Porquê: serve os vídeos com URL pública que o Instagram consegue
     descarregar. O parâmetro ?tr=orig-true entrega o ficheiro original
     SEM transformação, evitando consumir video units do plano gratuito.
-    Alternativas (Cloudinary, S3) cobram por download ou têm limites
-    mais apertados.
+    Upload via https.request nativo (undici abortava uploads >1MB)
 
   ▸ AUTOMAÇÃO DE PUBLICAÇÃO: GitHub Actions
     Porquê: corre na nuvem, de graça (2000 min/mês), sem precisar do PC
@@ -123,17 +142,15 @@ Repositório: https://github.com/sml-pn/spidpost-legal
     commits. O cron-job.org dispara um POST para a API do GitHub a cada
     30 min, garantindo que o workflow corre sempre. Backup do schedule.
 
-  ▸ HTTP CLIENT: fetch nativo (Node 18+)
-    Porquê: zero dependências, suporta AbortController (timeouts),
-    streams e redirect. Substitui axios e node-fetch.
+  ▸ HTTP CLIENT: fetch nativo (Node 18+) para APIs leves; https.request
+    nativo para uploads grandes (evita bug do undici >1MB)
 
   ▸ API DO INSTAGRAM: Meta Graph API v21.0
     Porquê: única forma oficial de publicar Reels/Stories numa conta
-    profissional. Requer: IG_USER_ID, PAGE_TOKEN, PAGE_ID.
-    Fluxo: criar container → esperar FINISHED → publicar.
+    profissional. Fluxo: criar container → esperar FINISHED → publicar.
 
-  ▸ AFILIADOS ML: API de Afiliados do Mercado Livre + Playwright
-    Porquê: a API oficial dá os links de afiliado. O Playwright lê os
+  ▸ AFILIADOS ML: API de Afiliados + Chrome real (Playwright)
+    Porquê: a API oficial dá os links de afiliado. O Chrome real lê os
     favoritos do utilizador (a API não expõe favoritos privados).
     Combinação das duas é o único caminho viável.
 
@@ -159,41 +176,39 @@ Repositório: https://github.com/sml-pn/spidpost-legal
   ├── package.json                   Dependências e scripts npm
   ├── .env                           Chaves API (NUNCA vai para o git)
   ├── data.db                        Base de dados SQLite (vai para o git)
-  ├── cookies-ml.json                Cookies de sessão do Mercado Livre
-  ├── browser-profile/               Perfil Chromium do Playwright
+  ├── cookies-ml.json                Cookies de sessão do ML (afiliados)
+  ├── browser-profile/               Perfil Chrome persistente (NUNCA git)
   │
   ├── src/
-  │   ├── api/                       (legado — painel web local)
-  │   │   ├── server.ts
-  │   │   ├── scheduler.ts
-  │   │   └── panel.html
-  │   │
   │   ├── config/
   │   │   └── brand.ts               Cores, selo "ACHADINHO", CTA fixo
   │   │
   │   ├── jobs/                      Tarefas executáveis
-  │   │   ├── harvester.ts           Lê favoritos do ML
-  │   │   ├── renderer.ts            Gera vídeos + upload ImageKit
-  │   │   ├── publisher.ts           Publica no Instagram
+  │   │   ├── harvester.ts           Lê favoritos do ML (aborta 3 captchas)
+  │   │   ├── renderer.ts            Gera vídeos (salta sem imagem)
+  │   │   ├── publisher.ts           Publica no Instagram (bloqueia sem meli.la)
   │   │   ├── refresh-ml.ts          Renova tokens do ML
   │   │   ├── rotate.ts              COOLDOWN → PENDING
   │   │   ├── cleanup.ts             Apaga lixo local + DB
   │   │   ├── cleanup-imagekit.ts    Apaga ficheiros antigos no ImageKit
-  │   │   ├── sync-github.ts         git add data.db + push
+  │   │   ├── sync-github.ts         git add + push (--autostash)
+  │   │   ├── check-cookies.ts       Valida sessão ML (abre browser se expirar)
   │   │   └── daily.ts               Orquestrador (corre tudo)
   │   │
   │   ├── lib/
   │   │   ├── db.ts                  Conexão SQLite + queries
-  │   │   ├── env.ts                 Carrega .env
+  │   │   ├── env.ts                 Carrega .env + importa dns-fix
+  │   │   ├── dns-fix.ts             Força Google DNS no Node
+  │   │   ├── browser-persistente.ts Chrome real + perfil persistente
   │   │   └── schedule.ts            Slots, backoff, pending
   │   │
   │   └── services/                  Integrações externas
-  │       ├── gemini.ts              IA de texto
-  │       ├── tts.ts                 Voz (Edge TTS)
-  │       ├── ffmpeg.ts              Montagem de vídeo
-  │       ├── imagekit.ts            Upload CDN
+  │       ├── gemini.ts              IA de texto (Super Cérebro)
+  │       ├── tts.ts                 Voz (Edge TTS + naturalizarMedidas)
+  │       ├── ffmpeg.ts              Montagem (timeout 10min + tune)
+  │       ├── imagekit.ts            Upload CDN (https.request nativo)
   │       ├── instagram.ts           Publicação IG
-  │       └── mercadolivre.ts        API + scraping ML
+  │       └── mercadolivre.ts        API + Chrome scraping
   │
   ├── .github/
   │   └── workflows/
@@ -224,10 +239,8 @@ Repositório: https://github.com/sml-pn/spidpost-legal
       ARCHIVED   → arquivado após 30 dias
 
   renders
-    id, product_id, variation, reel_path, reel_url,
-    caption, hashtags, status, posted_at, ig_media_id
-
-    Estados: READY, POSTED, DELETED
+    id, product_id, variation, reel_path, reel_url, story_url,
+    feed_url, caption, hashtags, status, posted_at, ig_media_id
 
   posts_log
     id, product_id, turno, posted_at, ig_media_id
@@ -235,8 +248,9 @@ Repositório: https://github.com/sml-pn/spidpost-legal
   schedule_used
     slot, data, used_at  (PK: slot + data)
 
-  category_rotation
-    (controla a rotação por categoria)
+  harvest_failures (NOVA)
+    external_id, attempts, last_error, last_attempt_at, blacklisted
+    (blacklist após 3 falhas 404 — harvest pula em runs futuros)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   6. FLUXO DIÁRIO — PASSO A PASSO
@@ -247,12 +261,15 @@ Repositório: https://github.com/sml-pn/spidpost-legal
   1. Duplo clique em "SpidPost" (atalho no desktop)
   2. Corre automaticamente:
        refresh   → renova tokens ML (se necessário)
-       harvest   → lê favoritos do ML (Playwright com cookies)
+       harvest   → lê favoritos ML via Chrome real
+                   (aborta se 3 captchas seguidos)
+                   (abre janela Chrome para resolver captcha — 2 min)
        rotate    → mantém fila ≥ 15 (COOLDOWN → PENDING)
-       render ×10 → gera 10 vídeos novos + upload ImageKit
+       render ×30 → gera 30 vídeos novos + upload ImageKit
+                   (RENDERS_POR_RUN configurável no .env)
        cleanup   → apaga lixo local (>24h POSTED) e na DB
-       sync      → git add data.db && commit && push
-  3. Janela fecha sozinha após 15s
+       sync      → git add data.db && commit && push --autostash
+  3. Janela fecha sozinha
   4. PC pode ser desligado
 
   GITHUB ACTIONS (24/7, sem PC):
@@ -264,7 +281,10 @@ Repositório: https://github.com/sml-pn/spidpost-legal
        - Lê slot atual (ex: 13:30)
        - Se já usou este slot hoje → salta
        - Se última publicação < 25 min → bloqueia
+       - Verifica limite diário (15/24h — reset à meia-noite)
        - Escolhe produto READY (não em backoff)
+       - Verifica variedade (evita 2x mesma categoria seguida)
+       - Bloqueia se produto não tem link meli.la válido
        - Publica Reel (com comentário de link)
        - Publica Story
        - Marca como COOLDOWN (próxima variação: B → C → A)
@@ -306,6 +326,8 @@ Repositório: https://github.com/sml-pn/spidpost-legal
   npm run cleanup-imagekit   Limpa ImageKit (dry-run por defeito)
   npm run sync               git add data.db + commit + push
   npm run rotate             Repõe fila a 15
+  npx tsx login-ml.ts        Abre Chrome para fazer login (1x/sessão)
+  npx tsx src/jobs/check-cookies.ts  Valida sessão ML
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   9. VARIÁVEIS DE AMBIENTE (.env)
@@ -332,63 +354,98 @@ Repositório: https://github.com/sml-pn/spidpost-legal
     GEMINI_API_KEY            Chave da API Google Gemini
 
   IMAGEKIT
-    IMAGEKIT_URL_ENDPOINT     URL do endpoint (ex: https://ik.imagekit.io/spidpost)
+    IMAGEKIT_URL_ENDPOINT     URL do endpoint
     IMAGEKIT_PUBLIC_KEY       Chave pública
     IMAGEKIT_PRIVATE_KEY      Chave privada (usada no cleanup-imagekit)
 
   OUTROS
     PUBLIC_VIDEO_BASE_URL     URL base pública do ImageKit
-    LIMITE_DIARIO             15 (produtos max/dia)
+    LIMITE_DIARIO             15 (produtos max/dia — reset à meia-noite)
     MINUTOS_APERTADO          60
+    RENDERS_POR_RUN           30 (quantos renders o daily gera por run)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   10. REGRAS DE NEGÓCIO CRÍTICAS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ▸ 1 publicação por slot, 1 slot a cada 30 min
+  ▸ 1 publicação por slot, 1 slot a cada 45 min
+  ▸ Janela de publicação: 06:00 às 21:45 (15 slots de 45 min)
   ▸ Intervalo mínimo de 25 min entre publicações (anti-spam IG)
+  ▸ Limite: 15 posts por dia (reset à meia-noite — calendário, não 24h)
   ▸ Fila mínima: 15 produtos (rotate repõe automaticamente)
   ▸ Cada produto publica 3 variações (A → B → C) ao longo do tempo
   ▸ Apenas 2 formatos: Reel + Story (Feed desactivado por rate limit)
   ▸ Comentário com link de afiliado sempre no Reel
-  ▸ Slots válidos: 08:00, 09:00, 10:00, 11:00, 12:30, 13:00, 13:30,
-                   14:00, 14:30, 15:30, 16:00, 16:30, 17:00, 19:00,
-                   19:30, 20:00, 20:30, 21:00, 21:30, 22:00
-  ▸ Sem publicar fora desta janela (evita spam nocturno)
+  ▸ Bloqueia produtos sem link meli.la válido (não publica link errado)
+  ▸ Variedade: não publica 2x mesma categoria seguida
   ▸ Backoff automático em caso de erro 2207077 (rate limit IG)
-  ▸ Variação de preço: SEMPRE com centavos ("e noventa centavos")
+  ▸ Preço SEMPRE por extenso na fala ("quarenta e três reais e setenta
+    e sete centavos"), formato numérico na legenda
+  ▸ Medidas naturalizadas na fala ("400w" → "quatrocentos watts")
+
+  Slots (06:00-21:45):
+    06:00, 06:45, 07:30, 08:15, 09:00, 09:45, 10:30, 11:15, 12:00,
+    12:45, 13:30, 14:15, 15:00, 15:45, 16:30, 17:15, 18:00, 18:45,
+    19:30, 20:15, 21:00, 21:45
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   11. LIMITAÇÕES CONHECIDAS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ▸ HARVEST não funciona em datacenter: o ML bloqueia IPs de AWS/Azure.
-    Por isso o harvest é LOCAL (precisa do PC do utilizador).
+  ▸ ML bloqueia API /items/ (403 PolicyAgent):
+    Solução: scraping via Chrome real (channel: 'chrome').
 
-  ▸ IMAGEKIT tem limite de video units no plano gratuito. Solução:
-    usar ?tr=orig-true (entrega original, sem transformação = 0 units).
+  ▸ ML bloqueia Chromium headless do Playwright:
+    Solução: usar Chrome real visível (headless: false) + captcha manual.
+    A janela abre e o utilizador resolve o captcha em 2 min.
 
-  ▸ GITHUB ACTIONS schedule pode ficar inactivo após 60 dias sem commits.
+  ▸ ML pede captcha frequente em IPs residenciais:
+    Solução: harvest aborta após 3 captchas consecutivos (evita loop).
+
+  ▸ Router Intelbras não resolve api.mercadolibre.com:
+    Solução: dns.setServers(['8.8.8.8']) no dns-fix.ts.
+
+  ▸ Imagens lazy-load retornam GIF base64:
+    Solução: extrair imagem com seletores robustos (data-zoom, data-src,
+    currentSrc, srcset), filtrar data:image.
+
+  ▸ ffmpeg pode timeout em imagens grandes:
+    Solução: timeout 10 min + preset veryfast + tune stillimage.
+
+  ▸ IMAGEKIT tem limite de video units no plano gratuito:
+    Solução: usar ?tr=orig-true (entrega original = 0 units).
+
+  ▸ GitHub Actions schedule fica inactivo após 60 dias sem commits:
     Solução: cron-job.org a disparar via API (fallback).
 
-  ▸ CONFLITOS NO data.db: como é binário, o rebase não resolve.
-    Solução: durante o rebase, usar git checkout --theirs data.db
-    (fica com a versão do GitHub, que é a mais actualizada).
+  ▸ CONFLITOS NO data.db:
+    Solução: durante o rebase, git checkout --theirs data.db.
 
-  ▸ FEED desactivado: usar 3 formatos no mesmo slot disparava rate limit
-    (erro 2207051) do Instagram. Reduzido para Reel + Story.
+  ▸ FEED desactivado:
+    3 formatos no mesmo slot disparava rate limit (erro 2207051).
+    Reduzido para Reel + Story.
+
+  ▸ undici aborta uploads >1MB:
+    Solução: https.request nativo no imagekit.ts.
+
+  ▸ Modelo Gemini pode dar HTTP 503:
+    Solução: fallback entre 4 modelos. Ordem prioriza cota (500/dia).
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  12. ROADMAP FUTURO (não implementado)
+  12. ROADMAP FUTURO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ◻ SaaS multi-nicho (fork em C:\Users\smlpn\spidpost-saas)
+     → UI de configuração (Settings + testes de API)
+     → Templates de prompt por nicho (advogado, clínica, coach)
+     → Upload de imagens (Meta AI → ImageKit → DB)
+     → Rotação circular automática
+     → Gemini Vision (analisa imagem → gera legenda)
 
   ◻ Animação nos vídeos (zoompan lento + fade no preço)
   ◻ Remoção de fundo do produto (@imgly local, sem API)
-  ◻ Fundos contextuais por categoria (usando FFmpeg gradients)
-  ◻ Painel web para controlo manual (localhost:3000)
+  ◻ Fundos contextuais por categoria (FFmpeg gradients)
   ◻ Empacotamento como app Electron para distribuição
-  ◻ SaaS multi-utilizador (cada cliente com o seu data.db)
-  ◻ Aplicação móvel (só visualização, sem harvest)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   13. CHECKLIST DE MANUTENÇÃO
@@ -401,16 +458,23 @@ Repositório: https://github.com/sml-pn/spidpost-legal
   A CADA 2-3 DIAS (manual, 15-30 min):
     ☐ Duplo clique no atalho "SpidPost" no desktop
     ☐ Esperar que termine (janela fecha sozinha)
+    ☐ Se Chrome abrir para captcha, resolver em 2 min
     ☐ Confirmar que não houve erro no output
 
   1x POR MÊS (manual, 2 min):
     ☐ npm run cleanup-imagekit           (ver o que apagaria)
     ☐ npm run cleanup-imagekit -- --confirm  (apagar mesmo)
 
+  1x A CADA 30 DIAS (manual, 5 min):
+    ☐ Renovar token cron-job.org (expira em 30 dias)
+    ☐ Verificar devcenter.mercadolivre.com.br (scopes, KYC)
+
   VERIFICAÇÃO DE SAÚDE (quando algo falhar):
     ☐ https://github.com/sml-pn/spidpost-legal/actions
     ☐ Ver se runs recentes estão verdes
     ☐ Se houver erro, abrir o log detalhado
+    ☐ npx tsx src/jobs/check-cookies.ts (sessão ML válida?)
+    ☐ Testar DNS: nslookup api.mercadolibre.com 8.8.8.8
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   14. PRINCÍPIOS DE DESIGN DO SISTEMA
@@ -431,15 +495,35 @@ Repositório: https://github.com/sml-pn/spidpost-legal
 
   5. Se algo falhar no publish, o produto NÃO é apagado —
      volta a READY e é tentado de novo no próximo slot.
+     Se falhar no render, o produto é marcado sem_imagem
+     e o daily CONTINUA (não aborta).
 
   6. O data.db é a única fonte de verdade. O PC e a nuvem
-     sincronizam-no; em conflito, o GitHub ganha (é quem
-     tem os dados mais recentes do bot).
+     sincronizam-no; em conflito, o GitHub ganha. Sync usa
+     --autostash para nunca falhar com unstaged changes.
 
   7. Zero custos fixos. Tudo em planos gratuitos:
      GitHub Actions (2000 min/mês), ImageKit (25 GB),
      Gemini (quota free), Edge TTS (ilimitado).
 
+  8. DNS e HTTP testados antes do commit:
+     - dns.setServers(['8.8.8.8']) no env.ts
+     - https.request nativo para uploads >1MB
+     - fetch nativo só para APIs leves
+
+  9. Fallback em camadas (harvest):
+     API → Playwright (Chrome real) → Googlebot → Catálogo
+     Se API dá 403 (PolicyAgent) → tenta Playwright
+     Se captcha → abre janela visível → utilizador resolve
+     Se 3 captchas consecutivos → ABORTA harvest (24-48h)
+
+  10. Sem alucinações do Gemini:
+      - Proíbe "Quer economizar", "Você sabia", "Cansado de"
+      - Preço por extenso obrigatório
+      - Medidas naturalizadas
+      - Conceito por categoria (organização, cozinha, etc.)
+      - Tom profissional sem gírias forçadas
+
 ═══════════════════════════════════════════════════════════════════════════════
-  FIM DO DOCUMENTO NORTE
+  FIM DO DOCUMENTO NORTE — 2026-10-25
 ═══════════════════════════════════════════════════════════════════════════════
