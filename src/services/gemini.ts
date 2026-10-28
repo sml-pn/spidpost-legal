@@ -1,11 +1,20 @@
-/**
- * gemini.ts
- * ──────────────────────────────────────────────────────────────────────
- * Geração de roteiros com CTA "Comenta QUERO" (substitui "link na bio").
- * ──────────────────────────────────────────────────────────────────────
- */
-
-import { env, GEMINI_MODELOS } from '../lib/env.js';
+/** Formata numero como preco BRL: 1961.10 -> "1.961,10" */
+function formatPrecoBR(v: number): string {
+  const n = Number(v);
+  const str = n.toFixed(2);
+  const [intPart, decPart] = str.split('.');
+  let result = '';
+  let count = 0;
+  for (let i = intPart.length - 1; i >= 0; i--) {
+    result = intPart[i] + result;
+    count++;
+    if (count === 3 && i > 0) {
+      result = '.' + result;
+      count = 0;
+    }
+  }
+  return result + ',' + decPart;
+}
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/interactions';
 const TIMEOUT_MS = 45_000;

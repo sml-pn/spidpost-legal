@@ -1,7 +1,19 @@
 {
-  "updated_at": "2026-10-28T16:05:15.385Z",
+  "updated_at": "2026-10-28T17:01:17.962Z",
   "total": 107,
   "produtos": [
+    {
+      "id": 61,
+      "name": "Jogo Panelas Inox 19 Peças Genebra Completo C/ Utensílios Prateado",
+      "category": "casa",
+      "price": 294,
+      "original_price": 599.99,
+      "desconto": 51,
+      "preco_fmt": "R$ 294,00",
+      "original_fmt": "R$ 599,99",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_916384-MLB113350909384_072026-F-jogo-panelas-inox-19-pecas-genebra-completo-c-utensilios-prateado.jpg",
+      "affiliate_url": "https://meli.la/1ERTFgo"
+    },
     {
       "id": 66,
       "name": "Corda Pular Profissional Speed Rope Crossfit Rolamento Rosa Com Caixa",
@@ -43,10 +55,10 @@
       "name": "Electrolux Kit 12 Potes Herméticos De Plástico Retangulares Cinza",
       "category": "casa",
       "price": 95.94,
-      "original_price": 10.7,
+      "original_price": null,
       "desconto": 0,
       "preco_fmt": "R$ 95,94",
-      "original_fmt": "R$ 10,70",
+      "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_842482-MLA97781301544_112025-F-electrolux-kit-12-potes-hermeticos-de-plastico-retangulares-cinza.jpg",
       "affiliate_url": "https://meli.la/1esCrP4"
     },
@@ -91,10 +103,10 @@
       "name": "Kit 04 Cromo Picolinato De Cromo Com 60 Capsulas Maxinutri Sem Sabor",
       "category": "outros",
       "price": 89.01,
-      "original_price": 10.8,
+      "original_price": null,
       "desconto": 0,
       "preco_fmt": "R$ 89,01",
-      "original_fmt": "R$ 10,80",
+      "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_682648-MLB91955652596_092025-F-kit-04-cromo-picolinato-de-cromo-com-60-capsulas-maxinutri-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/1Efz6PE"
     },
@@ -139,10 +151,10 @@
       "name": "Kit 3 Colágeno Dermup Verisol + Vitaminas 90 Cáps Maxinutri Sem Sabor",
       "category": "outros",
       "price": 186.3,
-      "original_price": 10.8,
+      "original_price": null,
       "desconto": 0,
       "preco_fmt": "R$ 186,30",
-      "original_fmt": "R$ 10,80",
+      "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_855113-MLA99506224630_112025-F-kit-3-colageno-dermup-verisol-vitaminas-90-caps-maxinutri-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/1YUcxqH"
     },
@@ -151,10 +163,10 @@
       "name": "Kit 4 Colágeno Femme Vitaminas + Zinco 90 Cápsulas Maxinutri Sabor Sem Sabor",
       "category": "outros",
       "price": 194.4,
-      "original_price": 10.8,
+      "original_price": null,
       "desconto": 0,
       "preco_fmt": "R$ 194,40",
-      "original_fmt": "R$ 10,80",
+      "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_791583-MLA99452093826_112025-F-kit-4-colageno-femme-vitaminas-zinco-90-capsulas-maxinutri-sabor-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/2F4Ure4"
     },
@@ -187,10 +199,10 @@
       "name": "Colágeno Verisol Lata 250g Frutas Vermelhas Maxinutri Frutas Vermelhas",
       "category": "outros",
       "price": 103.55,
-      "original_price": 10.8,
+      "original_price": null,
       "desconto": 0,
       "preco_fmt": "R$ 103,55",
-      "original_fmt": "R$ 10,80",
+      "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_993346-MLB91951303190_092025-F-colageno-verisol-lata-250g-frutas-vermelhas-maxinutri-frutas-vermelhas.jpg",
       "affiliate_url": "https://meli.la/2pKSjdZ"
     },
@@ -223,10 +235,10 @@
       "name": "Cromo Picolinato 60 Cápsulas Para Metabolismo Sem Sabor",
       "category": "outros",
       "price": 88,
-      "original_price": 9.6,
+      "original_price": null,
       "desconto": 0,
       "preco_fmt": "R$ 88,00",
-      "original_fmt": "R$ 9,60",
+      "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_817547-MLB116691003830_092026-F-cromo-picolinato-60-capsulas-para-metabolismo-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/2s1MjJs"
     },
@@ -441,7 +453,7 @@
       "price": 1358.01,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 1358,01",
+      "preco_fmt": "R$ 1.358,01",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_827644-MLA117702510645_092026-F-computador-completo-intel-core-i5-4570-4-geraco-16gb-ram-ssd-256gb-monitor-20-75hz-hdmi-windows-10-pro-preto-bivolt-bluepc-office-cdf-099of-256-gb-16-gb-intel-hd-graphics.jpg",
       "affiliate_url": "https://meli.la/13wBJ2Y"
@@ -453,7 +465,7 @@
       "price": 1737,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 1737,00",
+      "preco_fmt": "R$ 1.737,00",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740792-MLB104314791914_012026-F-computador-completo-i5-16gb-ssd-512gb-monitor-mouse-teclado-512-gb-16-gb-intel-hd-graphics.jpg",
       "affiliate_url": "https://meli.la/2BcKKUM"
@@ -465,7 +477,7 @@
       "price": 1337,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 1337,00",
+      "preco_fmt": "R$ 1.337,00",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_987005-MLB95965116749_102025-F-pc-gamer-intel-core-i5-16gb-500gb-monitor-21-bluetooth-wifi-16-gb.jpg",
       "affiliate_url": "https://meli.la/1R6vefS"
@@ -477,7 +489,7 @@
       "price": 2946.24,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 2946,24",
+      "preco_fmt": "R$ 2.946,24",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687288-MLA105003043944_012026-F-pc-gamer-completo-mcl-amd-ryzen-5-3400g-rx-vega-11-16gb-ddr4-ssd-480gb-combo-de-perifericos-monitor-480-gb-16-gb-radeon-rx-vega-11-graphics.jpg",
       "affiliate_url": "https://meli.la/1goKWyZ"
@@ -549,7 +561,7 @@
       "price": 1625.56,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 1625,56",
+      "preco_fmt": "R$ 1.625,56",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_766718-MLB118300519574_102026-F-kit-completo-guitarra-strato-tagima.jpg",
       "affiliate_url": "https://meli.la/2Z5izGk"
@@ -573,7 +585,7 @@
       "price": 7874,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 7874,00",
+      "preco_fmt": "R$ 7.874,00",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_868959-MLB115513778261_082026-F-estaco-energia-bluetti-premium-100-v2-2000w-1024wh-110v.jpg",
       "affiliate_url": "https://meli.la/1aUMRth"
@@ -909,7 +921,7 @@
       "price": 1961.1,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 1961,10",
+      "preco_fmt": "R$ 1.961,10",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923398-MLB116025255233_082026-F-impressora-3d-bambu-lab-a1-mini-sem-ams.jpg",
       "affiliate_url": "https://meli.la/2DJudzj"
@@ -979,10 +991,10 @@
       "name": "Liquidificador Philco 1200w 3l 12 Velocidades Preto Ph900 127v",
       "category": "casa",
       "price": 129.9,
-      "original_price": 29.2,
+      "original_price": null,
       "desconto": 0,
       "preco_fmt": "R$ 129,90",
-      "original_fmt": "R$ 29,20",
+      "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_766837-MLA98259429221_112025-F-liquidificador-philco-1200w-3l-12-velocidades-preto-ph900-127v.jpg",
       "affiliate_url": "https://meli.la/2iH5Ldo"
     },
@@ -1005,7 +1017,7 @@
       "price": 1357.92,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 1357,92",
+      "preco_fmt": "R$ 1.357,92",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_752812-MLA99510105722_112025-F-maquina-de-lavar-roupa-automatica-colormaq-12kg-cor-branco-220v.jpg",
       "affiliate_url": "https://meli.la/2MPSKyB"
@@ -1089,7 +1101,7 @@
       "price": 1999,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 1999,00",
+      "preco_fmt": "R$ 1.999,00",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_931045-MLA99468092194_112025-F-ar-condicionado-janela-8500-btus-frio-branco-hisense-220v.jpg",
       "affiliate_url": "https://meli.la/34bU8k5"
@@ -1113,7 +1125,7 @@
       "price": 1798,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 1798,00",
+      "preco_fmt": "R$ 1.798,00",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_676193-MLB115196353013_072026-F-ar-condicionado-janela-hisense-7500-btu-frio-eletrnico-127v-110v.jpg",
       "affiliate_url": "https://meli.la/2RAX3bb"
@@ -1137,7 +1149,7 @@
       "price": 2070.98,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 2070,98",
+      "preco_fmt": "R$ 2.070,98",
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_835915-MLA99872615755_112025-F-ar-condicionado-de-janela-10000-btus-frio-consul-cor-branco-220v.jpg",
       "affiliate_url": "https://meli.la/2FdtweT"
@@ -1267,24 +1279,12 @@
       "name": "Câmera De Segurança Ip Wifi Jl Protec Ipsky2 Lente Dupla 6mp Preto",
       "category": "casa",
       "price": 162,
-      "original_price": 10.9,
+      "original_price": null,
       "desconto": 0,
       "preco_fmt": "R$ 162,00",
-      "original_fmt": "R$ 10,90",
+      "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_664063-MLA95676694362_102025-F-cmera-de-seguranca-ip-wifi-jl-protec-ipsky2-lente-dupla-6mp-preto.jpg",
       "affiliate_url": "https://meli.la/33QeY4S"
-    },
-    {
-      "id": 61,
-      "name": "Jogo Panelas Inox 19 Peças Genebra Completo C/ Utensílios Prateado",
-      "category": "casa",
-      "price": 294,
-      "original_price": 599.99,
-      "desconto": 51,
-      "preco_fmt": "R$ 294,00",
-      "original_fmt": "R$ 599,99",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_916384-MLB113350909384_072026-F-jogo-panelas-inox-19-pecas-genebra-completo-c-utensilios-prateado.jpg",
-      "affiliate_url": "https://meli.la/1ERTFgo"
     }
   ]
 }
