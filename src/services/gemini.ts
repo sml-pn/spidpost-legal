@@ -1,20 +1,11 @@
-/** Formata numero como preco BRL: 1961.10 -> "1.961,10" */
-function formatPrecoBR(v: number): string {
-  const n = Number(v);
-  const str = n.toFixed(2);
-  const [intPart, decPart] = str.split('.');
-  let result = '';
-  let count = 0;
-  for (let i = intPart.length - 1; i >= 0; i--) {
-    result = intPart[i] + result;
-    count++;
-    if (count === 3 && i > 0) {
-      result = '.' + result;
-      count = 0;
-    }
-  }
-  return result + ',' + decPart;
-}
+/**
+ * gemini.ts
+ * ──────────────────────────────────────────────────────────────────────
+ * Geração de roteiros com CTA "Link na bio" (sem pedir comentário).
+ * ──────────────────────────────────────────────────────────────────────
+ */
+
+import { env, GEMINI_MODELOS } from '../lib/env.js';
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/interactions';
 const TIMEOUT_MS = 45_000;
@@ -79,12 +70,44 @@ function roteiroFallback(params: GerarParams): Roteiro {
   const estilo = estiloPorCategoria[categoria] ?? 'moderno';
 
   return {
-    fala: `${nomeCurto} por apenas ${precoFmt}! Link na bio!" ou "Holofote", ele DA LUZ e GASTA energia. NUNCA diga que economiza energia. Se tem "Painel Solar", ai sim fala de economia. Use o bom senso baseado no nome e descricao.
+    fala: `${nomeCurto} por apenas ${precoFmt}! Link na bio! Corre lá.`,
+    legenda: `${nomeCurto} por ${precoFmt}!`,
+    hashtags: ['#promocao', '#ofertas', '#achadinhos', `#${categoria}`, '#desconto'],
+    estilo,
+    cor: CORES_POR_ESTILO[estilo],
+    selo: 'OFERTA',
+    beneficios: ['Otimo custo-beneficio', 'Entrega rapida', 'Qualidade garantida'],
+    cta: 'Link na bio',
+    fallback: true,
+  };
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// Prompt
+// ──────────────────────────────────────────────────────────────────────
+
+function montarPrompt(params: GerarParams): string {
+  const { nome, preco, precoOriginal, categoria, variacao, descricao } = params;
+  const angulo = ANGULOS[variacao];
+  const precoNum = preco.toFixed(2).replace('.', ',');
+
+  return `Voce e um copywriter de elite brasileiro. Seu trabalho e criar um roteiro curto e MAGNÉTICO para Reels.
+
+Produto: ${nome}
+Preco Atual: R$ ${precoNum}
+${precoOriginal ? `Preco Original: R$ ${precoOriginal.toFixed(2).replace('.', ',')}` : ''}
+Categoria: ${categoria}
+Descricao: ${descricao || '(sem descricao)'}
+Angulo: ${angulo}
+
+REGRAS CRÍTICAS DE INTELIGÊNCIA, VERACIDADE E ÁUDIO:
+1. VERACIDADE ABSOLUTA: Se o nome tem "Refletor" ou "Holofote", ele DA LUZ e GASTA energia. NUNCA diga que economiza energia. Se tem "Painel Solar", ai sim fala de economia. Use o bom senso baseado no nome e descricao.
 2. GANCHO ÚNICO: PROIBIDO usar as frases: "Quer economizar", "Voce sabia", "Cansado de", "Olha so", "Imagina so", "A conta de luz".
 3. PREÇO NA FALA: Escreva o preço POR EXTENSO na "fala" (Ex: "quarenta e tres reais e setenta e sete centavos"). Isso e obrigatorio para o audio.
 4. PREÇO NA LEGENDA: Na "legenda", use o formato numerico (Ex: "R$ 43,77").
 5. PRONÚNCIA DE SIGLAS: O sintetizador de voz soletra "L-E-D". Para ler naturalmente, escreva "Lédi" na "fala" (Ex: "refletor de Lédi"). Na "legenda", mantenha "LED".
-6. Maximo de 50 palavras na fala. Termine EXATAMENTE com: "Link na bio!"vc", "pq"), ou frases exageradas ("não olha o preço", "vai querer comprar três"). Seja persuasivo sem apelar para impulsividade irracional.
+6. Maximo de 50 palavras na fala. Termine EXATAMENTE com: "Link na bio! Corre lá."
+7. TOM PROFISSIONAL E AMIGÁVEL: Use linguagem natural, confiante e respeitosa. NUNCA use gírias forçadas, abreviações de internet ("vc", "pq"), ou frases exageradas ("não olha o preço", "vai querer comprar três"). Seja persuasivo sem apelar para impulsividade irracional.
 
 ESTILO DA VARIACAO:
 - Variacao A (Educacional): Ensine algo tecnico real.
@@ -160,7 +183,7 @@ function validarRoteiro(obj: unknown): Roteiro | null {
     cor: validarCor(o.cor),
     selo: String(o.selo ?? 'OFERTA').toUpperCase().slice(0, 14).trim() || 'OFERTA',
     beneficios,
-    cta: 'Comenta QUERO', // força sempre
+    cta: 'Link na bio', // fallback
   };
 }
 
