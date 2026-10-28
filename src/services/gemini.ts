@@ -70,44 +70,12 @@ function roteiroFallback(params: GerarParams): Roteiro {
   const estilo = estiloPorCategoria[categoria] ?? 'moderno';
 
   return {
-    fala: `${nomeCurto} por apenas ${precoFmt}! Comenta QUERO que eu envio o link no teu privado.`,
-    legenda: `${nomeCurto} por ${precoFmt}!`,
-    hashtags: ['#promocao', '#ofertas', '#achadinhos', `#${categoria}`, '#desconto'],
-    estilo,
-    cor: CORES_POR_ESTILO[estilo],
-    selo: 'OFERTA',
-    beneficios: ['Otimo custo-beneficio', 'Entrega rapida', 'Qualidade garantida'],
-    cta: 'Comenta QUERO',
-    fallback: true,
-  };
-}
-
-// ──────────────────────────────────────────────────────────────────────
-// Prompt
-// ──────────────────────────────────────────────────────────────────────
-
-function montarPrompt(params: GerarParams): string {
-  const { nome, preco, precoOriginal, categoria, variacao, descricao } = params;
-  const angulo = ANGULOS[variacao];
-  const precoNum = preco.toFixed(2).replace('.', ',');
-
-  return `Voce e um copywriter de elite brasileiro. Seu trabalho e criar um roteiro curto e MAGNÉTICO para Reels.
-
-Produto: ${nome}
-Preco Atual: R$ ${precoNum}
-${precoOriginal ? `Preco Original: R$ ${precoOriginal.toFixed(2).replace('.', ',')}` : ''}
-Categoria: ${categoria}
-Descricao: ${descricao || '(sem descricao)'}
-Angulo: ${angulo}
-
-REGRAS CRÍTICAS DE INTELIGÊNCIA, VERACIDADE E ÁUDIO:
-1. VERACIDADE ABSOLUTA: Se o nome tem "Refletor" ou "Holofote", ele DA LUZ e GASTA energia. NUNCA diga que economiza energia. Se tem "Painel Solar", ai sim fala de economia. Use o bom senso baseado no nome e descricao.
+    fala: `${nomeCurto} por apenas ${precoFmt}! Link na bio!" ou "Holofote", ele DA LUZ e GASTA energia. NUNCA diga que economiza energia. Se tem "Painel Solar", ai sim fala de economia. Use o bom senso baseado no nome e descricao.
 2. GANCHO ÚNICO: PROIBIDO usar as frases: "Quer economizar", "Voce sabia", "Cansado de", "Olha so", "Imagina so", "A conta de luz".
 3. PREÇO NA FALA: Escreva o preço POR EXTENSO na "fala" (Ex: "quarenta e tres reais e setenta e sete centavos"). Isso e obrigatorio para o audio.
 4. PREÇO NA LEGENDA: Na "legenda", use o formato numerico (Ex: "R$ 43,77").
 5. PRONÚNCIA DE SIGLAS: O sintetizador de voz soletra "L-E-D". Para ler naturalmente, escreva "Lédi" na "fala" (Ex: "refletor de Lédi"). Na "legenda", mantenha "LED".
-6. Maximo de 50 palavras na fala. Termine EXATAMENTE com: "Comenta QUERO que eu envio o link no teu privado."
-7. TOM PROFISSIONAL E AMIGÁVEL: Use linguagem natural, confiante e respeitosa. NUNCA use gírias forçadas, abreviações de internet ("vc", "pq"), ou frases exageradas ("não olha o preço", "vai querer comprar três"). Seja persuasivo sem apelar para impulsividade irracional.
+6. Maximo de 50 palavras na fala. Termine EXATAMENTE com: "Link na bio!"vc", "pq"), ou frases exageradas ("não olha o preço", "vai querer comprar três"). Seja persuasivo sem apelar para impulsividade irracional.
 
 ESTILO DA VARIACAO:
 - Variacao A (Educacional): Ensine algo tecnico real.
@@ -115,7 +83,7 @@ ESTILO DA VARIACAO:
 - Variacao C (Lifestyle): Emocao, beleza, praticidade.
 
 Responda APENAS com JSON valido:
-{"fala":"...","legenda":"...","hashtags":["#a","#b","#c","#d","#e"],"estilo":"moderno","cor":"#00d9ff","selo":"OFERTA","beneficios":["B1","B2","B3"],"cta":"Comenta QUERO"}`;
+{"fala":"...","legenda":"...","hashtags":["#a","#b","#c","#d","#e"],"estilo":"moderno","cor":"#00d9ff","selo":"OFERTA","beneficios":["B1","B2","B3"],"cta":"Link na bio"}`;
 }
 
 // ──────────────────────────────────────────────────────────────────────

@@ -18,6 +18,7 @@ const STEPS: Step[] = [
   { nome: 'render',  cmd: 'npx', args: ['tsx', 'src/jobs/renderer.ts'],  fatal: false },
   { nome: 'render',  cmd: 'npx', args: ['tsx', 'src/jobs/renderer.ts'],  fatal: false },
   { nome: 'render',  cmd: 'npx', args: ['tsx', 'src/jobs/renderer.ts'],  fatal: false },
+  { nome: 'landing', cmd: 'npx', args: ['tsx', 'src/jobs/gerar-landing.ts'], fatal: false },
   { nome: 'cleanup', cmd: 'npx', args: ['tsx', 'src/jobs/cleanup.ts'],    fatal: false },
   { nome: 'sync',    cmd: 'npx', args: ['tsx', 'src/jobs/sync-github.ts'], fatal: false },
 ];

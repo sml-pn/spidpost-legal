@@ -15,7 +15,8 @@
     "clean-files": "tsx clean-files.ts",
     "sync": "tsx src/jobs/sync-github.ts",
     "daily": "tsx src/jobs/daily.ts",
-    "cleanup-imagekit": "tsx src/jobs/cleanup-imagekit.ts"
+    "cleanup-imagekit": "tsx src/jobs/cleanup-imagekit.ts",
+    "landing": "tsx src/jobs/gerar-landing.ts"
   },
   "dependencies": {
     "@afilimax/mercado-livre-provider": "^0.1.4",
