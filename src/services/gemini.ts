@@ -39,7 +39,7 @@ type GerarParams = {
 const ANGULOS: Record<Variacao, string> = {
   A: 'Educacional - explique 2 ou 3 beneficios concretos do produto',
   B: 'Economico - foque no desconto e na economia gerada',
-  C: 'Storytelling - conte uma mini historia de 18 segundos',
+  C: 'Cenario hipotetico - descreva uma situacao real de uso (sem inventar historia pessoal). Use 2a pessoa ("voce") ou 3a pessoa ("o produto faz").',
 };
 
 const ESTILOS_VALIDOS: Estilo[] = ['moderno', 'elegante', 'vibrante', 'tecnico', 'aconchegante'];
@@ -101,8 +101,9 @@ Descricao: ${descricao || '(sem descricao)'}
 Angulo: ${angulo}
 
 REGRAS CRÍTICAS DE INTELIGÊNCIA, VERACIDADE E ÁUDIO:
+0. PROIBIDO INVENTAR HISTORIAS PESSOAIS. NUNCA escreva "Passei meses...", "Antes eu...", "Eu fazia...", "Mudei minha vida quando...", "Meu quintal era...", "Eu tinha...", "Sempre sonhei com...", ou qualquer experiência em 1a pessoa. Voce NAO e o consumidor. Voce NAO viveu nada. Descreva o PRODUTO e o BENEFICIO real, nao uma historia ficticia sobre voce.
 1. VERACIDADE ABSOLUTA: Se o nome tem "Refletor" ou "Holofote", ele DA LUZ e GASTA energia. NUNCA diga que economiza energia. Se tem "Painel Solar", ai sim fala de economia. Use o bom senso baseado no nome e descricao.
-2. GANCHO ÚNICO: PROIBIDO usar as frases: "Quer economizar", "Voce sabia", "Cansado de", "Olha so", "Imagina so", "A conta de luz".
+2. GANCHO ÚNICO: PROIBIDO usar as frases: "Quer economizar", "Voce sabia", "Cansado de", "Olha so", "Imagina so", "A conta de luz". Tambem PROIBIDO comecar com "Passei", "Eu", "Meu", "Minha", "Antes eu", "Sempre".
 3. PREÇO NA FALA: Escreva o preço POR EXTENSO na "fala" (Ex: "quarenta e tres reais e setenta e sete centavos"). Isso e obrigatorio para o audio.
 4. PREÇO NA LEGENDA: Na "legenda", use o formato numerico (Ex: "R$ 43,77").
 5. PRONÚNCIA DE SIGLAS: O sintetizador de voz soletra "L-E-D". Para ler naturalmente, escreva "Lédi" na "fala" (Ex: "refletor de Lédi"). Na "legenda", mantenha "LED".
@@ -112,7 +113,7 @@ REGRAS CRÍTICAS DE INTELIGÊNCIA, VERACIDADE E ÁUDIO:
 ESTILO DA VARIACAO:
 - Variacao A (Educacional): Ensine algo tecnico real.
 - Variacao B (Economico): Destaque o desconto (de X por Y), com o preco falado por extenso.
-- Variacao C (Lifestyle): Emocao, beleza, praticidade.
+- Variacao C (Cenario): Descreva uma SITUACAO HIPOTETICA de uso em 2a pessoa ("Imagine imprimir pecas em minutos...", "Voce acorda e o cafe ja esta pronto..."). NUNCA use 1a pessoa ("Eu", "Passei", "Meu"). O foco e no que o produto faz para QUEM COMPRA, nao em voce.
 
 Responda APENAS com JSON valido:
 {"fala":"...","legenda":"...","hashtags":["#a","#b","#c","#d","#e"],"estilo":"moderno","cor":"#00d9ff","selo":"OFERTA","beneficios":["B1","B2","B3"],"cta":"Link na bio"}`;
