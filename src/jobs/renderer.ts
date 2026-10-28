@@ -10,7 +10,7 @@ import { SELO_FIXO, CTA_FIXO } from '../config/brand.js';
 import path from 'node:path';
 import { db, type Variacao, ANGULOS } from '../lib/db.js';
 import { gerarRoteiro } from '../services/gemini.js';
-import { gerarAudio } from '../services/tts.js';
+import { gerarAudio, VOZ_POR_VARIACAO } from '../services/tts.js';
 import { baixarImagem, montarVideo, montarFeed } from '../services/ffmpeg.js';
 import { uploadImageKit } from '../services/imagekit.js';
 
@@ -94,7 +94,9 @@ async function main() {
     console.log(`  Estilo: ${roteiro.estilo} | Cor: ${roteiro.cor}`);
 
     console.log('\n[2/5] Gerando audio via Edge TTS...');
-    await gerarAudio({ texto: roteiro.fala, outputPath: audioPath });
+    const voz = VOZ_POR_VARIACAO[variacao];
+    console.log(`  [tts] Voz: ${voz}`);
+    await gerarAudio({ texto: roteiro.fala, outputPath: audioPath, voice: voz });
     console.log('  OK');
 
     console.log('\n[3/5] Baixando imagem...');

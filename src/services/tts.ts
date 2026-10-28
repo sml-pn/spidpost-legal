@@ -13,9 +13,15 @@ export type TTSOptions = {
 export const VOZES_PTBR = {
   masculina: 'pt-BR-AntonioNeural',
   feminina: 'pt-BR-FranciscaNeural',
-  masculina_alt: 'pt-BR-DonatoNeural',
-  feminina_alt: 'pt-BR-BrendaNeural',
+  feminina_alt: 'pt-BR-ThalitaMultilingualNeural',
 } as const;
+
+/** Voz por variação A/B/C */
+export const VOZ_POR_VARIACAO: Record<'A' | 'B' | 'C', string> = {
+  A: VOZES_PTBR.masculina,    // Antonio (educacional, autoridade)
+  B: VOZES_PTBR.feminina,     // Francisca (económico, próxima)
+  C: VOZES_PTBR.feminina_alt, // Thalita (cenário, narrativa)
+};
 
 /**
  * Executa o edge-tts (Python) via spawn.
@@ -60,7 +66,7 @@ export async function gerarAudio(options: TTSOptions): Promise<string> {
     texto,
     outputPath,
     voice = VOZES_PTBR.masculina,
-    rate = '+0%',
+    rate = '-10%',
   } = options;
 
   const MAX_TENTATIVAS = 3;
