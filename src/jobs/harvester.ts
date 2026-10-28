@@ -106,7 +106,17 @@ async function main() {
   let falhas = 0;
   let comAfiliado = 0;
 
-  for (const bm of bookmarks) {
+  let captchaCount = 0;
+for (const bm of bookmarks) {
+  if (captchaCount >= 3) {
+    console.log('');
+    console.log('═══════════════════════════════════════════════════════════');
+    console.log('  ⛔ 3 CAPTCHAS — HARVEST ABORTADO');
+    console.log('═══════════════════════════════════════════════════════════');
+    console.log('  Aguarda 24-48h ou usa Apify.');
+    console.log('═══════════════════════════════════════════════════════════');
+    break;
+  }
     try {
       const existe = db.prepare(`
         SELECT id FROM products WHERE source = 'mercadolivre' AND external_id = ?
@@ -117,10 +127,18 @@ async function main() {
         continue;
       }
 
+      const t0 = Date.now();
       const item = await getItem(bm.item_id);
+      const duracao = Date.now() - t0;
+
       if (!item) {
         falhas++;
-        console.log(`  X   ${bm.item_id} - produto inexistente`);
+        if (duracao > 5000) {
+          captchaCount++;
+          console.log(`  X   ${bm.item_id} - captcha (${captchaCount}/3)`);
+        } else {
+          console.log(`  X   ${bm.item_id} - inexistente`);
+        }
         continue;
       }
 

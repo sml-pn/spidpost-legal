@@ -44,7 +44,8 @@ async function main() {
 
   const produto = db.prepare(`
     SELECT * FROM products
-    WHERE status = 'PENDING' AND removed_from_ml = 0
+    WHERE status = 'PENDING'
+      AND (error IS NULL OR error != 'sem_imagem') AND removed_from_ml = 0
     ORDER BY created_at ASC
     LIMIT 1
   `).get() as any;

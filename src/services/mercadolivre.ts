@@ -126,7 +126,37 @@ async function fetchViaPlaywright(itemId: string): Promise<ItemData | null> {
       const ptxt = await page.$eval('.andes-money-amount__fraction', (el) => el.textContent || '').catch(() => '');
       if (ptxt) price = parseFloat(ptxt.replace(/\./g, '').replace(',', '.')) || 0;
     }
-    const imageUrl = await page.$eval('img.ui-pdp-gallery__figure__image, img[class*="gallery"]', (el) => el.getAttribute('data-zoom') || el.getAttribute('src') || '').catch(() => '');
+    // [FIX] Extrair imagem real (evitar lazy-load GIF transparente)
+    const imageUrl = await page.evaluate(() => {
+      // Tentar vários seletores, do mais específico ao mais genérico
+      const seletores = [
+        'img.ui-pdp-gallery__figure__image',
+        'img.ui-pdp-image',
+        'img[class*="gallery"]',
+        'figure img',
+        '.ui-pdp-gallery img',
+      ];
+      for (const sel of seletores) {
+        const el = document.querySelector(sel) as HTMLImageElement | null;
+        if (!el) continue;
+        // Tentar atributos que contêm a URL real
+        const candidatos = [
+          el.getAttribute('data-zoom'),
+          el.getAttribute('data-src'),
+          el.getAttribute('data-lazy'),
+          el.currentSrc,
+          el.src,
+          // srcset tem várias URLs separadas por vírgula — pegar a maior
+          el.getAttribute('srcset')?.split(',').pop()?.trim().split(' ')[0],
+        ];
+        for (const url of candidatos) {
+          if (url && url.startsWith('http') && !url.includes('data:image')) {
+            return url;
+          }
+        }
+      }
+      return '';
+    }).catch(() => '');
     const breadcrumb = await page.$$eval('.andes-breadcrumb__link', (els) => els.map((e) => e.textContent?.trim() || '')).catch(() => [] as string[]);
     const categoryRaw = breadcrumb.length > 0 ? breadcrumb[breadcrumb.length - 1] : null;
     const category = mapCategory(breadcrumb);

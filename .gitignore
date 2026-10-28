@@ -6,7 +6,6 @@ renders/
 tokens.json
 pagina_googlebot.html
 src/test.ts
-*.html
 
 backup/
 

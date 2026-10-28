@@ -50,7 +50,7 @@ const FFMPEG = process.platform === 'win32'
 const FONT_DIR = 'C:/Windows/Fonts';
 
 /** Timeout máximo para uma execução do ffmpeg (5 min). [ROBUSTO] */
-const FFMPEG_TIMEOUT_MS = 5 * 60 * 1000;
+const FFMPEG_TIMEOUT_MS = 10 * 60 * 1000;
 
 /** Timeout por tentativa de download (30s). */
 const DOWNLOAD_TIMEOUT_MS = 30_000;
@@ -300,7 +300,7 @@ async function executarFFmpeg(args: string[]): Promise<void> {
 const VIDEO_FLAGS_IG = [
   '-c:v', 'libx264',
   '-threads', '0',
-  '-preset', 'veryfast',
+  '-preset', 'veryfast', '-tune', 'stillimage',
   '-crf', '23',
   '-profile:v', 'main',
   '-level:v', '4.0',
