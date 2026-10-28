@@ -31,6 +31,24 @@
  */
 
 import { spawn } from 'node:child_process';
+
+/** Formata número como preço BRL: 1961.10 -> "1.961,10" */
+function formatPrecoBR(v: number): string {
+  const n = Number(v);
+  const str = n.toFixed(2);
+  const [intPart, decPart] = str.split('.');
+  let result = '';
+  let count = 0;
+  for (let i = intPart.length - 1; i >= 0; i--) {
+    result = intPart[i] + result;
+    count++;
+    if (count === 3 && i > 0) {
+      result = '.' + result;
+      count = 0;
+    }
+  }
+  return result + ',' + decPart;
+}
 import fs from 'node:fs/promises';
 import fsSync from 'node:fs';
 import path from 'node:path';
@@ -390,7 +408,7 @@ async function montarFiltrosLayout(p: LayoutParams): Promise<{
 
   const tituloCurto = limitarPalavras(p.titulo, 4);
   await fs.writeFile(tituloFile, quebrarLinha(tituloCurto, 26), 'utf-8');
-  await fs.writeFile(precoFile, `R$ ${p.preco.toFixed(2).replace('.', ',')}`, 'utf-8');
+  await fs.writeFile(precoFile, `R$ ${formatPrecoBR(p.preco)}`, 'utf-8');
   await fs.writeFile(seloFile, p.selo, 'utf-8');
   await fs.writeFile(ctaFile, p.cta, 'utf-8');
 
