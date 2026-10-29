@@ -1,7 +1,43 @@
 {
-  "updated_at": "2026-10-28T17:01:17.962Z",
+  "updated_at": "2026-10-28T21:11:29.836Z",
   "total": 107,
   "produtos": [
+    {
+      "id": 72,
+      "name": "Kit 10 Travas Geladeira Gaveta Reparador Porta Segurança Infantil Contra Bebes Adesivo Resistente Boa Dica Branco",
+      "category": "outros",
+      "price": 26.99,
+      "original_price": 29.99,
+      "desconto": 10,
+      "preco_fmt": "R$ 26,99",
+      "original_fmt": "R$ 29,99",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_678247-MLA115042718352_082026-F-kit-10-travas-geladeira-gaveta-reparador-porta-seguranca-infantil-contra-bebes-adesivo-resistente-boa-dica-branco.jpg",
+      "affiliate_url": "https://meli.la/2rWkfxg"
+    },
+    {
+      "id": 63,
+      "name": "Câmera De Segurança Ip Wifi Jl Protec Ipsky2 Lente Dupla 6mp Preto",
+      "category": "casa",
+      "price": 162,
+      "original_price": null,
+      "desconto": 0,
+      "preco_fmt": "R$ 162,00",
+      "original_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_664063-MLA95676694362_102025-F-cmera-de-seguranca-ip-wifi-jl-protec-ipsky2-lente-dupla-6mp-preto.jpg",
+      "affiliate_url": "https://meli.la/33QeY4S"
+    },
+    {
+      "id": 71,
+      "name": "Portão Segurança Preto Para Pet Cachorro Crianca Bebe Ajustavel De 68 A 83cm Sem Furo Grade Aramado 69cm De Altura Açomix",
+      "category": "outros",
+      "price": 72.99,
+      "original_price": null,
+      "desconto": 0,
+      "preco_fmt": "R$ 72,99",
+      "original_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_867223-MLA118791446713_102026-F-porto-seguranca-preto-para-pet-cachorro-crianca-bebe-ajustavel-de-68-a-83cm-sem-furo-grade-aramado-69cm-de-altura-acomix.jpg",
+      "affiliate_url": "https://meli.la/1zrLWgm"
+    },
     {
       "id": 61,
       "name": "Jogo Panelas Inox 19 Peças Genebra Completo C/ Utensílios Prateado",
@@ -915,18 +951,6 @@
       "affiliate_url": "https://meli.la/1yPQ5Tx"
     },
     {
-      "id": 80,
-      "name": "Impressora 3d Bambu Lab A1 Mini Sem Ams",
-      "category": "outros",
-      "price": 1961.1,
-      "original_price": null,
-      "desconto": 0,
-      "preco_fmt": "R$ 1.961,10",
-      "original_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923398-MLB116025255233_082026-F-impressora-3d-bambu-lab-a1-mini-sem-ams.jpg",
-      "affiliate_url": "https://meli.la/2DJudzj"
-    },
-    {
       "id": 79,
       "name": "Kit 2 Porta Pratos Vertical Suporte Organizador Armário Aço",
       "category": "casa",
@@ -1069,30 +1093,6 @@
       "original_fmt": "R$ 59,90",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_612709-MLB117049020210_102026-F-quadro-decorativo-abstrato-geometrico-ecom-quadros-carvalho-infinite.jpg",
       "affiliate_url": "https://meli.la/2HhKN17"
-    },
-    {
-      "id": 72,
-      "name": "Kit 10 Travas Geladeira Gaveta Reparador Porta Segurança Infantil Contra Bebes Adesivo Resistente Boa Dica Branco",
-      "category": "outros",
-      "price": 26.99,
-      "original_price": 29.99,
-      "desconto": 10,
-      "preco_fmt": "R$ 26,99",
-      "original_fmt": "R$ 29,99",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_678247-MLA115042718352_082026-F-kit-10-travas-geladeira-gaveta-reparador-porta-seguranca-infantil-contra-bebes-adesivo-resistente-boa-dica-branco.jpg",
-      "affiliate_url": "https://meli.la/2rWkfxg"
-    },
-    {
-      "id": 71,
-      "name": "Portão Segurança Preto Para Pet Cachorro Crianca Bebe Ajustavel De 68 A 83cm Sem Furo Grade Aramado 69cm De Altura Açomix",
-      "category": "outros",
-      "price": 72.99,
-      "original_price": null,
-      "desconto": 0,
-      "preco_fmt": "R$ 72,99",
-      "original_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_867223-MLA118791446713_102026-F-porto-seguranca-preto-para-pet-cachorro-crianca-bebe-ajustavel-de-68-a-83cm-sem-furo-grade-aramado-69cm-de-altura-acomix.jpg",
-      "affiliate_url": "https://meli.la/1zrLWgm"
     },
     {
       "id": 53,
@@ -1275,16 +1275,16 @@
       "affiliate_url": "https://meli.la/14uqe1q"
     },
     {
-      "id": 63,
-      "name": "Câmera De Segurança Ip Wifi Jl Protec Ipsky2 Lente Dupla 6mp Preto",
-      "category": "casa",
-      "price": 162,
+      "id": 80,
+      "name": "Impressora 3d Bambu Lab A1 Mini Sem Ams",
+      "category": "outros",
+      "price": 1961.1,
       "original_price": null,
       "desconto": 0,
-      "preco_fmt": "R$ 162,00",
+      "preco_fmt": "R$ 1.961,10",
       "original_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_664063-MLA95676694362_102025-F-cmera-de-seguranca-ip-wifi-jl-protec-ipsky2-lente-dupla-6mp-preto.jpg",
-      "affiliate_url": "https://meli.la/33QeY4S"
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923398-MLB116025255233_082026-F-impressora-3d-bambu-lab-a1-mini-sem-ams.jpg",
+      "affiliate_url": "https://meli.la/2DJudzj"
     }
   ]
 }
