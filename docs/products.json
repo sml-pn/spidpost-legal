@@ -1,7 +1,79 @@
 {
-  "updated_at": "2026-10-28T21:11:29.836Z",
+  "updated_at": "2026-10-29T13:47:06.229Z",
   "total": 107,
   "produtos": [
+    {
+      "id": 90,
+      "name": "Guarda Sol Praia Grande Gigante 2,40m Proteção UV Corta Vento Respirável Altura Ajustável Verão Piscina Camping Pesca Cor Azul",
+      "category": "outros",
+      "price": 94.4,
+      "original_price": null,
+      "desconto": 0,
+      "preco_fmt": "R$ 94,40",
+      "original_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_757558-MLA117896271589_092026-F-guarda-sol-praia-grande-gigante-240m-proteco-uv-corta-vento-respiravel-altura-ajustavel-vero-piscina-camping-pesca-cor-azul-lisa.jpg",
+      "affiliate_url": "https://meli.la/29XVYms"
+    },
+    {
+      "id": 74,
+      "name": "Cortina Rolo Blackout De Medida 1,50x1,50 Escurecer Quarto Cor Branco",
+      "category": "casa",
+      "price": 134,
+      "original_price": null,
+      "desconto": 0,
+      "preco_fmt": "R$ 134,00",
+      "original_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_618787-MLA105096598657_012026-F-cortina-rolo-blackout-de-medida-150x150-escurecer-quarto-cor-branco.jpg",
+      "affiliate_url": "https://meli.la/2xsKLqP"
+    },
+    {
+      "id": 76,
+      "name": "Mangueira Jardim 30 Metros Com Esguicho Trançada Mangueira Jardim 30m Metros Reforçada Flexível 7/16 Anti Mangueira De Jardim 30 Metros Dobra Irrigação Quintal Poço Lavagem Durável Lemont Web Verde",
+      "category": "outros",
+      "price": 50.32,
+      "original_price": null,
+      "desconto": 0,
+      "preco_fmt": "R$ 50,32",
+      "original_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923929-MLA113941676060_072026-F-mangueira-jardim-30-metros-com-esguicho-trancada-mangueira-jardim-30m-metros-reforcada-flexivel-716-anti-mangueira-de-jardim-30-metros-dobra-irrigaco-quintal-poco-lavagem-duravel-lemont-web-verde.jpg",
+      "affiliate_url": "https://meli.la/17X8wDM"
+    },
+    {
+      "id": 73,
+      "name": "Quadro Decorativo Abstrato Geométrico Ecom Quadros Carvalho Infinite",
+      "category": "casa",
+      "price": 39.9,
+      "original_price": 59.9,
+      "desconto": 33,
+      "preco_fmt": "R$ 39,90",
+      "original_fmt": "R$ 59,90",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_612709-MLB117049020210_102026-F-quadro-decorativo-abstrato-geometrico-ecom-quadros-carvalho-infinite.jpg",
+      "affiliate_url": "https://meli.la/2HhKN17"
+    },
+    {
+      "id": 80,
+      "name": "Impressora 3d Bambu Lab A1 Mini Sem Ams",
+      "category": "outros",
+      "price": 1961.1,
+      "original_price": null,
+      "desconto": 0,
+      "preco_fmt": "R$ 1.961,10",
+      "original_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923398-MLB116025255233_082026-F-impressora-3d-bambu-lab-a1-mini-sem-ams.jpg",
+      "affiliate_url": "https://meli.la/2DJudzj"
+    },
+    {
+      "id": 64,
+      "name": "Kit 2 Câmera Segurança Ip App Icsee Lente Dupla Cor Preto",
+      "category": "casa",
+      "price": 308.74,
+      "original_price": 324.99,
+      "desconto": 5,
+      "preco_fmt": "R$ 308,74",
+      "original_fmt": "R$ 324,99",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_821639-MLA96141415135_102025-F-kit-2-cmera-seguranca-ip-app-icsee-lente-dupla-cor-preto.jpg",
+      "affiliate_url": "https://meli.la/14uqe1q"
+    },
     {
       "id": 72,
       "name": "Kit 10 Travas Geladeira Gaveta Reparador Porta Segurança Infantil Contra Bebes Adesivo Resistente Boa Dica Branco",
@@ -831,18 +903,6 @@
       "affiliate_url": "https://meli.la/2pgQrWX"
     },
     {
-      "id": 90,
-      "name": "Guarda Sol Praia Grande Gigante 2,40m Proteção UV Corta Vento Respirável Altura Ajustável Verão Piscina Camping Pesca Cor Azul",
-      "category": "outros",
-      "price": 94.4,
-      "original_price": null,
-      "desconto": 0,
-      "preco_fmt": "R$ 94,40",
-      "original_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_757558-MLA117896271589_092026-F-guarda-sol-praia-grande-gigante-240m-proteco-uv-corta-vento-respiravel-altura-ajustavel-vero-piscina-camping-pesca-cor-azul-lisa.jpg",
-      "affiliate_url": "https://meli.la/29XVYms"
-    },
-    {
       "id": 89,
       "name": "Cadeira Alta Alumínio Praia Lazer Descanço 110kg Azul Azul-marinho",
       "category": "casa",
@@ -987,18 +1047,6 @@
       "affiliate_url": "https://meli.la/1vgEYfP"
     },
     {
-      "id": 76,
-      "name": "Mangueira Jardim 30 Metros Com Esguicho Trançada Mangueira Jardim 30m Metros Reforçada Flexível 7/16 Anti Mangueira De Jardim 30 Metros Dobra Irrigação Quintal Poço Lavagem Durável Lemont Web Verde",
-      "category": "outros",
-      "price": 50.32,
-      "original_price": null,
-      "desconto": 0,
-      "preco_fmt": "R$ 50,32",
-      "original_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923929-MLA113941676060_072026-F-mangueira-jardim-30-metros-com-esguicho-trancada-mangueira-jardim-30m-metros-reforcada-flexivel-716-anti-mangueira-de-jardim-30-metros-dobra-irrigaco-quintal-poco-lavagem-duravel-lemont-web-verde.jpg",
-      "affiliate_url": "https://meli.la/17X8wDM"
-    },
-    {
       "id": 75,
       "name": "Escorredor De Louças 65cm Preto Suspenso Organizador De Pia Cozinha Para Pratos Copos Tigelas 2 Esponjas 1 Par De Luvas",
       "category": "casa",
@@ -1069,30 +1117,6 @@
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_730438-MLA86165971674_062025-F-bicicleta-aro-29-highlevel-aco-carbono-freios-disco-suspenso-21v-cor-preto-azul-rosa.jpg",
       "affiliate_url": "https://meli.la/1rMd97G"
-    },
-    {
-      "id": 74,
-      "name": "Cortina Rolo Blackout De Medida 1,50x1,50 Escurecer Quarto Cor Branco",
-      "category": "casa",
-      "price": 134,
-      "original_price": null,
-      "desconto": 0,
-      "preco_fmt": "R$ 134,00",
-      "original_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_618787-MLA105096598657_012026-F-cortina-rolo-blackout-de-medida-150x150-escurecer-quarto-cor-branco.jpg",
-      "affiliate_url": "https://meli.la/2xsKLqP"
-    },
-    {
-      "id": 73,
-      "name": "Quadro Decorativo Abstrato Geométrico Ecom Quadros Carvalho Infinite",
-      "category": "casa",
-      "price": 39.9,
-      "original_price": 59.9,
-      "desconto": 33,
-      "preco_fmt": "R$ 39,90",
-      "original_fmt": "R$ 59,90",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_612709-MLB117049020210_102026-F-quadro-decorativo-abstrato-geometrico-ecom-quadros-carvalho-infinite.jpg",
-      "affiliate_url": "https://meli.la/2HhKN17"
     },
     {
       "id": 53,
@@ -1261,30 +1285,6 @@
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_790421-MLA103207255670_012026-F-caixinha-som-karaok-2-microfones-bluetooth-infantil-adulto-cor-rosa-tec-127220v.jpg",
       "affiliate_url": "https://meli.la/147uMPA"
-    },
-    {
-      "id": 64,
-      "name": "Kit 2 Câmera Segurança Ip App Icsee Lente Dupla Cor Preto",
-      "category": "casa",
-      "price": 308.74,
-      "original_price": 324.99,
-      "desconto": 5,
-      "preco_fmt": "R$ 308,74",
-      "original_fmt": "R$ 324,99",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_821639-MLA96141415135_102025-F-kit-2-cmera-seguranca-ip-app-icsee-lente-dupla-cor-preto.jpg",
-      "affiliate_url": "https://meli.la/14uqe1q"
-    },
-    {
-      "id": 80,
-      "name": "Impressora 3d Bambu Lab A1 Mini Sem Ams",
-      "category": "outros",
-      "price": 1961.1,
-      "original_price": null,
-      "desconto": 0,
-      "preco_fmt": "R$ 1.961,10",
-      "original_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923398-MLB116025255233_082026-F-impressora-3d-bambu-lab-a1-mini-sem-ams.jpg",
-      "affiliate_url": "https://meli.la/2DJudzj"
     }
   ]
 }
