@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpidPost - Painel de Controle</title>
+  <link rel="stylesheet" href="/panel.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>
+🕸️</text></svg>">
+</head>
+<body>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header">
+    <div class="header-left">
+      <span class="logo">
+🕸️</span>
+      <div>
+        <h1>SpidPost</h1>
+        <span class="subtitle">Sistema de Postagem Automatica</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-badge" id="connection-status">
+        <span class="dot"></span>
+        <span class="text">A ligar...</span>
+      </div>
+      <button class="icon-btn" id="btn-show-windows" title="Mostrar as janelas do terminal">🖥️ Mostrar Janelas</button>
+      <button class="icon-btn" id="btn-hide-windows" title="Minimizar as janelas do terminal">📥 Esconder</button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="main">
+
+    <!-- ═══════════════ BARRA DE CONTROLE ═══════════════ -->
+    <section class="section control-bar" id="control-bar">
+      <div class="control-main">
+        <div class="control-info">
+          <div class="control-title" id="system-state-text">Sistema parado</div>
+          <div class="control-desc" id="system-state-desc">
+            Clica em INICIAR para comecar a produzir conteudo automaticamente.
+          </div>
+        </div>
+        <div class="control-actions">
+          <button class="btn-start" id="btn-system-start">
+            <span class="btn-icon">▶</span>
+            <span>INICIAR SISTEMA</span>
+          </button>
+          <button class="btn-stop" id="btn-system-stop" hidden>
+            <span class="btn-icon">⏸</span>
+            <span>PARAR SISTEMA</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ TIMELINE ═══════════════ -->
+    <section class="section">
+      <h2 class="section-title">🕐 Programacao de Hoje</h2>
+      <p class="section-desc">Os turnos definem quando o sistema publica automaticamente no Instagram.</p>
+
+      <div class="timeline-grid">
+        <!-- Turno atual -->
+        <div class="timeline-card timeline-current">
+          <div class="timeline-label">
+            <span class="timeline-dot dot-pulse"></span>
+            TURNO ATUAL
+          </div>
+          <div class="timeline-name" id="turno-atual-nome">—</div>
+          <div class="timeline-hours" id="turno-atual-horas">—</div>
+          <div class="timeline-meta" id="turno-atual-meta">—</div>
+        </div>
+
+        <!-- Próximo turno -->
+        <div class="timeline-card timeline-next">
+          <div class="timeline-label">⏭ PRÓXIMO TURNO</div>
+          <div class="timeline-name" id="turno-prox-nome">—</div>
+          <div class="timeline-hours" id="turno-prox-horas">—</div>
+          <div class="timeline-meta" id="turno-prox-meta">—</div>
+        </div>
+
+        <!-- Stats do dia -->
+        <div class="timeline-card timeline-today">
+          <div class="timeline-label">📊 HOJE</div>
+          <div class="timeline-big" id="posts-hoje">0</div>
+          <div class="timeline-meta">publicacoes hoje</div>
+          <div class="timeline-sub" id="posts-turno">— no turno atual</div>
+        </div>
+      </div>
+
+      <!-- Timeline visual dos turnos -->
+      <div class="day-timeline" id="day-timeline">
+        <div class="day-timeline-bar">
+          <div class="day-timeline-now" id="day-timeline-now" style="left: 0%"></div>
+        </div>
+        <div class="day-timeline-labels">
+          <span>00h</span>
+          <span>06h</span>
+          <span>12h</span>
+          <span>18h</span>
+          <span>24h</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ CARDS DE STATUS ═══════════════ -->
+    <section class="section">
+      <h2 class="section-title">📊 Estado do Catalogo</h2>
+      <div class="stats-grid">
+        <div class="stat-card stat-pending" title="Produtos encontrados, aguardam video">
+          <div class="stat-label">Aguardando Video</div>
+          <div class="stat-value" id="stat-pending">0</div>
+          <div class="stat-hint">produtos novos</div>
+        </div>
+        <div class="stat-card stat-ready" title="Videos prontos para publicar">
+          <div class="stat-label">Prontos a Publicar</div>
+          <div class="stat-value" id="stat-ready">0</div>
+          <div class="stat-hint">videos criados</div>
+        </div>
+        <div class="stat-card stat-posted" title="Ja publicados no Instagram">
+          <div class="stat-label">Publicados</div>
+          <div class="stat-value" id="stat-posted">0</div>
+          <div class="stat-hint">no Instagram</div>
+        </div>
+        <div class="stat-card stat-cooldown" title="Aguardam proxima variacao">
+          <div class="stat-label">Em Cooldown</div>
+          <div class="stat-value" id="stat-cooldown">0</div>
+          <div class="stat-hint">aguardam rotacao</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ ACOES MANUAIS ═══════════════ -->
+    <section class="section">
+      <h2 class="section-title">🎮 Ações Manuais</h2>
+      <p class="section-desc">Acoes para testes ou intervencao pontual. Em modo automatico o sistema faz isto sozinho.</p>
+
+      <div class="actions-grid">
+        <button class="action-btn" data-job="harvest" data-tooltip="Le os favoritos do Mercado Livre">
+          <span class="action-icon">🌾</span>
+          <span class="action-name">Buscar Produtos</span>
+          <span class="action-desc">Le favoritos do ML</span>
+        </button>
+        <button class="action-btn" data-job="render" data-tooltip="Gera roteiro, audio e 3 formatos de video">
+          <span class="action-icon">🎬</span>
+          <span class="action-name">Criar Video</span>
+          <span class="action-desc">Reel + Story + Feed</span>
+        </button>
+        <button class="action-btn" data-job="publish" data-tooltip="Publica no Instagram">
+          <span class="action-icon">📤</span>
+          <span class="action-name">Publicar</span>
+          <span class="action-desc">Posta no Instagram</span>
+        </button>
+        <button class="action-btn" data-job="refresh" data-tooltip="Renova token do Mercado Livre">
+          <span class="action-icon">🔄</span>
+          <span class="action-name">Renovar Token</span>
+          <span class="action-desc">ML token</span>
+        </button>
+        <button class="action-btn" data-job="cleanup" data-tooltip="Limpa ficheiros antigos">
+          <span class="action-icon">🧹</span>
+          <span class="action-name">Limpar</span>
+          <span class="action-desc">Limpa temporarios</span>
+        </button>
+        <button class="action-btn action-btn-secondary" id="btn-open-urls" data-tooltip="Ver URLs publicas dos videos">
+          <span class="action-icon">🌐</span>
+          <span class="action-name">Ver URLs</span>
+          <span class="action-desc">Enderecos publicos</span>
+        </button>
+        <button class="action-btn action-btn-secondary" id="btn-github-actions" data-tooltip="Ver logs das publicacoes na nuvem" onclick="window.open('https://github.com/sml-pn/spidpost-legal/actions', '_blank')">
+          <span class="action-icon">☁️</span>
+          <span class="action-name">Logs na Nuvem</span>
+          <span class="action-desc">GitHub Actions</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ═══════════════ TUNEL ═══════════════ -->
+    <section class="section">
+      <h2 class="section-title">📡 Túnel Público</h2>
+      <p class="section-desc">Endereco publico que o Instagram usa para aceder aos videos.</p>
+      <div class="tunnel-card">
+        <div class="tunnel-info">
+          <div class="tunnel-label">URL PÚBLICA ATUAL</div>
+          <div class="tunnel-url" id="tunnel-url">A obter...</div>
+        </div>
+        <div class="tunnel-actions">
+          <button class="small-btn" id="btn-copy-tunnel">📋 Copiar</button>
+          <button class="small-btn" id="btn-test-tunnel">🔍 Testar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ LOGS ═══════════════ -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">📜 Registo de Atividade</h2>
+          <p class="section-desc">Tempo real. Verde=sucesso · Amarelo=aviso · Vermelho=erro</p>
+        </div>
+        <div class="log-controls">
+          <button class="small-btn" id="btn-clear-logs">🗑️ Limpar</button>
+          <button class="small-btn" id="btn-download-logs">⬇️ Descarregar</button>
+          <label class="auto-scroll-toggle">
+            <input type="checkbox" id="auto-scroll" checked>
+            <span>Auto-scroll</span>
+          </label>
+        </div>
+      </div>
+      <div class="log-container" id="log-container">
+        <div class="log-empty">Sem registos ainda.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <span>SpidPost · <span id="server-time">--:--:--</span></span>
+  </footer>
+
+  <!-- ═══════════════ TOASTS ═══════════════ -->
+  <div class="toasts" id="toasts"></div>
+
+  <!-- ═══════════════ TOOLTIP ═══════════════ -->
+  <div class="tooltip" id="tooltip" hidden></div>
+
+  <!-- ═══════════════ MODAL URLS ═══════════════ -->
+  <div class="modal" id="modal-urls" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🌐 URLs Publicas</h3>
+        <button class="icon-btn" id="modal-urls-close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-urls-body">
+        <p>A carregar...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/panel.js"></script>
+</body>
+</html>

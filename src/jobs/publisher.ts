@@ -67,7 +67,7 @@ function tipoDoRender(p: string): 'reel' | 'story' | 'feed' | 'unknown' {
 }
 
 function montarLegenda(caption: string, hashtags: string, link?: string): string {
-  const cta = '💬 Comenta QUERO que eu envio o link com desconto no teu privado!';
+  const cta = '💬 Link na bio!';
   const linkBloco = link ? `\n\n🛒 Link com desconto:\n${link}` : '';
   return `${caption}${linkBloco}\n\n${cta}\n\n${hashtags}`;
 }
@@ -165,7 +165,7 @@ async function comentarComLink(mediaId: string, produto: any): Promise<void> {
     '🛒 Link com desconto:',
     link,
     '',
-    'Ou comenta QUERO que eu envio no teu privado 👇',
+    'Ou Link na bio que eu envio no teu privado 👇',
   ].join('\n');
 
   try {

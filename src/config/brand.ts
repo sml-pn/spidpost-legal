@@ -8,7 +8,7 @@ export const TEXT_DARK = "#1a1a1a";
 export const TEXT_MEDIUM = "#4a4a4a";
 export const TEXT_STARS = "#d4af37";
 export const SELO_FIXO = "ACHADINHO";
-export const CTA_FIXO = "→ Link na descrição";
+export const CTA_FIXO = "→ Link na bio";
 export const AVALIACAO = "★★★★★";
 
 export const CATEGORY_TINTS: Record<string, string> = {

@@ -563,7 +563,7 @@ export async function montarVideo(params: {
     imagemPath, audioPath, titulo, preco, outputPath,
     duracao = 18, formato,
     estilo = 'moderno', cor,
-    selo = 'OFERTA', beneficios = [], cta = '→ Link na descrição',
+    selo = 'OFERTA', beneficios = [], cta = '→ Link na bio',
     categoria,
   } = params;
 
@@ -654,7 +654,7 @@ export async function montarFeed(params: {
   const {
     imagemPath, titulo, preco, outputPath,
     estilo = 'moderno', cor,
-    selo = 'OFERTA', beneficios = [], cta = '→ Link na descrição',
+    selo = 'OFERTA', beneficios = [], cta = '→ Link na bio',
     categoria,
   } = params;
 
