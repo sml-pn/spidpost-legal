@@ -348,7 +348,9 @@ async function main() {
   console.log('');
 
   const primeiro = renders[0];
-  const caption = montarLegenda(primeiro.caption, primeiro.hashtags, produto.affiliate_url);
+  // [SEGURANÇA] Legenda SEM links + selo de transparência
+  const captionBase = montarLegenda(primeiro.caption, primeiro.hashtags, null);
+  const caption = "#publi (link de afiliado)\n\n" + captionBase;
 
   const publicados: { id: number; mediaId: string }[] = [];
   let reelId: string | null = null;
@@ -368,7 +370,7 @@ async function main() {
 
       await new Promise((r) => setTimeout(r, 5000));
       console.log('  A postar comentario com link...');
-      await comentarComLink(reelId, produto);
+      // [SEGURANÇA] Comentário com link removido para evitar banimento do IG.
 
       console.log('');
     } catch (err) {
