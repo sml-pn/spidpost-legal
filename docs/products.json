@@ -1,7 +1,19 @@
 {
-  "updated_at": "2026-10-29T13:47:06.229Z",
+  "updated_at": "2026-10-30T19:49:14.476Z",
   "total": 107,
   "produtos": [
+    {
+      "id": 75,
+      "name": "Escorredor De Louças 65cm Preto Suspenso Organizador De Pia Cozinha Para Pratos Copos Tigelas 2 Esponjas 1 Par De Luvas",
+      "category": "casa",
+      "price": 138.71,
+      "original_price": null,
+      "desconto": 0,
+      "preco_fmt": "R$ 138,71",
+      "original_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_744290-MLA118438995485_092026-F-escorredor-de-loucas-65cm-preto-suspenso-organizador-de-pia-cozinha-para-pratos-copos-tigelas-2-esponjas-1-par-de-luvas.webp",
+      "affiliate_url": "https://meli.la/1zjDSwc"
+    },
     {
       "id": 90,
       "name": "Guarda Sol Praia Grande Gigante 2,40m Proteção UV Corta Vento Respirável Altura Ajustável Verão Piscina Camping Pesca Cor Azul",
@@ -1045,18 +1057,6 @@
       "original_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_758976-MLA118528466423_092026-F-escorredor-de-loucas-rack-aco-carbono-para-bancada-com-bandeja-porta-talheres-e-bico-de-escoamento-preto.jpg",
       "affiliate_url": "https://meli.la/1vgEYfP"
-    },
-    {
-      "id": 75,
-      "name": "Escorredor De Louças 65cm Preto Suspenso Organizador De Pia Cozinha Para Pratos Copos Tigelas 2 Esponjas 1 Par De Luvas",
-      "category": "casa",
-      "price": 138.71,
-      "original_price": null,
-      "desconto": 0,
-      "preco_fmt": "R$ 138,71",
-      "original_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_744290-MLA118438995485_092026-F-escorredor-de-loucas-65cm-preto-suspenso-organizador-de-pia-cozinha-para-pratos-copos-tigelas-2-esponjas-1-par-de-luvas.webp",
-      "affiliate_url": "https://meli.la/1zjDSwc"
     },
     {
       "id": 58,

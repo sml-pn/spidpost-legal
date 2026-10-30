@@ -77,7 +77,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ideal & Genial — Afiliado Oficial | Melhores ofertas do Mercado Livre</title>
+<title>Afiliado Oficial | Melhores ofertas do Mercado Livre</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -187,10 +187,18 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
   .resultado-info { font-size: 13px; color: var(--text-soft); margin-bottom: 12px; }
   .resultado-info strong { color: var(--text); }
 
-  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
   @media (min-width: 640px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 14px; } }
-  @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
   @media (min-width: 1200px) { .grid { grid-template-columns: repeat(5, 1fr); } }
+  
+  /* Ajustes do card no mobile */
+  @media (max-width: 480px) {
+    .card-body { padding: 8px; }
+    .card-title { font-size: 12px; min-height: 32px; }
+    .card-preco-atual { font-size: 16px; }
+    .card-btn { font-size: 11px; padding: 8px 4px; }
+  }
 
   .card { background: var(--bg-card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; border: 1px solid transparent; }
   .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
@@ -230,9 +238,9 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
   <div class="header-inner">
     <div class="header-row-1">
       <a class="logo" href="./">
-        <div class="logo-icon">IG</div>
+        <div class="logo-icon">AO</div>
         <div class="logo-text">
-          <span class="logo-name">Ideal <span>&</span> Genial</span>
+          <span class="logo-name">Afiliado <span>Oficial</span></span>
           <span class="logo-tag">Ofertas reais</span>
         </div>
       </a>
@@ -289,7 +297,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
 </main>
 
 <footer>
-  <div class="footer-brand">Ideal <span>&</span> Genial</div>
+  <div class="footer-brand">Afiliado <span>Oficial</span></div>
   <p>Afiliado oficial do Mercado Livre · Ofertas verificadas</p>
   <p><a href="https://www.instagram.com/idealegenial/" target="_blank" rel="noopener">Siga no Instagram @idealegenial</a></p>
 </footer>
