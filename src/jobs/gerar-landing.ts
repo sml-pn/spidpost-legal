@@ -116,7 +116,8 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
 
   .header-links { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
   .header-links a { color: #fff; text-decoration: none; font-size: 13px; opacity: 0.85; }
-  .header-links .ig-btn { padding: 8px 14px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-radius: 6px; opacity: 1; font-weight: 600; white-space: nowrap; }
+  .header-links .ig-btn { background: transparent; padding: 0; display: flex; align-items: center; justify-content: center; color: #fff; opacity: 0.9; transition: opacity 0.2s; }
+  .header-links .ig-btn:hover { opacity: 1; }
 
   .busca { width: 100%; position: relative; }
   .busca input { width: 100%; padding: 11px 44px 11px 16px; border: none; border-radius: 6px; font-size: 15px; outline: none; background: #fff; color: var(--text); }
@@ -137,22 +138,34 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     box-shadow: var(--shadow-sm);
   }
   .controlo-inner { max-width: 1200px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-  .sticky-actions { display: flex; gap: 8px; width: 100%; align-items: center; justify-content: space-between; }
-  .sticky-busca { flex: 1 1 100%; display: block; }
   
+  /* Layout Mobile: Ações na mesma linha, busca em baixo */
+  .sticky-actions { display: flex; gap: 8px; width: 100%; align-items: center; justify-content: space-between; }
+  .busca-container { flex: 1 1 100%; display: none; margin-top: 10px; }
+  .busca-container.aberto { display: block; animation: slideDown 0.3s ease; }
+  
+  .mobile-search-btn {
+    display: flex;
+    background: var(--dark);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Desktop: Tudo na mesma linha, busca à esquerda */
   @media (min-width: 768px) {
     .controlo-inner { flex-wrap: nowrap; }
     .sticky-actions { width: auto; flex-shrink: 0; }
-    .sticky-busca { flex: 1; order: -1; margin-right: 10px; } /* No desktop, a busca fica à esquerda */
-    .sticky-lupa { display: none !important; } /* Esconde a lupa no desktop */
+    .busca-container { display: block !important; flex: 1; order: -1; margin-right: 10px; margin-top: 0; }
+    .mobile-search-btn { display: none !important; }
   }
   
-  @media (max-width: 767px) {
-    .sticky-busca { display: none; margin-top: 10px; }
-    .sticky-busca.aberto { display: block; animation: slideDown 0.3s ease; }
-    .sticky-lupa { display: flex; }
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-  }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
   .btn-categorias { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; background: var(--dark); color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
   .btn-categorias:hover { background: #333; }
   .btn-categorias-ativo { background: var(--primary); }
@@ -268,8 +281,9 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         </div>
       </a>
       <div class="header-links">
-        <button class="mobile-search-btn" id="mobile-search-btn" type="button" aria-label="Abrir busca">🔍</button>
-        <a href="https://www.instagram.com/idealegenial/" target="_blank" rel="noopener" class="ig-btn">📸 <span class="ig-text">Instagram</span></a>
+        <a href="https://www.instagram.com/idealegenial/" target="_blank" rel="noopener" class="ig-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px; height:24px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
       </div>
     </div>
 
