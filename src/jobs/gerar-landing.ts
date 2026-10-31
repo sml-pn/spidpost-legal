@@ -105,19 +105,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
 
   .header-inner { padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 10px; max-width: 1200px; margin: 0 auto; }
   .header-row-1 { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; }
-  /* --- Lógica da Busca Mobile --- */
-  .mobile-search-btn { display: none; background: transparent; border: none; color: #fff; font-size: 20px; cursor: pointer; }
-  .header-row-2 { width: 100%; display: block !important; margin-top: 10px; }
-  .busca input { width: 100%; padding: 11px 16px; border: none; border-radius: 6px; font-size: 16px; outline: none; background: #fff; color: var(--text); }
-
-  @media (max-width: 767px) {
-    .mobile-search-btn { display: flex; }
-    .header-row-2 { display: none !important; }
-    .header-row-2.aberto { display: block !important; animation: slideDown 0.3s ease; }
-    .ig-text { display: none; }
-    .ig-btn { padding: 8px 12px !important; font-size: 18px !important; }
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-  }
+  
 
   .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
   .logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, #d4af37 0%, #f4d35e 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; color: var(--dark); flex-shrink: 0; letter-spacing: -0.5px; box-shadow: 0 2px 6px rgba(212,175,55,0.3); }
@@ -148,7 +136,23 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     z-index: 100;
     box-shadow: var(--shadow-sm);
   }
-  .controlo-inner { max-width: 1200px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px; align-items: center; justify-content: space-between; }
+  .controlo-inner { max-width: 1200px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .sticky-actions { display: flex; gap: 8px; width: 100%; align-items: center; justify-content: space-between; }
+  .sticky-busca { flex: 1 1 100%; display: block; }
+  
+  @media (min-width: 768px) {
+    .controlo-inner { flex-wrap: nowrap; }
+    .sticky-actions { width: auto; flex-shrink: 0; }
+    .sticky-busca { flex: 1; order: -1; margin-right: 10px; } /* No desktop, a busca fica à esquerda */
+    .sticky-lupa { display: none !important; } /* Esconde a lupa no desktop */
+  }
+  
+  @media (max-width: 767px) {
+    .sticky-busca { display: none; margin-top: 10px; }
+    .sticky-busca.aberto { display: block; animation: slideDown 0.3s ease; }
+    .sticky-lupa { display: flex; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+  }
   .btn-categorias { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; background: var(--dark); color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
   .btn-categorias:hover { background: #333; }
   .btn-categorias-ativo { background: var(--primary); }
@@ -397,7 +401,7 @@ function fecharDrawer() {
 }
 
 function configurarEventos() {
-  // Lógica da Lupa Mobile
+  // Lógica da Lupa Mobile (dentro da barra sticky)
   var btnLupa = document.getElementById('mobile-search-btn');
   var buscaContainer = document.getElementById('busca-container');
   var inputBusca = document.getElementById('busca');
