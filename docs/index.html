@@ -142,7 +142,8 @@
   .card-preco-atual { font-size: 18px; font-weight: 700; color: var(--text); }
   .card-preco-atual .cents { font-size: 13px; }
   .card-frete { font-size: 11px; color: var(--success); font-weight: 600; margin-top: 2px; }
-  .card-btn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 9px; background: var(--primary); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 600; text-decoration: none; margin-top: 8px; }
+  .card-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 9px; background: var(--primary); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 600; text-decoration: none; margin-top: 8px; text-align: center; line-height: 1.2; }
+  .card-btn svg { width: 16px; height: 16px; margin-bottom: 2px; }
   .card-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
   .card:hover .card-btn { background: var(--primary-hover); }
 
@@ -171,7 +172,8 @@
         </div>
       </a>
       <div class="header-links">
-        <a href="https://www.instagram.com/idealegenial/" target="_blank" rel="noopener" class="ig-btn">📸 Instagram</a>
+        <button class="mobile-search-btn" id="mobile-search-btn" type="button" aria-label="Abrir busca">🔍</button>
+        <a href="https://www.instagram.com/idealegenial/" target="_blank" rel="noopener" class="ig-btn">📸 <span class="ig-text">Instagram</span></a>
       </div>
     </div>
 
@@ -303,6 +305,24 @@ function fecharDrawer() {
 }
 
 function configurarEventos() {
+  // Lógica da Lupa Mobile
+  var btnLupa = document.getElementById('mobile-search-btn');
+  var buscaContainer = document.getElementById('busca-container');
+  var inputBusca = document.getElementById('busca');
+  
+  if (btnLupa && buscaContainer) {
+    btnLupa.addEventListener('click', function() {
+      var estaAberto = buscaContainer.classList.contains('aberto');
+      if (estaAberto) {
+        buscaContainer.classList.remove('aberto');
+        btnLupa.textContent = '🔍';
+      } else {
+        buscaContainer.classList.add('aberto');
+        btnLupa.textContent = '✕';
+        setTimeout(function() { inputBusca.focus(); }, 100);
+      }
+    });
+  }
   document.getElementById('btn-categorias').addEventListener('click', function(e) {
     if (e.target.id === 'btn-cat-clear') return;
     abrirDrawer();
@@ -407,7 +427,7 @@ function renderizar() {
           '<span class="card-preco-atual">R$ ' + pp.int + '<span class="cents">,' + pp.cents + '</span></span>' +
           frete +
         '</div>' +
-        '<span class="card-btn">' + cartIcon + 'Ver no Mercado Livre</span>' +
+        '<span class="card-btn">' + cartIcon + 'Ver no<br>Mercado Livre</span>' +
       '</div>' +
     '</a>';
   }).join('');
