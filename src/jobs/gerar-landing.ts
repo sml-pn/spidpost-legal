@@ -105,7 +105,19 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
 
   .header-inner { padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 10px; max-width: 1200px; margin: 0 auto; }
   .header-row-1 { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; }
-  .header-row-2 { width: 100%; }
+  /* --- Lógica da Busca Mobile --- */
+  .mobile-search-btn { display: none; background: transparent; border: none; color: #fff; font-size: 20px; cursor: pointer; }
+  .header-row-2 { width: 100%; display: block !important; margin-top: 10px; }
+  .busca input { width: 100%; padding: 11px 16px; border: none; border-radius: 6px; font-size: 16px; outline: none; background: #fff; color: var(--text); }
+
+  @media (max-width: 767px) {
+    .mobile-search-btn { display: flex; }
+    .header-row-2 { display: none !important; }
+    .header-row-2.aberto { display: block !important; animation: slideDown 0.3s ease; }
+    .ig-text { display: none; }
+    .ig-btn { padding: 8px 12px !important; font-size: 18px !important; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+  }
 
   .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
   .logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, #d4af37 0%, #f4d35e 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; color: var(--dark); flex-shrink: 0; letter-spacing: -0.5px; box-shadow: 0 2px 6px rgba(212,175,55,0.3); }
@@ -197,7 +209,10 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     .card-body { padding: 8px; }
     .card-title { font-size: 12px; min-height: 32px; }
     .card-preco-atual { font-size: 16px; }
-    .card-btn { font-size: 11px; padding: 8px 4px; }
+    .card-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; background: var(--primary); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 600; text-decoration: none; margin-top: 8px; text-align: center; line-height: 1.2; gap: 2px; }
+  .btn-row-1 { display: flex; align-items: center; justify-content: center; gap: 4px; font-weight: 500; }
+  .btn-row-1 svg { width: 14px; height: 14px; }
+  .btn-row-2 { font-weight: 800; font-size: 13px; }
   }
 
   .card { background: var(--bg-card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; border: 1px solid transparent; }
@@ -263,7 +278,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
   <div class="controlo-inner">
     <div class="busca">
       <input type="text" id="busca" placeholder="O que você procura hoje?">
-      <button type="button" aria-label="Buscar">🔍</button>
+      
     </div>
     <button class="btn-categorias" id="btn-categorias" type="button">
       <span class="btn-cat-icon">☰</span>
@@ -501,7 +516,10 @@ function renderizar() {
           '<span class="card-preco-atual">R$ ' + pp.int + '<span class="cents">,' + pp.cents + '</span></span>' +
           frete +
         '</div>' +
-        '<span class="card-btn">' + cartIcon + 'Ver no<br>Mercado Livre</span>' +
+        '<span class="card-btn">' +
+        '<span class="btn-row-1">' + cartIcon + '<span>Ver no</span></span>' +
+        '<span class="btn-row-2">Mercado Livre</span>' +
+      '</span>' +
       '</div>' +
     '</a>';
   }).join('');
