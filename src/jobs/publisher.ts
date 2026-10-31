@@ -349,7 +349,7 @@ async function main() {
 
   const primeiro = renders[0];
   // Legenda sem links, sem o aviso de #publi
-  const caption = montarLegenda(primeiro.caption, primeiro.hashtags, null);
+  const caption = montarLegenda(primeiro.caption, primeiro.hashtags, undefined);
 
   const publicados: { id: number; mediaId: string }[] = [];
   let reelId: string | null = null;
