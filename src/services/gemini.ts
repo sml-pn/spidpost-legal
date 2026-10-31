@@ -116,7 +116,7 @@ ESTILO DA VARIACAO:
 - Variacao C (Cenario): Descreva uma SITUACAO HIPOTETICA de uso em 2a pessoa ("Imagine imprimir pecas em minutos...", "Voce acorda e o cafe ja esta pronto..."). NUNCA use 1a pessoa ("Eu", "Passei", "Meu"). O foco e no que o produto faz para QUEM COMPRA, nao em voce.
 
 Responda APENAS com JSON valido:
-{"fala":"...","legenda":"...","hashtags":["#a","#b","#c","#d","#e"],"estilo":"moderno","cor":"#00d9ff","selo":"OFERTA","beneficios":["B1","B2","B3"],"cta":"Link na bio"}`;
+{"fala":"...","legenda":"Texto de vendas focado no produto e benefícios. Link na bio para garantir o seu. #hashtag1 #hashtag2 #hashtag3 #hashtag4 #hashtag5","hashtags":["#hashtag1","#hashtag2","#hashtag3","#hashtag4","#hashtag5"],"estilo":"moderno","cor":"#00d9ff","selo":"OFERTA","beneficios":["B1","B2","B3"],"cta":"Link na bio"}`;
 }
 
 // ──────────────────────────────────────────────────────────────────────

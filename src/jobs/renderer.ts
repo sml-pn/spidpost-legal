@@ -94,7 +94,14 @@ async function main() {
     console.log(`  Estilo: ${roteiro.estilo} | Cor: ${roteiro.cor}`);
 
     console.log('\n[2/5] Gerando audio via Edge TTS...');
-    const voz = VOZ_POR_VARIACAO[variacao];
+    // [INTELIGÊNCIA] Forçar voz feminina para produtos de saúde, beleza ou vitaminas
+    let voz = VOZ_POR_VARIACAO[variacao];
+    const termoLower = ((produto.name || '') + ' ' + (produto.category || '')).toLowerCase();
+    const isSaude = termoLower.includes('vitamina') || termoLower.includes('remédio') || termoLower.includes('suplemento') || termoLower.includes('saúde') || termoLower.includes('beleza');
+    if (isSaude) {
+      voz = 'pt-BR-FranciscaNeural'; // Voz feminina acolhedora
+      console.log('  [tts] Produto de saúde/beleza detectado: a forçar voz feminina.');
+    }
     console.log(`  [tts] Voz: ${voz}`);
     await gerarAudio({ texto: roteiro.fala, outputPath: audioPath, voice: voz });
     console.log('  OK');

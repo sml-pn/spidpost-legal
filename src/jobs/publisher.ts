@@ -348,9 +348,8 @@ async function main() {
   console.log('');
 
   const primeiro = renders[0];
-  // [SEGURANÇA] Legenda SEM links + selo de transparência
-  const captionBase = montarLegenda(primeiro.caption, primeiro.hashtags, null);
-  const caption = "#publi (link de afiliado)\n\n" + captionBase;
+  // Legenda sem links, sem o aviso de #publi
+  const caption = montarLegenda(primeiro.caption, primeiro.hashtags, null);
 
   const publicados: { id: number; mediaId: string }[] = [];
   let reelId: string | null = null;
