@@ -70,7 +70,22 @@ async function main() {
   console.log(`Produto: [${produto.category}] ${produto.name}`);
   console.log(`Preco: R$ ${produto.price}`);
 
-  const variacao = (produto.next_variation ?? 'A') as Variacao;
+  // Se o produto acabou de ser colocado na fila (var A) mas já existem outros A na fila,
+  // forçamos uma variação diferente para não repetir a voz.
+  let variacao = (produto.next_variation ?? 'A') as Variacao;
+  if (variacao === 'A' && (produto.variations_done ?? 0) === 0) {
+    const totalA = db.prepare("SELECT COUNT(*) as n FROM products WHERE status='READY' AND next_variation='A'").get() as any;
+    const totalB = db.prepare("SELECT COUNT(*) as n FROM products WHERE status='READY' AND next_variation='B'").get() as any;
+    const totalC = db.prepare("SELECT COUNT(*) as n FROM products WHERE status='READY' AND next_variation='C'").get() as any;
+    
+    if (totalA.n > totalB.n && totalA.n > totalC.n) variacao = 'B';
+    else if (totalB.n > totalC.n) variacao = 'C';
+    
+    if (variacao !== produto.next_variation) {
+      console.log(`  [voz] Variação A estava repetida. A mudar para ${variacao} para variar a voz.`);
+      db.prepare("UPDATE products SET next_variation = ? WHERE id = ?").run(variacao, produto.id);
+    }
+  }
   console.log(`Variacao: ${variacao} (${ANGULOS[variacao]})`);
   console.log(`Ja publicou: ${produto.variations_done ?? 0}x\n`);
 

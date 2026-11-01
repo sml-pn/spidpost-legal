@@ -156,7 +156,7 @@ for (const bm of bookmarks) {
         INSERT INTO products
           (external_id, source, name, price, original_price, thumbnail,
            affiliate_url, category, category_raw, status, next_variation)
-        VALUES (?, 'mercadolivre', ?, ?, ?, ?, ?, ?, ?, 'PENDING', 'A')
+        VALUES (?, 'mercadolivre', ?, ?, ?, ?, ?, ?, ?, 'PENDING', CASE (ABS(RANDOM()) % 3) WHEN 0 THEN 'A' WHEN 1 THEN 'B' ELSE 'C' END)
       `).run(
         item.id, item.title, item.price, item.original_price,
         item.thumbnail, linkFinal, item.category, item.category_raw
