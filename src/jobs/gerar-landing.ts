@@ -42,6 +42,7 @@ async function main() {
   const enriched = produtos.map((p) => {
     const temDesconto = p.original_price && p.original_price > p.price;
     const desconto = temDesconto ? Math.round((1 - p.price / p.original_price) * 100) : 0;
+    const economia = temDesconto ? (p.original_price - p.price) : 0;
     return {
       id: p.id,
       name: p.name,
@@ -49,8 +50,10 @@ async function main() {
       price: p.price,
       original_price: temDesconto ? p.original_price : null,
       desconto: desconto,
+      economia: economia,
       preco_fmt: 'R$ ' + formatPrecoBR(p.price),
       original_fmt: temDesconto ? 'R$ ' + formatPrecoBR(p.original_price) : null,
+      economia_fmt: temDesconto ? 'R$ ' + formatPrecoBR(economia) : null,
       thumbnail: p.thumbnail,
       affiliate_url: p.affiliate_url,
     };
@@ -270,6 +273,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
   .card-img img { width: 100%; height: 100%; object-fit: contain; padding: 8px; transition: transform 0.3s; }
   .card:hover .card-img img { transform: scale(1.05); }
   .card-desconto { position: absolute; top: 8px; left: 8px; background: var(--success); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; z-index: 2; }
+  .card-economia { display: inline-block; background: rgba(0, 166, 80, 0.1); color: var(--success); font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-top: 2px; }
   .card-ml-badge { position: absolute; top: 8px; right: 8px; background: rgba(52,131,250,0.95); color: #fff; padding: 3px 7px; border-radius: 4px; font-size: 9px; font-weight: 700; display: flex; align-items: center; gap: 3px; z-index: 2; white-space: nowrap; }
   .card-ml-badge svg { width: 10px; height: 10px; }
   .card-body { padding: 10px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
@@ -554,6 +558,7 @@ function renderizar() {
     var mlBadge = '<span class="card-ml-badge">' + checkIcon + 'Mercado Livre</span>';
     var orig = p.original_fmt ? '<span class="card-preco-original">' + p.original_fmt + '</span>' : '';
     var frete = p.desconto >= 20 ? '<span class="card-frete">🚚 Oferta quente</span>' : '';
+    var economiaTag = p.economia_fmt ? '<span class="card-economia">💰 Poupe ' + p.economia_fmt + '</span>' : '';
 
     return '<a class="card" href="' + escapar(p.affiliate_url) + '" target="_blank" rel="noopener sponsored">' +
       '<div class="card-img">' +
@@ -564,6 +569,7 @@ function renderizar() {
         '<div class="card-title">' + escapar(p.name) + '</div>' +
         '<div class="card-preco">' + orig +
           '<span class="card-preco-atual">R$ ' + pp.int + '<span class="cents">,' + pp.cents + '</span></span>' +
+          economiaTag +
           frete +
         '</div>' +
         '<span class="card-btn">' +
