@@ -43,6 +43,10 @@ const schema = z.object({
   // ─── App ───
   NODE_ENV: z.string().default('development'),
   PUBLIC_VIDEO_BASE_URL: z.string().url().optional(),
+  TIKTOK_CLIENT_KEY: z.string().optional(),
+  TIKTOK_CLIENT_SECRET: z.string().optional(),
+  TIKTOK_REDIRECT_URI: z.string().optional(),
+  TIKTOK_REFRESH_TOKEN: z.string().optional(),
 });
 
 /**

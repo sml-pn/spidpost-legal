@@ -123,6 +123,28 @@ for (const bm of bookmarks) {
       `).get(bm.item_id);
 
       if (existe) {
+        // [FIX] Atualizar preco se nao foi atualizado nas ultimas 24h
+        const precisaAtualizar = db.prepare(
+          "SELECT 1 FROM products WHERE id = ? AND (updated_at IS NULL OR updated_at < datetime('now', '-1 day'))"
+        ).get(existe.id);
+        
+        if (precisaAtualizar) {
+          try {
+            const item = await getItem(bm.item_id);
+            if (item) {
+              db.prepare(
+                "UPDATE products SET price = ?, original_price = ?, updated_at = datetime('now') WHERE id = ?"
+              ).run(item.price, item.original_price, existe.id);
+              
+              const desc = item.original_price && item.original_price > item.price
+                ? "[-" + Math.round((1 - item.price / item.original_price) * 100) + "%]"
+                : "[sem desc]";
+              console.log("  ATUALIZADO [" + bm.item_id + "] R$ " + item.price.toFixed(2) + " " + desc);
+            }
+          } catch (e) {
+            console.log("  FALHA ao atualizar " + bm.item_id + ": " + (e as Error).message);
+          }
+        }
         ignorados++;
         continue;
       }
@@ -155,8 +177,8 @@ for (const bm of bookmarks) {
       db.prepare(`
         INSERT INTO products
           (external_id, source, name, price, original_price, thumbnail,
-           affiliate_url, category, category_raw, status, next_variation)
-        VALUES (?, 'mercadolivre', ?, ?, ?, ?, ?, ?, ?, 'PENDING', CASE (ABS(RANDOM()) % 3) WHEN 0 THEN 'A' WHEN 1 THEN 'B' ELSE 'C' END)
+           affiliate_url, category, category_raw, status, next_variation, updated_at)
+        VALUES (?, 'mercadolivre', ?, ?, ?, ?, ?, ?, ?, 'PENDING', CASE (ABS(RANDOM()) % 3) WHEN 0 THEN 'A' WHEN 1 THEN 'B' ELSE 'C' END, datetime('now'))
       `).run(
         item.id, item.title, item.price, item.original_price,
         item.thumbnail, linkFinal, item.category, item.category_raw

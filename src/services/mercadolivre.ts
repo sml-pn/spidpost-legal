@@ -126,6 +126,30 @@ async function fetchViaPlaywright(itemId: string): Promise<ItemData | null> {
       const ptxt = await page.$eval('.andes-money-amount__fraction', (el) => el.textContent || '').catch(() => '');
       if (ptxt) price = parseFloat(ptxt.replace(/\./g, '').replace(',', '.')) || 0;
     }
+    
+    // [FIX] Extrair preco ORIGINAL (riscado) da pagina
+    let originalPrice: number | null = null;
+    try {
+      const origText = await page.evaluate(() => {
+        const seletores = [
+          '.andes-money-amount--previous .andes-money-amount__fraction',
+          's.andes-money-amount--previous .andes-money-amount__fraction',
+          '.ui-pdp-price__original-value .andes-money-amount__fraction',
+        ];
+        for (const sel of seletores) {
+          const el = document.querySelector(sel);
+          if (el && el.textContent) {
+            const cents = el.parentElement?.querySelector('.andes-money-amount__cents')?.textContent || '00';
+            return el.textContent.replace(/\./g, '') + '.' + cents;
+          }
+        }
+        return null;
+      }).catch(() => null);
+      if (origText) {
+        const parsed = parseFloat(origText);
+        if (parsed && parsed > price * 1.05 && parsed < price * 4) originalPrice = parsed;
+      }
+    } catch {}
     // [FIX] Extrair imagem real (evitar lazy-load GIF transparente)
     const imageUrl = await page.evaluate(() => {
       // Tentar vários seletores, do mais específico ao mais genérico
@@ -160,7 +184,7 @@ async function fetchViaPlaywright(itemId: string): Promise<ItemData | null> {
     const breadcrumb = await page.$$eval('.andes-breadcrumb__link', (els) => els.map((e) => e.textContent?.trim() || '')).catch(() => [] as string[]);
     const categoryRaw = breadcrumb.length > 0 ? breadcrumb[breadcrumb.length - 1] : null;
     const category = mapCategory(breadcrumb);
-    return { id: itemId, title, price, original_price: null, thumbnail: imageUrl, permalink: url, category, category_raw: categoryRaw };
+    return { id: itemId, title, price, original_price: originalPrice, thumbnail: imageUrl, permalink: url, category, category_raw: categoryRaw };
   } finally {
     try { await fecharBrowser(context); } catch {}
   }
@@ -236,9 +260,24 @@ function parseHtml(html: string, itemId: string, url: string): ItemData | null {
     if (priceJson) price = parseFloat(priceJson[1]);
   }
 
+  // [FIX] Multiplas estrategias para extrair original_price
   let originalPrice: number | null = null;
-  const originalMatch = html.match(/aria-label="Antes:\s*(\d+)\s*reais?\s*com\s*(\d+)\s*centavos?"/i);
-  if (originalMatch) originalPrice = parseFloat(`${originalMatch[1]}.${originalMatch[2]}`);
+  
+  // Estrategia 1: aria-label "Antes: X reais com Y centavos"
+  const originalMatch = html.match(/aria-label="Antes:\s*(\d+)\s*reais?\s*(?:e\s*|com\s*)?(\d+)?\s*centavos?"/i);
+  if (originalMatch) {
+    const parsed = parseInt(originalMatch[1], 10) + parseInt(originalMatch[2] || '0', 10) / 100;
+    if (parsed > price * 1.05 && parsed < price * 4) originalPrice = parsed;
+  }
+  
+  // Estrategia 2: <s class="andes-money-amount--previous">
+  if (!originalPrice) {
+    const sMatch = html.match(/<s[^>]*andes-money-amount--previous[^>]*>[\s\S]*?<span[^>]*andes-money-amount__fraction[^>]*>(\d[\d.]*)<\/span>/i);
+    if (sMatch) {
+      const parsed = parseFloat(sMatch[1].replace(/\./g, ''));
+      if (parsed > price * 1.05 && parsed < price * 4) originalPrice = parsed;
+    }
+  }
 
   const imageMatch = html.match(/data-zoom="([^"]+)"/i) || html.match(/<meta[^>]*property="og:image"[^>]*content="([^"]+)"/i);
 
