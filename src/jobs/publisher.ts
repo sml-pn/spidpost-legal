@@ -14,6 +14,7 @@ import { db, proximaVariacao, type Variacao } from '../lib/db.js';
 import { publicarReel, publicarStoryVideo, publicarFeedImagem, comentarPost } from '../services/instagram.js';
 import { slotAtual, getPending, setPending, clearPending, proximoBackoff, ensureScheduleTable, markSlotUsado } from '../lib/schedule.js';
 import { uploadImageKit } from '../services/imagekit.js';
+import { renovarToken, enviarParaRascunho } from '../services/tiktok.js';
 
 const MINUTOS_ENTRE_POSTS   = Number(process.env.FORCE_MINUTOS || 25);
 const MINUTOS_APERTADO      = Number(process.env.MINUTOS_APERTADO || 60);
