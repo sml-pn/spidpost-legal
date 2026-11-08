@@ -204,6 +204,15 @@ function recuperarPublishingPresos(): number {
   return r.changes;
 }
 
+// [FASE 2] Verifica se o vídeo está acessível na nuvem (HEAD, 5s timeout)
+async function _urlOk(url: string | null | undefined): Promise<boolean> {
+  if (!url) return false;
+  try {
+    const res = await fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(5000) });
+    return res.ok;
+  } catch { return false; }
+}
+
 async function main() {
   console.log('Publisher iniciado...\n');
 
@@ -213,7 +222,13 @@ async function main() {
 
   // [SLOTS] Verificar se estamos num slot valido ou a retomar um pending
   ensureScheduleTable();
-  const slot = slotAtual();
+  // [FASE 2] Stale mode — publicar continuamente se o sistema está desatualizado
+const _staleH = Number(process.env.STALE_HOURS || 24);
+const _lastUpd = db.prepare(`SELECT MAX(last_posted_at) AS u FROM products WHERE last_posted_at IS NOT NULL`).get() as any;
+const _diffH = _lastUpd?.u ? (Date.now() - new Date(_lastUpd.u).getTime()) / 3600000 : 999;
+const _stale = _diffH > _staleH;
+if (_stale) console.log(`  [fase2] Stale: última atualização há ${_diffH.toFixed(1)}h (> ${_staleH}h). Publicação contínua ativada.`);
+const slot = _stale ? 'STALE-MODE' : slotAtual();
   const pending = getPending();
   let slotParaPublicar: string | null = null;
 
@@ -317,6 +332,20 @@ async function main() {
     if (!c.affiliate_url || !c.affiliate_url.includes('meli.la')) {
       console.log(`⏭ Produto ${c.id} sem link meli.la — a ignorar`);
       db.prepare(`UPDATE products SET status = 'PENDING', error = 'link_afiliado_invalido' WHERE id = ?`).run(c.id);
+      continue;
+    }
+
+    // [FASE 2] Verificar se o produto tem pelo menos um render acessível
+    const _prodRenders = db.prepare(`SELECT id, reel_url FROM renders WHERE product_id = ? AND status = 'READY' AND reel_url IS NOT NULL`).all(c.id) as any[];
+    let _temOk = false;
+    for (const _pr of _prodRenders) {
+      if (await _urlOk(_pr.reel_url)) { _temOk = true; break; }
+      console.log(`  [fase2] Render ${_pr.id} URL inacessível — a marcar DELETED`);
+      db.prepare(`UPDATE renders SET status = 'DELETED' WHERE id = ?`).run(_pr.id);
+    }
+    if (!_temOk) {
+      console.log(`  [fase2] Produto ${c.id} sem renders acessíveis — a passar ao próximo`);
+      db.prepare(`UPDATE products SET status = 'PENDING', error = 'renders_inacessiveis', updated_at = datetime('now') WHERE id = ?`).run(c.id);
       continue;
     }
 
