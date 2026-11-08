@@ -38,3 +38,5 @@ spidpost-legal/
 *.backup
 *.backup2
 *.backup-*
+backup-*/
+*.cjs
