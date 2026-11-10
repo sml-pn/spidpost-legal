@@ -1,7 +1,49 @@
 {
-  "updated_at": "2026-11-10T00:43:19.501Z",
-  "total": 109,
+  "updated_at": "2026-11-10T10:04:38.882Z",
+  "total": 108,
   "produtos": [
+    {
+      "id": 131,
+      "name": "Boneco Papai Noel Decorativo Sentado 33 Cm",
+      "category": "casa",
+      "price": 36.63,
+      "original_price": 61.11,
+      "desconto": 40,
+      "economia": 24.479999999999997,
+      "preco_fmt": "R$ 36,63",
+      "original_fmt": "R$ 61,11",
+      "economia_fmt": "R$ 24,48",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687842-CBT116823524902_092026-F-boneco-papai-noel-decorativo-sentado-33-cm.jpg",
+      "affiliate_url": "https://meli.la/1QKVseh"
+    },
+    {
+      "id": 115,
+      "name": "Kit Violao Giannini Eletroacustico Cordas Nylon Destro Flat Cutaway Nailon Profissional Eletrico Acustico Estudo... Basswood Laranja-claro",
+      "category": "outros",
+      "price": 761,
+      "original_price": 1227.42,
+      "desconto": 38,
+      "economia": 466.4200000000001,
+      "preco_fmt": "R$ 761,00",
+      "original_fmt": "R$ 1.227,42",
+      "economia_fmt": "R$ 466,42",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_822335-MLA117333654648_102026-F-kit-violao-giannini-eletroacustico-cordas-nylon-destro-flat-cutaway-nailon-profissional-eletrico-acustico-estudo-basswood-laranja-claro.jpg",
+      "affiliate_url": "https://meli.la/1jA88E7"
+    },
+    {
+      "id": 130,
+      "name": "Cadeira De Escritório Gamer Nitro Ergonômica Estofado Couro Sintético Reclinável Altura Ajustável Apoio Para Pés Cor Verde Luvinco",
+      "category": "casa",
+      "price": 519.9,
+      "original_price": 899.9,
+      "desconto": 42,
+      "economia": 380,
+      "preco_fmt": "R$ 519,90",
+      "original_fmt": "R$ 899,90",
+      "economia_fmt": "R$ 380,00",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_743250-MLA100927167560_122025-F-cadeira-de-escritorio-gamer-nitro-ergonmica-estofado-couro-sintetico-reclinavel-altura-ajustavel-apoio-para-pes-cor-verde-luvinco.jpg",
+      "affiliate_url": "https://meli.la/24o1ftF"
+    },
     {
       "id": 161,
       "name": "Kit Solar 6000w Com Painel 300w E Inversor 12v Off-grid",
@@ -1067,34 +1109,6 @@
       "affiliate_url": "https://meli.la/1bafjQ6"
     },
     {
-      "id": 131,
-      "name": "Boneco Papai Noel Decorativo Sentado 33 Cm",
-      "category": "casa",
-      "price": 36.63,
-      "original_price": 61.11,
-      "desconto": 40,
-      "economia": 24.479999999999997,
-      "preco_fmt": "R$ 36,63",
-      "original_fmt": "R$ 61,11",
-      "economia_fmt": "R$ 24,48",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687842-CBT116823524902_092026-F-boneco-papai-noel-decorativo-sentado-33-cm.jpg",
-      "affiliate_url": "https://meli.la/1QKVseh"
-    },
-    {
-      "id": 130,
-      "name": "Cadeira De Escritório Gamer Nitro Ergonômica Estofado Couro Sintético Reclinável Altura Ajustável Apoio Para Pés Cor Verde Luvinco",
-      "category": "casa",
-      "price": 519.9,
-      "original_price": 899.9,
-      "desconto": 42,
-      "economia": 380,
-      "preco_fmt": "R$ 519,90",
-      "original_fmt": "R$ 899,90",
-      "economia_fmt": "R$ 380,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_743250-MLA100927167560_122025-F-cadeira-de-escritorio-gamer-nitro-ergonmica-estofado-couro-sintetico-reclinavel-altura-ajustavel-apoio-para-pes-cor-verde-luvinco.jpg",
-      "affiliate_url": "https://meli.la/24o1ftF"
-    },
-    {
       "id": 129,
       "name": "Cadeira De Escritorio Gamer Ergonômica Dunamis Preta Marqs Home Reclinável 180kg Resistente Giratória Confortavel Computador Preto Courino Sintético",
       "category": "outros",
@@ -1233,34 +1247,6 @@
       "economia_fmt": "R$ 1.345,00",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687288-MLA105003043944_012026-F-pc-gamer-completo-mcl-amd-ryzen-5-3400g-rx-vega-11-16gb-ddr4-ssd-480gb-combo-de-perifericos-monitor-480-gb-16-gb-radeon-rx-vega-11-graphics.jpg",
       "affiliate_url": "https://meli.la/1goKWyZ"
-    },
-    {
-      "id": 115,
-      "name": "Kit Violao Giannini Eletroacustico Cordas Nylon Destro Flat Cutaway Nailon Profissional Eletrico Acustico Estudo... Basswood Laranja-claro",
-      "category": "outros",
-      "price": 761,
-      "original_price": 1227.42,
-      "desconto": 38,
-      "economia": 466.4200000000001,
-      "preco_fmt": "R$ 761,00",
-      "original_fmt": "R$ 1.227,42",
-      "economia_fmt": "R$ 466,42",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_822335-MLA117333654648_102026-F-kit-violao-giannini-eletroacustico-cordas-nylon-destro-flat-cutaway-nailon-profissional-eletrico-acustico-estudo-basswood-laranja-claro.jpg",
-      "affiliate_url": "https://meli.la/1jA88E7"
-    },
-    {
-      "id": 114,
-      "name": "Guitarra Elétrica Konig St Stratocaster Brilhante 6c",
-      "category": "outros",
-      "price": 455,
-      "original_price": 616.4,
-      "desconto": 26,
-      "economia": 161.39999999999998,
-      "preco_fmt": "R$ 455,00",
-      "original_fmt": "R$ 616,40",
-      "economia_fmt": "R$ 161,40",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_972277-MLB117958223867_092026-F-guitarra-eletrica-konig-st-stratocaster-brilhante-6c.jpg",
-      "affiliate_url": "https://meli.la/1FLzhZT"
     },
     {
       "id": 58,
