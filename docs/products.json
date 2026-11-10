@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-10T11:01:39.745Z",
-  "total": 108,
+  "updated_at": "2026-11-10T11:36:38.723Z",
+  "total": 107,
   "produtos": [
     {
       "id": 116,
@@ -1107,20 +1107,6 @@
       "economia_fmt": "R$ 58,36",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_750371-MLA116617370667_082026-F-balanca-digital-bioimpedncia-profissional-smart-imc-180kg-bluetooth-corporal-aparelho-alta-capacidade-aplicativo-app-para-android-e-para-ios-balanca-de-banheiro-academia-preto-3v.jpg",
       "affiliate_url": "https://meli.la/2J4pMth"
-    },
-    {
-      "id": 132,
-      "name": "Enfeite De Parede Iluminado Estrela De Belém",
-      "category": "casa",
-      "price": 40.68,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 40,68",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_624645-CBT116579071460_092026-F-enfeite-de-parede-iluminado-estrela-de-belem.jpg",
-      "affiliate_url": "https://meli.la/1bafjQ6"
     },
     {
       "id": 129,
