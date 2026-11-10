@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-10T13:12:44.925Z",
+  "updated_at": "2026-11-10T13:33:04.214Z",
   "total": 106,
   "produtos": [
+    {
+      "id": 133,
+      "name": "Protetor Solar Facial Antioleosidade Clareador Fps 90 Anasol",
+      "category": "beleza",
+      "price": 41.73,
+      "original_price": 74.8,
+      "desconto": 44,
+      "economia": 33.07,
+      "preco_fmt": "R$ 41,73",
+      "original_fmt": "R$ 74,80",
+      "economia_fmt": "R$ 33,07",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_677943-MLA96969506850_112025-F-protetor-solar-facial-antioleosidade-clareador-fps-90-anasol.jpg",
+      "affiliate_url": "https://meli.la/2dF7Aid"
+    },
     {
       "id": 116,
       "name": "Pc Gamer Completo Mcl, Amd Ryzen 5 3400g, Rx Vega 11, 16gb Ddr4, Ssd 480gb, Combo De Periféricos + Monitor 480 Gb 16 Gb Radeon Rx Vega 11 Graphics",
@@ -1079,20 +1093,6 @@
       "economia_fmt": "R$ 67,00",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_927532-MLA99344979752_112025-F-protetor-solar-anti-idade-biosole-super-age-ada-tina-fps-90-40ml.jpg",
       "affiliate_url": "https://meli.la/2avYU6B"
-    },
-    {
-      "id": 133,
-      "name": "Protetor Solar Facial Antioleosidade Clareador Fps 90 Anasol",
-      "category": "beleza",
-      "price": 41.73,
-      "original_price": 74.8,
-      "desconto": 44,
-      "economia": 33.07,
-      "preco_fmt": "R$ 41,73",
-      "original_fmt": "R$ 74,80",
-      "economia_fmt": "R$ 33,07",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_677943-MLA96969506850_112025-F-protetor-solar-facial-antioleosidade-clareador-fps-90-anasol.jpg",
-      "affiliate_url": "https://meli.la/2dF7Aid"
     },
     {
       "id": 17,
