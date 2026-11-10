@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-10T19:02:02.301Z",
+  "updated_at": "2026-11-10T19:32:33.954Z",
   "total": 105,
   "produtos": [
+    {
+      "id": 122,
+      "name": "Kit Gamer Rgb Snow Teclado Mouse 3600 Dpi Headset Mousepad Branco",
+      "category": "outros",
+      "price": 127,
+      "original_price": 155,
+      "desconto": 18,
+      "economia": 28,
+      "preco_fmt": "R$ 127,00",
+      "original_fmt": "R$ 155,00",
+      "economia_fmt": "R$ 28,00",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_793704-MLB113186638758_072026-F-kit-gamer-rgb-snow-teclado-mouse-3600-dpi-headset-mousepad-branco.jpg",
+      "affiliate_url": "https://meli.la/1kmWXBq"
+    },
     {
       "id": 119,
       "name": "Computador Completo Intel Core I5 4570 (4ª Geração), 16gb Ram, Ssd 256gb, Monitor 20 75hz Hdmi, Windows 10 Pro, Preto, Bivolt - Bluepc Office Cdf-099of 256 Gb 16 Gb Intel Hd Graphics",
@@ -1191,20 +1205,6 @@
       "economia_fmt": "R$ 21,78",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_875683-MLA101282143230_122025-F-kit-teclado-mouse-gamer-completo-barato-com-fio-cabo-de-15m-led-com-iluminaco-rgb-desktop-conexo-usb-cor-preto-usar-com-headset-acessorios-pc-mecanico-jogos-goodvision.jpg",
       "affiliate_url": "https://meli.la/2xtLWEt"
-    },
-    {
-      "id": 122,
-      "name": "Kit Gamer Rgb Snow Teclado Mouse 3600 Dpi Headset Mousepad Branco",
-      "category": "outros",
-      "price": 127,
-      "original_price": 155,
-      "desconto": 18,
-      "economia": 28,
-      "preco_fmt": "R$ 127,00",
-      "original_fmt": "R$ 155,00",
-      "economia_fmt": "R$ 28,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_793704-MLB113186638758_072026-F-kit-gamer-rgb-snow-teclado-mouse-3600-dpi-headset-mousepad-branco.jpg",
-      "affiliate_url": "https://meli.la/1kmWXBq"
     },
     {
       "id": 58,
