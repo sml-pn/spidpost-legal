@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-10T10:04:38.882Z",
+  "updated_at": "2026-11-10T10:38:30.453Z",
   "total": 108,
   "produtos": [
+    {
+      "id": 116,
+      "name": "Pc Gamer Completo Mcl, Amd Ryzen 5 3400g, Rx Vega 11, 16gb Ddr4, Ssd 480gb, Combo De Periféricos + Monitor 480 Gb 16 Gb Radeon Rx Vega 11 Graphics",
+      "category": "outros",
+      "price": 3119,
+      "original_price": 4464,
+      "desconto": 30,
+      "economia": 1345,
+      "preco_fmt": "R$ 3.119,00",
+      "original_fmt": "R$ 4.464,00",
+      "economia_fmt": "R$ 1.345,00",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687288-MLA105003043944_012026-F-pc-gamer-completo-mcl-amd-ryzen-5-3400g-rx-vega-11-16gb-ddr4-ssd-480gb-combo-de-perifericos-monitor-480-gb-16-gb-radeon-rx-vega-11-graphics.jpg",
+      "affiliate_url": "https://meli.la/1goKWyZ"
+    },
     {
       "id": 131,
       "name": "Boneco Papai Noel Decorativo Sentado 33 Cm",
@@ -1233,20 +1247,6 @@
       "economia_fmt": "R$ 331,30",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_987005-MLB95965116749_102025-F-pc-gamer-intel-core-i5-16gb-500gb-monitor-21-bluetooth-wifi-16-gb.jpg",
       "affiliate_url": "https://meli.la/1R6vefS"
-    },
-    {
-      "id": 116,
-      "name": "Pc Gamer Completo Mcl, Amd Ryzen 5 3400g, Rx Vega 11, 16gb Ddr4, Ssd 480gb, Combo De Periféricos + Monitor 480 Gb 16 Gb Radeon Rx Vega 11 Graphics",
-      "category": "outros",
-      "price": 3119,
-      "original_price": 4464,
-      "desconto": 30,
-      "economia": 1345,
-      "preco_fmt": "R$ 3.119,00",
-      "original_fmt": "R$ 4.464,00",
-      "economia_fmt": "R$ 1.345,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687288-MLA105003043944_012026-F-pc-gamer-completo-mcl-amd-ryzen-5-3400g-rx-vega-11-16gb-ddr4-ssd-480gb-combo-de-perifericos-monitor-480-gb-16-gb-radeon-rx-vega-11-graphics.jpg",
-      "affiliate_url": "https://meli.la/1goKWyZ"
     },
     {
       "id": 58,
