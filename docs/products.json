@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-10T21:01:44.555Z",
+  "updated_at": "2026-11-10T21:33:09.872Z",
   "total": 104,
   "produtos": [
+    {
+      "id": 125,
+      "name": "Kit Teclado E Mouse Usb Com Fio Beleno Bltm10 Abnt2 Preto Preto",
+      "category": "outros",
+      "price": 29,
+      "original_price": 39.9,
+      "desconto": 27,
+      "economia": 10.899999999999999,
+      "preco_fmt": "R$ 29,00",
+      "original_fmt": "R$ 39,90",
+      "economia_fmt": "R$ 10,90",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_815652-MLB117431605078_102026-F-kit-teclado-e-mouse-usb-com-fio-beleno-bltm10-abnt2-preto-preto.jpg",
+      "affiliate_url": "https://meli.la/1MhQibE"
+    },
     {
       "id": 122,
       "name": "Kit Gamer Rgb Snow Teclado Mouse 3600 Dpi Headset Mousepad Branco",
@@ -1177,20 +1191,6 @@
       "economia_fmt": "R$ 10,90",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_806988-MLA99993584601_112025-F-teclado-sem-fio-intelbras-tsi50-clique-silencioso-preto.jpg",
       "affiliate_url": "https://meli.la/1oJeqUp"
-    },
-    {
-      "id": 125,
-      "name": "Kit Teclado E Mouse Usb Com Fio Beleno Bltm10 Abnt2 Preto Preto",
-      "category": "outros",
-      "price": 29,
-      "original_price": 39.9,
-      "desconto": 27,
-      "economia": 10.899999999999999,
-      "preco_fmt": "R$ 29,00",
-      "original_fmt": "R$ 39,90",
-      "economia_fmt": "R$ 10,90",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_815652-MLB117431605078_102026-F-kit-teclado-e-mouse-usb-com-fio-beleno-bltm10-abnt2-preto-preto.jpg",
-      "affiliate_url": "https://meli.la/1MhQibE"
     },
     {
       "id": 58,
