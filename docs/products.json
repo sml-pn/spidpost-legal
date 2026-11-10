@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-10T14:31:45.993Z",
+  "updated_at": "2026-11-10T15:03:49.978Z",
   "total": 106,
   "produtos": [
+    {
+      "id": 118,
+      "name": "Computador Completo I5 16gb Ssd 512gb Monitor Mouse Teclado 512 Gb 16 Gb Intel Hd Graphics",
+      "category": "outros",
+      "price": 1719.99,
+      "original_price": 2247,
+      "desconto": 23,
+      "economia": 527.01,
+      "preco_fmt": "R$ 1.719,99",
+      "original_fmt": "R$ 2.247,00",
+      "economia_fmt": "R$ 527,01",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740792-MLB104314791914_012026-F-computador-completo-i5-16gb-ssd-512gb-monitor-mouse-teclado-512-gb-16-gb-intel-hd-graphics.jpg",
+      "affiliate_url": "https://meli.la/2BcKKUM"
+    },
     {
       "id": 133,
       "name": "Protetor Solar Facial Antioleosidade Clareador Fps 90 Anasol",
@@ -1205,20 +1219,6 @@
       "economia_fmt": "R$ 93,33",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_827644-MLA117702510645_092026-F-computador-completo-intel-core-i5-4570-4-geraco-16gb-ram-ssd-256gb-monitor-20-75hz-hdmi-windows-10-pro-preto-bivolt-bluepc-office-cdf-099of-256-gb-16-gb-intel-hd-graphics.jpg",
       "affiliate_url": "https://meli.la/13wBJ2Y"
-    },
-    {
-      "id": 118,
-      "name": "Computador Completo I5 16gb Ssd 512gb Monitor Mouse Teclado 512 Gb 16 Gb Intel Hd Graphics",
-      "category": "outros",
-      "price": 1719.99,
-      "original_price": 2247,
-      "desconto": 23,
-      "economia": 527.01,
-      "preco_fmt": "R$ 1.719,99",
-      "original_fmt": "R$ 2.247,00",
-      "economia_fmt": "R$ 527,01",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740792-MLB104314791914_012026-F-computador-completo-i5-16gb-ssd-512gb-monitor-mouse-teclado-512-gb-16-gb-intel-hd-graphics.jpg",
-      "affiliate_url": "https://meli.la/2BcKKUM"
     },
     {
       "id": 58,
