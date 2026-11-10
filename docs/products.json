@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-10T16:31:51.189Z",
+  "updated_at": "2026-11-10T17:04:36.266Z",
   "total": 106,
   "produtos": [
+    {
+      "id": 119,
+      "name": "Computador Completo Intel Core I5 4570 (4ª Geração), 16gb Ram, Ssd 256gb, Monitor 20 75hz Hdmi, Windows 10 Pro, Preto, Bivolt - Bluepc Office Cdf-099of 256 Gb 16 Gb Intel Hd Graphics",
+      "category": "outros",
+      "price": 1450,
+      "original_price": 1543.33,
+      "desconto": 6,
+      "economia": 93.32999999999993,
+      "preco_fmt": "R$ 1.450,00",
+      "original_fmt": "R$ 1.543,33",
+      "economia_fmt": "R$ 93,33",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_827644-MLA117702510645_092026-F-computador-completo-intel-core-i5-4570-4-geraco-16gb-ram-ssd-256gb-monitor-20-75hz-hdmi-windows-10-pro-preto-bivolt-bluepc-office-cdf-099of-256-gb-16-gb-intel-hd-graphics.jpg",
+      "affiliate_url": "https://meli.la/13wBJ2Y"
+    },
     {
       "id": 134,
       "name": "Protetor Solar Anti-idade Biosole Super Age Ada Tina Fps 90 40ml",
@@ -1205,20 +1219,6 @@
       "economia_fmt": "R$ 28,00",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_793704-MLB113186638758_072026-F-kit-gamer-rgb-snow-teclado-mouse-3600-dpi-headset-mousepad-branco.jpg",
       "affiliate_url": "https://meli.la/1kmWXBq"
-    },
-    {
-      "id": 119,
-      "name": "Computador Completo Intel Core I5 4570 (4ª Geração), 16gb Ram, Ssd 256gb, Monitor 20 75hz Hdmi, Windows 10 Pro, Preto, Bivolt - Bluepc Office Cdf-099of 256 Gb 16 Gb Intel Hd Graphics",
-      "category": "outros",
-      "price": 1450,
-      "original_price": 1543.33,
-      "desconto": 6,
-      "economia": 93.32999999999993,
-      "preco_fmt": "R$ 1.450,00",
-      "original_fmt": "R$ 1.543,33",
-      "economia_fmt": "R$ 93,33",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_827644-MLA117702510645_092026-F-computador-completo-intel-core-i5-4570-4-geraco-16gb-ram-ssd-256gb-monitor-20-75hz-hdmi-windows-10-pro-preto-bivolt-bluepc-office-cdf-099of-256-gb-16-gb-intel-hd-graphics.jpg",
-      "affiliate_url": "https://meli.la/13wBJ2Y"
     },
     {
       "id": 58,
