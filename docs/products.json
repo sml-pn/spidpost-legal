@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-10T15:32:38.456Z",
+  "updated_at": "2026-11-10T16:03:14.256Z",
   "total": 106,
   "produtos": [
+    {
+      "id": 134,
+      "name": "Protetor Solar Anti-idade Biosole Super Age Ada Tina Fps 90 40ml",
+      "category": "beleza",
+      "price": 98,
+      "original_price": 165,
+      "desconto": 41,
+      "economia": 67,
+      "preco_fmt": "R$ 98,00",
+      "original_fmt": "R$ 165,00",
+      "economia_fmt": "R$ 67,00",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_927532-MLA99344979752_112025-F-protetor-solar-anti-idade-biosole-super-age-ada-tina-fps-90-40ml.jpg",
+      "affiliate_url": "https://meli.la/2avYU6B"
+    },
     {
       "id": 118,
       "name": "Computador Completo I5 16gb Ssd 512gb Monitor Mouse Teclado 512 Gb 16 Gb Intel Hd Graphics",
@@ -1093,20 +1107,6 @@
       "economia_fmt": "R$ 51,64",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_761302-MLA99452131856_112025-F-isdin-protetor-solar-facial-extrem-90-fps-90-50-ml.jpg",
       "affiliate_url": "https://meli.la/2MCPnQM"
-    },
-    {
-      "id": 134,
-      "name": "Protetor Solar Anti-idade Biosole Super Age Ada Tina Fps 90 40ml",
-      "category": "beleza",
-      "price": 98,
-      "original_price": 165,
-      "desconto": 41,
-      "economia": 67,
-      "preco_fmt": "R$ 98,00",
-      "original_fmt": "R$ 165,00",
-      "economia_fmt": "R$ 67,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_927532-MLA99344979752_112025-F-protetor-solar-anti-idade-biosole-super-age-ada-tina-fps-90-40ml.jpg",
-      "affiliate_url": "https://meli.la/2avYU6B"
     },
     {
       "id": 17,
