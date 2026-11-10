@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-10T12:01:45.732Z",
-  "total": 107,
+  "updated_at": "2026-11-10T12:33:52.001Z",
+  "total": 106,
   "produtos": [
     {
       "id": 116,
@@ -1219,20 +1219,6 @@
       "economia_fmt": "R$ 527,01",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740792-MLB104314791914_012026-F-computador-completo-i5-16gb-ssd-512gb-monitor-mouse-teclado-512-gb-16-gb-intel-hd-graphics.jpg",
       "affiliate_url": "https://meli.la/2BcKKUM"
-    },
-    {
-      "id": 117,
-      "name": "Pc Gamer Intel Core I5 16gb 500gb Monitor 21 Bluetooth Wifi 16 Gb",
-      "category": "outros",
-      "price": 1374.7,
-      "original_price": 1706,
-      "desconto": 19,
-      "economia": 331.29999999999995,
-      "preco_fmt": "R$ 1.374,70",
-      "original_fmt": "R$ 1.706,00",
-      "economia_fmt": "R$ 331,30",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_987005-MLB95965116749_102025-F-pc-gamer-intel-core-i5-16gb-500gb-monitor-21-bluetooth-wifi-16-gb.jpg",
-      "affiliate_url": "https://meli.la/1R6vefS"
     },
     {
       "id": 58,
