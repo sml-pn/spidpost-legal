@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-10T17:31:36.739Z",
-  "total": 106,
+  "updated_at": "2026-11-10T18:03:31.472Z",
+  "total": 105,
   "produtos": [
     {
       "id": 119,
@@ -1107,20 +1107,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_817547-MLB116691003830_092026-F-cromo-picolinato-60-capsulas-para-metabolismo-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/2s1MjJs"
-    },
-    {
-      "id": 135,
-      "name": "Isdin Protetor Solar Facial Extrem 90 Fps 90 - 50 Ml",
-      "category": "beleza",
-      "price": 103.26,
-      "original_price": 154.9,
-      "desconto": 33,
-      "economia": 51.64,
-      "preco_fmt": "R$ 103,26",
-      "original_fmt": "R$ 154,90",
-      "economia_fmt": "R$ 51,64",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_761302-MLA99452131856_112025-F-isdin-protetor-solar-facial-extrem-90-fps-90-50-ml.jpg",
-      "affiliate_url": "https://meli.la/2MCPnQM"
     },
     {
       "id": 17,
