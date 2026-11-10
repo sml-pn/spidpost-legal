@@ -99,15 +99,16 @@ jobs:
       - name: 9. Correr publisher
         run: npm run publish
 
-      - name: 10. Commit data.db atualizado
+      - name: 10. Commit data.db + landing atualizados
         run: |
           git config user.name "spidpost-bot"
           git config user.email "bot@spidpost.local"
-          git add data.db
+          npm run landing
+          git add data.db docs/
           if git diff --cached --quiet; then
-            echo "data.db sem alteracoes"
+            echo "sem alteracoes"
           else
-            git commit -m "chore: atualiza data.db [skip ci]"
+            git commit -m "chore: auto-update data.db + landing [skip ci]"
             git push
-            echo "data.db commitado"
+            echo "data.db + docs committed"
           fi

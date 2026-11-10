@@ -60,7 +60,7 @@ async function main() {
   }
 
   // 1. Ver se data.db mudou
-  const status = run('git status --porcelain data.db');
+  const status = run('git status --porcelain data.db docs/products.json docs/index.html');
   if (!status) {
     log('data.db sem alteracoes. Nada a fazer.');
     return;
@@ -70,11 +70,11 @@ async function main() {
 
   // ─── FASE 1: Commit PRIMEIRO (ordem correcta) ───
   log('A adicionar data.db ao staging...');
-  run('git add data.db');
+  run('git add data.db docs/products.json docs/index.html');
 
   log('A fazer commit...');
   try {
-    run(`git commit -m "sync: data.db ${ts()} [skip ci]"`);
+    run(`git commit -m "sync: data.db + landing ${ts()} [skip ci]"`);
     log('Commit feito.');
   } catch (e) {
     log('Nada a commitar (possivelmente ja estava).');
