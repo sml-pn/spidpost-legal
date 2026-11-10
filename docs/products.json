@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-10T20:01:52.922Z",
-  "total": 105,
+  "updated_at": "2026-11-10T20:33:17.749Z",
+  "total": 104,
   "produtos": [
     {
       "id": 122,
@@ -1191,20 +1191,6 @@
       "economia_fmt": "R$ 10,90",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_815652-MLB117431605078_102026-F-kit-teclado-e-mouse-usb-com-fio-beleno-bltm10-abnt2-preto-preto.jpg",
       "affiliate_url": "https://meli.la/1MhQibE"
-    },
-    {
-      "id": 123,
-      "name": "Kit Teclado Mouse Gamer Completo Barato Com Fio Cabo De 1,5m Led Com Iluminação Rgb Desktop Conexão Usb Cor Preto Usar Com Headset Acessorios Pc Mecanico Jogos - Goodvision",
-      "category": "outros",
-      "price": 57.22,
-      "original_price": 79,
-      "desconto": 28,
-      "economia": 21.78,
-      "preco_fmt": "R$ 57,22",
-      "original_fmt": "R$ 79,00",
-      "economia_fmt": "R$ 21,78",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_875683-MLA101282143230_122025-F-kit-teclado-mouse-gamer-completo-barato-com-fio-cabo-de-15m-led-com-iluminaco-rgb-desktop-conexo-usb-cor-preto-usar-com-headset-acessorios-pc-mecanico-jogos-goodvision.jpg",
-      "affiliate_url": "https://meli.la/2xtLWEt"
     },
     {
       "id": 58,
