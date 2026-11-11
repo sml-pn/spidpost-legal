@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-11T10:02:03.589Z",
+  "updated_at": "2026-11-11T10:34:07.570Z",
   "total": 103,
   "produtos": [
+    {
+      "id": 127,
+      "name": "Cadeira Gamer Python Fly Ergonômica Rosa E Azul, Com Apoio Para Pés E Lombar Couro Sintético",
+      "category": "outros",
+      "price": 542.71,
+      "original_price": 589.9,
+      "desconto": 8,
+      "economia": 47.18999999999994,
+      "preco_fmt": "R$ 542,71",
+      "original_fmt": "R$ 589,90",
+      "economia_fmt": "R$ 47,19",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_812152-MLA113689669608_072026-F-cadeira-gamer-python-fly-ergonmica-rosa-e-azul-com-apoio-para-pes-e-lombar-couro-sintetico.jpg",
+      "affiliate_url": "https://meli.la/28utd2d"
+    },
     {
       "id": 125,
       "name": "Kit Teclado E Mouse Usb Com Fio Beleno Bltm10 Abnt2 Preto Preto",
@@ -1163,20 +1177,6 @@
       "economia_fmt": "R$ 327,70",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_797994-MLA115782693417_082026-F-cadeira-de-escritorio-gamer-ergonmica-dunamis-preta-marqs-home-reclinavel-180kg-resistente-giratoria-confortavel-computador-preto-courino-sintetico.jpg",
       "affiliate_url": "https://meli.la/29DTTyd"
-    },
-    {
-      "id": 127,
-      "name": "Cadeira Gamer Python Fly Ergonômica Rosa E Azul, Com Apoio Para Pés E Lombar Couro Sintético",
-      "category": "outros",
-      "price": 542.71,
-      "original_price": 589.9,
-      "desconto": 8,
-      "economia": 47.18999999999994,
-      "preco_fmt": "R$ 542,71",
-      "original_fmt": "R$ 589,90",
-      "economia_fmt": "R$ 47,19",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_812152-MLA113689669608_072026-F-cadeira-gamer-python-fly-ergonmica-rosa-e-azul-com-apoio-para-pes-e-lombar-couro-sintetico.jpg",
-      "affiliate_url": "https://meli.la/28utd2d"
     },
     {
       "id": 58,
