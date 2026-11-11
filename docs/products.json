@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-11T11:01:30.858Z",
-  "total": 103,
+  "updated_at": "2026-11-11T11:33:00.823Z",
+  "total": 102,
   "produtos": [
     {
       "id": 127,
@@ -1163,20 +1163,6 @@
       "economia_fmt": "R$ 58,36",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_750371-MLA116617370667_082026-F-balanca-digital-bioimpedncia-profissional-smart-imc-180kg-bluetooth-corporal-aparelho-alta-capacidade-aplicativo-app-para-android-e-para-ios-balanca-de-banheiro-academia-preto-3v.jpg",
       "affiliate_url": "https://meli.la/2J4pMth"
-    },
-    {
-      "id": 129,
-      "name": "Cadeira De Escritorio Gamer Ergonômica Dunamis Preta Marqs Home Reclinável 180kg Resistente Giratória Confortavel Computador Preto Courino Sintético",
-      "category": "outros",
-      "price": 572.2,
-      "original_price": 899.9,
-      "desconto": 36,
-      "economia": 327.69999999999993,
-      "preco_fmt": "R$ 572,20",
-      "original_fmt": "R$ 899,90",
-      "economia_fmt": "R$ 327,70",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_797994-MLA115782693417_082026-F-cadeira-de-escritorio-gamer-ergonmica-dunamis-preta-marqs-home-reclinavel-180kg-resistente-giratoria-confortavel-computador-preto-courino-sintetico.jpg",
-      "affiliate_url": "https://meli.la/29DTTyd"
     },
     {
       "id": 58,
