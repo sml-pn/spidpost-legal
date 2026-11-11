@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-11T19:01:58.933Z",
+  "updated_at": "2026-11-11T19:33:51.384Z",
   "total": 100,
   "produtos": [
+    {
+      "id": 142,
+      "name": "Kit 4 Colágeno Femme Vitaminas + Zinco 90 Cápsulas Maxinutri Sabor Sem Sabor",
+      "category": "outros",
+      "price": 194.4,
+      "original_price": 216,
+      "desconto": 10,
+      "economia": 21.599999999999994,
+      "preco_fmt": "R$ 194,40",
+      "original_fmt": "R$ 216,00",
+      "economia_fmt": "R$ 21,60",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_791583-MLA99452093826_112025-F-kit-4-colageno-femme-vitaminas-zinco-90-capsulas-maxinutri-sabor-sem-sabor.jpg",
+      "affiliate_url": "https://meli.la/2F4Ure4"
+    },
     {
       "id": 140,
       "name": "Kit 3 Melatonina Sonna Yup Gummy Adulto 30 Gomas Nutrye Morango",
@@ -1107,20 +1121,6 @@
       "economia_fmt": "R$ 20,70",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_855113-MLA99506224630_112025-F-kit-3-colageno-dermup-verisol-vitaminas-90-caps-maxinutri-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/1YUcxqH"
-    },
-    {
-      "id": 142,
-      "name": "Kit 4 Colágeno Femme Vitaminas + Zinco 90 Cápsulas Maxinutri Sabor Sem Sabor",
-      "category": "outros",
-      "price": 194.4,
-      "original_price": 216,
-      "desconto": 10,
-      "economia": 21.599999999999994,
-      "preco_fmt": "R$ 194,40",
-      "original_fmt": "R$ 216,00",
-      "economia_fmt": "R$ 21,60",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_791583-MLA99452093826_112025-F-kit-4-colageno-femme-vitaminas-zinco-90-capsulas-maxinutri-sabor-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/2F4Ure4"
     },
     {
       "id": 17,
