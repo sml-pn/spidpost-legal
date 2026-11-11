@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-11T08:31:41.206Z",
-  "total": 104,
+  "updated_at": "2026-11-11T09:03:32.874Z",
+  "total": 103,
   "produtos": [
     {
       "id": 125,
@@ -1177,20 +1177,6 @@
       "economia_fmt": "R$ 47,19",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_812152-MLA113689669608_072026-F-cadeira-gamer-python-fly-ergonmica-rosa-e-azul-com-apoio-para-pes-e-lombar-couro-sintetico.jpg",
       "affiliate_url": "https://meli.la/28utd2d"
-    },
-    {
-      "id": 126,
-      "name": "Teclado Sem Fio Intelbras Tsi50 Clique Silencioso Preto",
-      "category": "outros",
-      "price": 89,
-      "original_price": 99.9,
-      "desconto": 11,
-      "economia": 10.900000000000006,
-      "preco_fmt": "R$ 89,00",
-      "original_fmt": "R$ 99,90",
-      "economia_fmt": "R$ 10,90",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_806988-MLA99993584601_112025-F-teclado-sem-fio-intelbras-tsi50-clique-silencioso-preto.jpg",
-      "affiliate_url": "https://meli.la/1oJeqUp"
     },
     {
       "id": 58,
