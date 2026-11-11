@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-11T13:02:03.913Z",
+  "updated_at": "2026-11-11T13:32:56.959Z",
   "total": 102,
   "produtos": [
+    {
+      "id": 137,
+      "name": "Kit 03 Vitamina E Antioxidante 400mg 60 Capsulas Maxinutri Vitaminas",
+      "category": "outros",
+      "price": 133.38,
+      "original_price": 156,
+      "desconto": 15,
+      "economia": 22.620000000000005,
+      "preco_fmt": "R$ 133,38",
+      "original_fmt": "R$ 156,00",
+      "economia_fmt": "R$ 22,62",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_861054-MLA99952938049_112025-F-kit-03-vitamina-e-antioxidante-400mg-60-capsulas-maxinutri-vitaminas.jpg",
+      "affiliate_url": "https://meli.la/1iz5LSd"
+    },
     {
       "id": 136,
       "name": "Cromo Picolinato 60 Cápsulas Para Metabolismo Sem Sabor",
@@ -1135,20 +1149,6 @@
       "economia_fmt": "R$ 23,67",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_968502-MLA99480982368_112025-F-kit-03-mega-3-6-9-mulher-linhaca-primula-60-caps-maxinutri-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/1EKSuNK"
-    },
-    {
-      "id": 137,
-      "name": "Kit 03 Vitamina E Antioxidante 400mg 60 Capsulas Maxinutri Vitaminas",
-      "category": "outros",
-      "price": 133.38,
-      "original_price": 156,
-      "desconto": 15,
-      "economia": 22.620000000000005,
-      "preco_fmt": "R$ 133,38",
-      "original_fmt": "R$ 156,00",
-      "economia_fmt": "R$ 22,62",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_861054-MLA99952938049_112025-F-kit-03-vitamina-e-antioxidante-400mg-60-capsulas-maxinutri-vitaminas.jpg",
-      "affiliate_url": "https://meli.la/1iz5LSd"
     },
     {
       "id": 17,
