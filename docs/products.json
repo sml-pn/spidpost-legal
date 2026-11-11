@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-11T12:01:45.729Z",
+  "updated_at": "2026-11-11T12:33:21.207Z",
   "total": 102,
   "produtos": [
+    {
+      "id": 136,
+      "name": "Cromo Picolinato 60 Cápsulas Para Metabolismo Sem Sabor",
+      "category": "outros",
+      "price": 88,
+      "original_price": null,
+      "desconto": 0,
+      "economia": 0,
+      "preco_fmt": "R$ 88,00",
+      "original_fmt": null,
+      "economia_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_817547-MLB116691003830_092026-F-cromo-picolinato-60-capsulas-para-metabolismo-sem-sabor.jpg",
+      "affiliate_url": "https://meli.la/2s1MjJs"
+    },
     {
       "id": 127,
       "name": "Cadeira Gamer Python Fly Ergonômica Rosa E Azul, Com Apoio Para Pés E Lombar Couro Sintético",
@@ -1135,20 +1149,6 @@
       "economia_fmt": "R$ 22,62",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_861054-MLA99952938049_112025-F-kit-03-vitamina-e-antioxidante-400mg-60-capsulas-maxinutri-vitaminas.jpg",
       "affiliate_url": "https://meli.la/1iz5LSd"
-    },
-    {
-      "id": 136,
-      "name": "Cromo Picolinato 60 Cápsulas Para Metabolismo Sem Sabor",
-      "category": "outros",
-      "price": 88,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 88,00",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_817547-MLB116691003830_092026-F-cromo-picolinato-60-capsulas-para-metabolismo-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/2s1MjJs"
     },
     {
       "id": 17,
