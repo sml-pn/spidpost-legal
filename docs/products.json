@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-11T22:02:11.257Z",
+  "updated_at": "2026-11-11T22:32:58.841Z",
   "total": 99,
   "produtos": [
+    {
+      "id": 145,
+      "name": "Mineral/vitamina Maxinutri Em Comprimidos Sabor Frutas Vermelhas 3 Kits De 60 Un",
+      "category": "outros",
+      "price": 89.75,
+      "original_price": null,
+      "desconto": 0,
+      "economia": 0,
+      "preco_fmt": "R$ 89,75",
+      "original_fmt": null,
+      "economia_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_901594-MLA99441145974_112025-F-mineralvitamina-maxinutri-em-comprimidos-sabor-frutas-vermelhas-3-kits-de-60-un.jpg",
+      "affiliate_url": "https://meli.la/2JDntYe"
+    },
     {
       "id": 143,
       "name": "Kit 3 Colágeno Dermup Verisol + Vitaminas 90 Cáps Maxinutri Sem Sabor",
@@ -1093,20 +1107,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_802434-MLA113767191251_062026-F-vitamina-b12-metilcobalamina-mastigavel-maxinutri-60-comp-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/1RcsVHx"
-    },
-    {
-      "id": 145,
-      "name": "Mineral/vitamina Maxinutri Em Comprimidos Sabor Frutas Vermelhas 3 Kits De 60 Un",
-      "category": "outros",
-      "price": 89.75,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 89,75",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_901594-MLA99441145974_112025-F-mineralvitamina-maxinutri-em-comprimidos-sabor-frutas-vermelhas-3-kits-de-60-un.jpg",
-      "affiliate_url": "https://meli.la/2JDntYe"
     },
     {
       "id": 17,
