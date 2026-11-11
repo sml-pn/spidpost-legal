@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-11T21:03:34.197Z",
-  "total": 100,
+  "updated_at": "2026-11-11T21:33:49.761Z",
+  "total": 99,
   "produtos": [
     {
       "id": 143,
@@ -1107,20 +1107,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_901594-MLA99441145974_112025-F-mineralvitamina-maxinutri-em-comprimidos-sabor-frutas-vermelhas-3-kits-de-60-un.jpg",
       "affiliate_url": "https://meli.la/2JDntYe"
-    },
-    {
-      "id": 144,
-      "name": "Kit 02 Finisim Cromo E Fibras Com 60 Cápsulas Maxinutri Sem Sabor",
-      "category": "outros",
-      "price": 138,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 138,00",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_747221-MLB91960574756_092025-F-kit-02-finisim-cromo-e-fibras-com-60-capsulas-maxinutri-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/1jGZokq"
     },
     {
       "id": 17,
