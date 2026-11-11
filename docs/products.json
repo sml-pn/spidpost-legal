@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-11T17:42:45.776Z",
+  "updated_at": "2026-11-11T18:03:14.557Z",
   "total": 101,
   "produtos": [
+    {
+      "id": 140,
+      "name": "Kit 3 Melatonina Sonna Yup Gummy Adulto 30 Gomas Nutrye Morango",
+      "category": "outros",
+      "price": 121.59,
+      "original_price": 127.99,
+      "desconto": 5,
+      "economia": 6.3999999999999915,
+      "preco_fmt": "R$ 121,59",
+      "original_fmt": "R$ 127,99",
+      "economia_fmt": "R$ 6,40",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_724756-MLB111233762256_052026-F-kit-3-melatonina-sonna-yup-gummy-adulto-30-gomas-nutrye-morango.jpg",
+      "affiliate_url": "https://meli.la/1ghxF7k"
+    },
     {
       "id": 139,
       "name": "Colágeno Verisol Lata 250g Frutas Vermelhas Maxinutri Frutas Vermelhas",
@@ -1121,20 +1135,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_827775-MLA99600639154_122025-F-goma-melatonina-nutrye-yup-gummy-adulto-sonna-vegana-sem-gluten-morango-30un.jpg",
       "affiliate_url": "https://meli.la/1LNLhpT"
-    },
-    {
-      "id": 140,
-      "name": "Kit 3 Melatonina Sonna Yup Gummy Adulto 30 Gomas Nutrye Morango",
-      "category": "outros",
-      "price": 121.59,
-      "original_price": 127.99,
-      "desconto": 5,
-      "economia": 6.3999999999999915,
-      "preco_fmt": "R$ 121,59",
-      "original_fmt": "R$ 127,99",
-      "economia_fmt": "R$ 6,40",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_724756-MLB111233762256_052026-F-kit-3-melatonina-sonna-yup-gummy-adulto-30-gomas-nutrye-morango.jpg",
-      "affiliate_url": "https://meli.la/1ghxF7k"
     },
     {
       "id": 17,
