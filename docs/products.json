@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-11T13:32:56.959Z",
-  "total": 102,
+  "updated_at": "2026-11-11T17:04:16.664Z",
+  "total": 101,
   "produtos": [
     {
       "id": 137,
@@ -1135,20 +1135,6 @@
       "economia_fmt": "R$ 5,45",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_993346-MLB91951303190_092025-F-colageno-verisol-lata-250g-frutas-vermelhas-maxinutri-frutas-vermelhas.jpg",
       "affiliate_url": "https://meli.la/2pKSjdZ"
-    },
-    {
-      "id": 138,
-      "name": "Kit 03 Ômega 3 6 9 Mulher Linhaça Prímula 60 Cáps Maxinutri Sem Sabor",
-      "category": "outros",
-      "price": 213.03,
-      "original_price": 236.7,
-      "desconto": 10,
-      "economia": 23.669999999999987,
-      "preco_fmt": "R$ 213,03",
-      "original_fmt": "R$ 236,70",
-      "economia_fmt": "R$ 23,67",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_968502-MLA99480982368_112025-F-kit-03-mega-3-6-9-mulher-linhaca-primula-60-caps-maxinutri-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/1EKSuNK"
     },
     {
       "id": 17,
