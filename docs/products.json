@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-12T00:32:02.157Z",
-  "total": 99,
+  "updated_at": "2026-11-12T01:03:23.225Z",
+  "total": 98,
   "produtos": [
     {
       "id": 146,
@@ -1093,20 +1093,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740242-MLB118994101025_102026-F-cromo-picolinato-de-cromo-100-idr-com-60-capsulas-maxinutri-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/2YX9V48"
-    },
-    {
-      "id": 147,
-      "name": "Kit 04 Cromo Picolinato De Cromo Com 60 Capsulas Maxinutri Sem Sabor",
-      "category": "outros",
-      "price": 89.01,
-      "original_price": 104,
-      "desconto": 14,
-      "economia": 14.989999999999995,
-      "preco_fmt": "R$ 89,01",
-      "original_fmt": "R$ 104,00",
-      "economia_fmt": "R$ 14,99",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_682648-MLB91955652596_092025-F-kit-04-cromo-picolinato-de-cromo-com-60-capsulas-maxinutri-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/1Efz6PE"
     },
     {
       "id": 17,
