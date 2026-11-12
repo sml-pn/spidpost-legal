@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-12T08:31:44.719Z",
+  "updated_at": "2026-11-12T09:03:45.084Z",
   "total": 98,
   "produtos": [
+    {
+      "id": 148,
+      "name": "Cromo Picolinato De Cromo 100% Idr Com 60 Capsulas Maxinutri Sem Sabor",
+      "category": "outros",
+      "price": 26,
+      "original_price": null,
+      "desconto": 0,
+      "economia": 0,
+      "preco_fmt": "R$ 26,00",
+      "original_fmt": null,
+      "economia_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740242-MLB118994101025_102026-F-cromo-picolinato-de-cromo-100-idr-com-60-capsulas-maxinutri-sem-sabor.jpg",
+      "affiliate_url": "https://meli.la/2YX9V48"
+    },
     {
       "id": 146,
       "name": "Vitamina B12 Metilcobalamina Mastigável Maxinutri 60 Comp Sem Sabor",
@@ -1079,20 +1093,6 @@
       "economia_fmt": "R$ 13,91",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_616442-MLB112076511739_052026-F-kit-4-prateleiras-de-parede-em-madeira-macica-e-ferro-preto-preto-e-madeira.jpg",
       "affiliate_url": "https://meli.la/2hC1Jyv"
-    },
-    {
-      "id": 148,
-      "name": "Cromo Picolinato De Cromo 100% Idr Com 60 Capsulas Maxinutri Sem Sabor",
-      "category": "outros",
-      "price": 26,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 26,00",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740242-MLB118994101025_102026-F-cromo-picolinato-de-cromo-100-idr-com-60-capsulas-maxinutri-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/2YX9V48"
     },
     {
       "id": 17,
