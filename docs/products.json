@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-11T23:31:43.061Z",
+  "updated_at": "2026-11-12T00:03:03.911Z",
   "total": 99,
   "produtos": [
+    {
+      "id": 146,
+      "name": "Vitamina B12 Metilcobalamina Mastigável Maxinutri 60 Comp Sem Sabor",
+      "category": "outros",
+      "price": 34.9,
+      "original_price": null,
+      "desconto": 0,
+      "economia": 0,
+      "preco_fmt": "R$ 34,90",
+      "original_fmt": null,
+      "economia_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_802434-MLA113767191251_062026-F-vitamina-b12-metilcobalamina-mastigavel-maxinutri-60-comp-sem-sabor.jpg",
+      "affiliate_url": "https://meli.la/1RcsVHx"
+    },
     {
       "id": 145,
       "name": "Mineral/vitamina Maxinutri Em Comprimidos Sabor Frutas Vermelhas 3 Kits De 60 Un",
@@ -1093,20 +1107,6 @@
       "economia_fmt": "R$ 14,99",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_682648-MLB91955652596_092025-F-kit-04-cromo-picolinato-de-cromo-com-60-capsulas-maxinutri-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/1Efz6PE"
-    },
-    {
-      "id": 146,
-      "name": "Vitamina B12 Metilcobalamina Mastigável Maxinutri 60 Comp Sem Sabor",
-      "category": "outros",
-      "price": 34.9,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 34,90",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_802434-MLA113767191251_062026-F-vitamina-b12-metilcobalamina-mastigavel-maxinutri-60-comp-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/1RcsVHx"
     },
     {
       "id": 17,
