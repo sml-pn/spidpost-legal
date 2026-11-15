@@ -281,11 +281,17 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
     candidatos = db.prepare(`
       SELECT DISTINCT p.* FROM products p
       INNER JOIN renders r ON r.product_id = p.id
-      WHERE p.status IN ('READY', 'PARTIAL')
-        AND p.removed_from_ml = 0
+      WHERE p.removed_from_ml = 0
         AND r.status = 'READY'
+        AND (
+          p.status IN ('READY', 'PARTIAL')
+          OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR p.last_posted_at < datetime('now', '-12 hours')))
+          OR (p.status = 'PENDING' AND p.error IS NULL)
+        )
         AND (p.category IS NULL OR p.category != ?)
-      ORDER BY p.created_at ASC
+      ORDER BY 
+        CASE p.status WHEN 'READY' THEN 1 WHEN 'PARTIAL' THEN 1 WHEN 'COOLDOWN' THEN 2 WHEN 'PENDING' THEN 3 END,
+        p.created_at ASC
       LIMIT 5
     `).all(ultimaCategoria) as any[];
     if (candidatos.length > 0) {
@@ -301,10 +307,16 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
     candidatos = db.prepare(`
       SELECT DISTINCT p.* FROM products p
       INNER JOIN renders r ON r.product_id = p.id
-      WHERE p.status IN ('READY', 'PARTIAL')
-        AND p.removed_from_ml = 0
+      WHERE p.removed_from_ml = 0
         AND r.status = 'READY'
-      ORDER BY p.created_at ASC
+        AND (
+          p.status IN ('READY', 'PARTIAL')
+          OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR p.last_posted_at < datetime('now', '-12 hours')))
+          OR (p.status = 'PENDING' AND p.error IS NULL)
+        )
+      ORDER BY 
+        CASE p.status WHEN 'READY' THEN 1 WHEN 'PARTIAL' THEN 1 WHEN 'COOLDOWN' THEN 2 WHEN 'PENDING' THEN 3 END,
+        p.created_at ASC
       LIMIT 5
     `).all() as any[];
   }
