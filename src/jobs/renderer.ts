@@ -19,7 +19,12 @@ async function uploadComRetry(path: string, folder: string, nome: string): Promi
     try {
       return await uploadImageKit(path, folder);
     } catch (e: any) {
-      console.log(`  [imagekit] Falha no upload do ${nome} (tentativa ${i}/5): ${e.message}`);
+      const msg = e.message || '';
+      // [ANTI-ERRO] Detecta se a cota do ImageKit estourou (Erro 403, 429 ou mensagens de limite)
+      if (msg.includes('403') || msg.includes('429') || msg.includes('quota') || msg.includes('limit')) {
+        throw new Error('IMAGEKIT_QUOTA_EXCEEDED: ' + msg);
+      }
+      console.log(`  [imagekit] Falha no upload do ${nome} (tentativa ${i}/5): ${msg}`);
       if (i < 3) await new Promise(r => setTimeout(r, i * 5000));
     }
   }
