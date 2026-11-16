@@ -282,7 +282,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
       SELECT DISTINCT p.* FROM products p
       INNER JOIN renders r ON r.product_id = p.id
       WHERE p.removed_from_ml = 0
-        AND r.status = 'READY'
+        AND r.status IN ('READY', 'POSTED')
         AND (
           p.status IN ('READY', 'PARTIAL')
           OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR p.last_posted_at < datetime('now', '-12 hours')))
@@ -308,7 +308,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
       SELECT DISTINCT p.* FROM products p
       INNER JOIN renders r ON r.product_id = p.id
       WHERE p.removed_from_ml = 0
-        AND r.status = 'READY'
+        AND r.status IN ('READY', 'POSTED')
         AND (
           p.status IN ('READY', 'PARTIAL')
           OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR p.last_posted_at < datetime('now', '-12 hours')))
@@ -377,7 +377,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
   console.log('');
 
   const renders = db.prepare(`
-    SELECT * FROM renders WHERE product_id = ? AND status = 'READY'
+    SELECT * FROM renders WHERE product_id = ? AND status IN ('READY', 'POSTED') ORDER BY id DESC LIMIT 2
   `).all(produto.id) as any[];
 
   const porTipo: Record<string, any> = {};
