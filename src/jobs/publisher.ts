@@ -332,7 +332,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
     const claim = db.prepare(`
       UPDATE products
       SET status = 'PUBLISHING', updated_at = datetime('now')
-      WHERE id = ? AND status IN ('READY', 'PARTIAL')
+      WHERE id = ? AND status IN ('READY', 'PARTIAL', 'COOLDOWN', 'PENDING')
     `).run(c.id);
 
     if (claim.changes === 0) {
@@ -348,9 +348,14 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
     }
 
     // [FASE 2] Verificar se o produto tem pelo menos um render acessível
-    const _prodRenders = db.prepare(`SELECT id, reel_url FROM renders WHERE product_id = ? AND status = 'READY' AND reel_url IS NOT NULL`).all(c.id) as any[];
+    const _prodRenders = db.prepare(`SELECT id, reel_url, status FROM renders WHERE product_id = ? AND status IN ('READY', 'POSTED') AND reel_url IS NOT NULL`).all(c.id) as any[];
     let _temOk = false;
     for (const _pr of _prodRenders) {
+      // Se o render já foi POSTED, confiamos que a URL é válida (o IG já a descarregou)
+      if (_pr.status === 'POSTED') {
+        _temOk = true; 
+        break;
+      }
       if (await _urlOk(_pr.reel_url)) { _temOk = true; break; }
       console.log(`  [fase2] Render ${_pr.id} URL inacessível — a marcar DELETED`);
       db.prepare(`UPDATE renders SET status = 'DELETED' WHERE id = ?`).run(_pr.id);
