@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-17T11:00:13.905Z",
-  "total": 97,
+  "updated_at": "2026-11-17T19:43:38.145Z",
+  "total": 96,
   "produtos": [
     {
       "id": 136,
@@ -127,20 +127,6 @@
       "economia_fmt": "R$ 5,45",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_993346-MLB91951303190_092025-F-colageno-verisol-lata-250g-frutas-vermelhas-maxinutri-frutas-vermelhas.jpg",
       "affiliate_url": "https://meli.la/2pKSjdZ"
-    },
-    {
-      "id": 137,
-      "name": "Kit 03 Vitamina E Antioxidante 400mg 60 Capsulas Maxinutri Vitaminas",
-      "category": "outros",
-      "price": 133.38,
-      "original_price": 156,
-      "desconto": 15,
-      "economia": 22.620000000000005,
-      "preco_fmt": "R$ 133,38",
-      "original_fmt": "R$ 156,00",
-      "economia_fmt": "R$ 22,62",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_861054-MLA99952938049_112025-F-kit-03-vitamina-e-antioxidante-400mg-60-capsulas-maxinutri-vitaminas.jpg",
-      "affiliate_url": "https://meli.la/1iz5LSd"
     },
     {
       "id": 122,
