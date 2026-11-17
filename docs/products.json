@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-16T18:48:50.743Z",
-  "total": 98,
+  "updated_at": "2026-11-17T02:20:52.471Z",
+  "total": 97,
   "produtos": [
+    {
+      "id": 127,
+      "name": "Cadeira Gamer Python Fly Ergonômica Rosa E Azul, Com Apoio Para Pés E Lombar Couro Sintético",
+      "category": "outros",
+      "price": 542.71,
+      "original_price": 589.9,
+      "desconto": 8,
+      "economia": 47.18999999999994,
+      "preco_fmt": "R$ 542,71",
+      "original_fmt": "R$ 589,90",
+      "economia_fmt": "R$ 47,19",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_812152-MLA113689669608_072026-F-cadeira-gamer-python-fly-ergonmica-rosa-e-azul-com-apoio-para-pes-e-lombar-couro-sintetico.jpg",
+      "affiliate_url": "https://meli.la/28utd2d"
+    },
     {
       "id": 148,
       "name": "Cromo Picolinato De Cromo 100% Idr Com 60 Capsulas Maxinutri Sem Sabor",
@@ -127,34 +141,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_817547-MLB116691003830_092026-F-cromo-picolinato-60-capsulas-para-metabolismo-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/2s1MjJs"
-    },
-    {
-      "id": 127,
-      "name": "Cadeira Gamer Python Fly Ergonômica Rosa E Azul, Com Apoio Para Pés E Lombar Couro Sintético",
-      "category": "outros",
-      "price": 542.71,
-      "original_price": 589.9,
-      "desconto": 8,
-      "economia": 47.18999999999994,
-      "preco_fmt": "R$ 542,71",
-      "original_fmt": "R$ 589,90",
-      "economia_fmt": "R$ 47,19",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_812152-MLA113689669608_072026-F-cadeira-gamer-python-fly-ergonmica-rosa-e-azul-com-apoio-para-pes-e-lombar-couro-sintetico.jpg",
-      "affiliate_url": "https://meli.la/28utd2d"
-    },
-    {
-      "id": 125,
-      "name": "Kit Teclado E Mouse Usb Com Fio Beleno Bltm10 Abnt2 Preto Preto",
-      "category": "outros",
-      "price": 29,
-      "original_price": 39.9,
-      "desconto": 27,
-      "economia": 10.899999999999999,
-      "preco_fmt": "R$ 29,00",
-      "original_fmt": "R$ 39,90",
-      "economia_fmt": "R$ 10,90",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_815652-MLB117431605078_102026-F-kit-teclado-e-mouse-usb-com-fio-beleno-bltm10-abnt2-preto-preto.jpg",
-      "affiliate_url": "https://meli.la/1MhQibE"
     },
     {
       "id": 122,
