@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-17T19:43:38.145Z",
+  "updated_at": "2026-11-18T02:08:32.117Z",
   "total": 96,
   "produtos": [
+    {
+      "id": 139,
+      "name": "Colágeno Verisol Lata 250g Frutas Vermelhas Maxinutri Frutas Vermelhas",
+      "category": "outros",
+      "price": 103.55,
+      "original_price": 109,
+      "desconto": 5,
+      "economia": 5.450000000000003,
+      "preco_fmt": "R$ 103,55",
+      "original_fmt": "R$ 109,00",
+      "economia_fmt": "R$ 5,45",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_993346-MLB91951303190_092025-F-colageno-verisol-lata-250g-frutas-vermelhas-maxinutri-frutas-vermelhas.jpg",
+      "affiliate_url": "https://meli.la/2pKSjdZ"
+    },
     {
       "id": 136,
       "name": "Cromo Picolinato 60 Cápsulas Para Metabolismo Sem Sabor",
@@ -113,20 +127,6 @@
       "economia_fmt": "R$ 6,40",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_724756-MLB111233762256_052026-F-kit-3-melatonina-sonna-yup-gummy-adulto-30-gomas-nutrye-morango.jpg",
       "affiliate_url": "https://meli.la/1ghxF7k"
-    },
-    {
-      "id": 139,
-      "name": "Colágeno Verisol Lata 250g Frutas Vermelhas Maxinutri Frutas Vermelhas",
-      "category": "outros",
-      "price": 103.55,
-      "original_price": 109,
-      "desconto": 5,
-      "economia": 5.450000000000003,
-      "preco_fmt": "R$ 103,55",
-      "original_fmt": "R$ 109,00",
-      "economia_fmt": "R$ 5,45",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_993346-MLB91951303190_092025-F-colageno-verisol-lata-250g-frutas-vermelhas-maxinutri-frutas-vermelhas.jpg",
-      "affiliate_url": "https://meli.la/2pKSjdZ"
     },
     {
       "id": 122,
