@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-18T02:08:32.117Z",
-  "total": 96,
+  "updated_at": "2026-11-18T10:31:41.653Z",
+  "total": 95,
   "produtos": [
     {
       "id": 139,
@@ -113,20 +113,6 @@
       "economia_fmt": "R$ 21,60",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_791583-MLA99452093826_112025-F-kit-4-colageno-femme-vitaminas-zinco-90-capsulas-maxinutri-sabor-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/2F4Ure4"
-    },
-    {
-      "id": 140,
-      "name": "Kit 3 Melatonina Sonna Yup Gummy Adulto 30 Gomas Nutrye Morango",
-      "category": "outros",
-      "price": 121.59,
-      "original_price": 127.99,
-      "desconto": 5,
-      "economia": 6.3999999999999915,
-      "preco_fmt": "R$ 121,59",
-      "original_fmt": "R$ 127,99",
-      "economia_fmt": "R$ 6,40",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_724756-MLB111233762256_052026-F-kit-3-melatonina-sonna-yup-gummy-adulto-30-gomas-nutrye-morango.jpg",
-      "affiliate_url": "https://meli.la/1ghxF7k"
     },
     {
       "id": 122,
