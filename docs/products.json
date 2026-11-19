@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-11-19T09:10:01.972Z",
-  "total": 93,
+  "updated_at": "2026-11-19T18:42:37.978Z",
+  "total": 92,
   "produtos": [
-    {
-      "id": 139,
-      "name": "Colágeno Verisol Lata 250g Frutas Vermelhas Maxinutri Frutas Vermelhas",
-      "category": "outros",
-      "price": 103.55,
-      "original_price": 109,
-      "desconto": 5,
-      "economia": 5.450000000000003,
-      "preco_fmt": "R$ 103,55",
-      "original_fmt": "R$ 109,00",
-      "economia_fmt": "R$ 5,45",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_993346-MLB91951303190_092025-F-colageno-verisol-lata-250g-frutas-vermelhas-maxinutri-frutas-vermelhas.jpg",
-      "affiliate_url": "https://meli.la/2pKSjdZ"
-    },
     {
       "id": 148,
       "name": "Cromo Picolinato De Cromo 100% Idr Com 60 Capsulas Maxinutri Sem Sabor",
