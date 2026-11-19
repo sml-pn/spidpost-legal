@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-18T10:31:41.653Z",
-  "total": 95,
+  "updated_at": "2026-11-19T01:15:04.973Z",
+  "total": 94,
   "produtos": [
     {
       "id": 139,
@@ -29,20 +29,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_817547-MLB116691003830_092026-F-cromo-picolinato-60-capsulas-para-metabolismo-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/2s1MjJs"
-    },
-    {
-      "id": 127,
-      "name": "Cadeira Gamer Python Fly Ergonômica Rosa E Azul, Com Apoio Para Pés E Lombar Couro Sintético",
-      "category": "outros",
-      "price": 542.71,
-      "original_price": 589.9,
-      "desconto": 8,
-      "economia": 47.18999999999994,
-      "preco_fmt": "R$ 542,71",
-      "original_fmt": "R$ 589,90",
-      "economia_fmt": "R$ 47,19",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_812152-MLA113689669608_072026-F-cadeira-gamer-python-fly-ergonmica-rosa-e-azul-com-apoio-para-pes-e-lombar-couro-sintetico.jpg",
-      "affiliate_url": "https://meli.la/28utd2d"
     },
     {
       "id": 148,
