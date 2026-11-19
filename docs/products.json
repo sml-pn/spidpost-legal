@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-19T01:15:04.973Z",
-  "total": 94,
+  "updated_at": "2026-11-19T09:10:01.972Z",
+  "total": 93,
   "produtos": [
     {
       "id": 139,
@@ -15,20 +15,6 @@
       "economia_fmt": "R$ 5,45",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_993346-MLB91951303190_092025-F-colageno-verisol-lata-250g-frutas-vermelhas-maxinutri-frutas-vermelhas.jpg",
       "affiliate_url": "https://meli.la/2pKSjdZ"
-    },
-    {
-      "id": 136,
-      "name": "Cromo Picolinato 60 Cápsulas Para Metabolismo Sem Sabor",
-      "category": "outros",
-      "price": 88,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 88,00",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_817547-MLB116691003830_092026-F-cromo-picolinato-60-capsulas-para-metabolismo-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/2s1MjJs"
     },
     {
       "id": 148,
