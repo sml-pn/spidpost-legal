@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-20T08:05:38.941Z",
-  "total": 92,
+  "updated_at": "2026-11-20T17:10:15.270Z",
+  "total": 91,
   "produtos": [
     {
       "id": 142,
@@ -57,20 +57,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_901594-MLA99441145974_112025-F-mineralvitamina-maxinutri-em-comprimidos-sabor-frutas-vermelhas-3-kits-de-60-un.jpg",
       "affiliate_url": "https://meli.la/2JDntYe"
-    },
-    {
-      "id": 143,
-      "name": "Kit 3 Colágeno Dermup Verisol + Vitaminas 90 Cáps Maxinutri Sem Sabor",
-      "category": "outros",
-      "price": 186.3,
-      "original_price": 207,
-      "desconto": 10,
-      "economia": 20.69999999999999,
-      "preco_fmt": "R$ 186,30",
-      "original_fmt": "R$ 207,00",
-      "economia_fmt": "R$ 20,70",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_855113-MLA99506224630_112025-F-kit-3-colageno-dermup-verisol-vitaminas-90-caps-maxinutri-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/1YUcxqH"
     },
     {
       "id": 122,
