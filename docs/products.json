@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-21T04:09:20.831Z",
-  "total": 91,
+  "updated_at": "2026-11-21T12:56:56.031Z",
+  "total": 90,
   "produtos": [
     {
       "id": 145,
@@ -15,20 +15,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_901594-MLA99441145974_112025-F-mineralvitamina-maxinutri-em-comprimidos-sabor-frutas-vermelhas-3-kits-de-60-un.jpg",
       "affiliate_url": "https://meli.la/2JDntYe"
-    },
-    {
-      "id": 142,
-      "name": "Kit 4 Colágeno Femme Vitaminas + Zinco 90 Cápsulas Maxinutri Sabor Sem Sabor",
-      "category": "outros",
-      "price": 194.4,
-      "original_price": 216,
-      "desconto": 10,
-      "economia": 21.599999999999994,
-      "preco_fmt": "R$ 194,40",
-      "original_fmt": "R$ 216,00",
-      "economia_fmt": "R$ 21,60",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_791583-MLA99452093826_112025-F-kit-4-colageno-femme-vitaminas-zinco-90-capsulas-maxinutri-sabor-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/2F4Ure4"
     },
     {
       "id": 148,
