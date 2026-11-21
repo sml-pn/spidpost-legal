@@ -14,11 +14,31 @@
 import { db } from './db.js';
 
 /** 20 slots nos melhores horarios para compra por impulso (BR). */
-export const SLOTS = [
-  '06:00', '07:10', '08:15', '09:25', '10:30',
-  '11:40', '12:45', '13:55', '15:00', '16:10',
-  '17:15', '18:25', '19:30', '20:40', '21:45'
-];
+export function obterSlotsHoje(): string[] {
+  const d = new Date();
+  // Gera uma semente única baseada no dia (ex: 20261121)
+  const seed = parseInt(`${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`, 10);
+  
+  // Gerador pseudo-aleatório determinístico (mesmo resultado no mesmo dia)
+  let state = seed;
+  const rand = () => {
+    state = (state * 1103515245 + 12345) % 2147483648;
+    return state / 2147483648;
+  };
+
+  // Decide a quantidade de posts (entre 10 e 16)
+  const qtd = 10 + Math.floor(rand() * 7);
+  const mins: number[] = [];
+
+  for (let i = 0; i < qtd; i++) {
+    // Horários entre 08:00 (480) e 23:00 (1380)
+    mins.push(480 + Math.floor(rand() * 900)); 
+  }
+  
+  // Ordena e transforma em HH:MM
+  mins.sort((a, b) => a - b);
+  return mins.map(m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`);
+}
 
 /** Backoff (minutos) para cada tentativa de retry. */
 export const BACKOFFS_MIN = [3, 10, 30, 60];
@@ -55,7 +75,8 @@ export function slotAtual(): string | null {
   const hoje = dataLocal(agora);
   const minutosAgora = agora.getHours() * 60 + agora.getMinutes();
 
-  const passados = SLOTS.filter((s) => {
+  const SLOTS_HOJE = obterSlotsHoje();
+  const passados = SLOTS_HOJE.filter((s) => {
     const partes = s.split(':');
     return Number(partes[0]) * 60 + Number(partes[1]) <= minutosAgora;
   });

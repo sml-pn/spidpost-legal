@@ -228,7 +228,7 @@ const _lastUpd = db.prepare(`SELECT MAX(last_posted_at) AS u FROM products WHERE
 const _diffH = _lastUpd?.u ? (Date.now() - new Date(_lastUpd.u).getTime()) / 3600000 : 999;
 const _stale = _diffH > _staleH;
 if (_stale) console.log(`  [fase2] Stale: última atualização há ${_diffH.toFixed(1)}h (> ${_staleH}h). Publicação contínua ativada.`);
-const slot = 'STALE-MODE'; // Modo contínuo, respeita apenas o intervalo
+const slot = _stale ? 'STALE-MODE' : slotAtual();
   const pending = getPending();
   let slotParaPublicar: string | null = null;
 
