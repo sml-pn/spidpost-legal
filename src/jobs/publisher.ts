@@ -16,7 +16,7 @@ import { slotAtual, getPending, setPending, clearPending, proximoBackoff, ensure
 import { uploadImageKit } from '../services/imagekit.js';
 import { renovarToken, enviarParaRascunho } from '../services/tiktok.js';
 
-const MINUTOS_ENTRE_POSTS   = Number(process.env.FORCE_MINUTOS || 25);
+const MINUTOS_ENTRE_POSTS   = Number(process.env.FORCE_MINUTOS || 60);
 const MINUTOS_APERTADO      = Number(process.env.MINUTOS_APERTADO || 60);
 const LIMITE_DIARIO_24H     = Number(process.env.LIMITE_DIARIO || 15);
 const HORAS_BACKOFF_NIVEIS  = [3, 6, 12, 24];
@@ -228,7 +228,7 @@ const _lastUpd = db.prepare(`SELECT MAX(last_posted_at) AS u FROM products WHERE
 const _diffH = _lastUpd?.u ? (Date.now() - new Date(_lastUpd.u).getTime()) / 3600000 : 999;
 const _stale = _diffH > _staleH;
 if (_stale) console.log(`  [fase2] Stale: última atualização há ${_diffH.toFixed(1)}h (> ${_staleH}h). Publicação contínua ativada.`);
-const slot = _stale ? 'STALE-MODE' : slotAtual();
+const slot = 'STALE-MODE'; // Modo contínuo, respeita apenas o intervalo
   const pending = getPending();
   let slotParaPublicar: string | null = null;
 
