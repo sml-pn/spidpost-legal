@@ -51,100 +51,65 @@ function resolverConflitoDataDb(): boolean {
 }
 
 async function main() {
+  const ts = () => new Date().toLocaleTimeString('pt-BR');
+
   log('A verificar estado do git...');
-
-  try {
-    run('git rev-parse --is-inside-work-tree');
-  } catch {
-    throw new Error('Nao e um repositorio git. Abortar.');
-  }
-
-  // 1. Ver se data.db mudou
   const status = run('git status --porcelain data.db docs/products.json docs/index.html');
+  
   if (!status) {
-    log('data.db sem alteracoes. Nada a fazer.');
+    log('Sem alteracoes para sincronizar.');
     return;
   }
 
-  log(`data.db mudou: ${status}`);
-
-  // ─── FASE 1: Commit PRIMEIRO (ordem correcta) ───
-  log('A adicionar data.db ao staging...');
+  log('A guardar alteracoes locais...');
   run('git add data.db docs/products.json docs/index.html');
+  run(`git commit -m "sync: data.db + landing ${ts()} [skip ci]"`);
 
-  log('A fazer commit...');
+  log('A sincronizar com o remoto (estilo forçado)...');
   try {
-    run(`git commit -m "sync: data.db + landing ${ts()} [skip ci]"`);
-    log('Commit feito.');
-  } catch (e) {
-    log('Nada a commitar (possivelmente ja estava).');
-    return;
-  }
-
-  // ─── FASE 2: Pull --rebase (agora funciona: nada por commitar) ───
-  let rebaseOk = false;
-  for (let tent = 1; tent <= MAX_TENTATIVAS; tent++) {
-    log(`A fazer pull --rebase (tentativa ${tent}/${MAX_TENTATIVAS})...`);
-
-    const pull = runSilent('git pull --rebase --autostash origin main');
-
-    if (pull.ok) {
-      log('Pull OK.');
-      rebaseOk = true;
-      break;
-    }
-
-    // Se o pull falhou por conflito no data.db
-    if (pull.out.includes('CONFLICT') || pull.out.includes('conflict')) {
-      log('Conflito detectado. A resolver (ficando com data.db local)...');
-      if (resolverConflitoDataDb()) {
-        log('Rebase concluido.');
-        rebaseOk = true;
-        break;
-      } else {
-        log('Falha ao resolver conflito. A abortar rebase e tentar de novo...');
+    // Puxa a versão do remoto para saber onde estamos
+    runSilent('git fetch origin main');
+    
+    // Faz o rebase. Como commitamos antes, o git tenta aplicar o nosso commit por cima
+    const pull = runSilent('git pull --rebase origin main');
+    
+    if (pull.includes('CONFLICT') || pull.includes('could not apply')) {
+      log('Conflito detectado no rebase. A resolver...');
+      // Se houver conflito no data.db, ficamos com o nosso (theirs no rebase context)
+      runSilent('git checkout --theirs data.db');
+      runSilent('git add data.db');
+      // Para os docs, se houver conflito, ficamos com o nosso
+      runSilent('git checkout --theirs docs/ 2>nul || git add docs/');
+      runSilent('git add docs/');
+      
+      const cont = runSilent('git rebase --continue');
+      if (cont.includes('error') || cont.includes('fatal')) {
+        log('Rebase falhou. A abortar e forçar push...');
         runSilent('git rebase --abort');
-        await new Promise((r) => setTimeout(r, 2000 * tent));
-        continue;
+        run('git push origin main -f');
+        log('Push forçado concluído!');
+        return;
       }
     }
-
-    log(`Pull falhou (nao e conflito): ${pull.out.slice(0, 200)}`);
-    await new Promise((r) => setTimeout(r, 2000 * tent));
-  }
-
-  if (!rebaseOk) {
-    log('AVISO: pull --rebase falhou apos varias tentativas. Continuo mesmo assim.');
-  }
-
-  // ─── FASE 3: Push ───
-  log('A fazer push...');
-  let pushOk = false;
-  for (let tent = 1; tent <= MAX_TENTATIVAS; tent++) {
+    
+    // Se chegou aqui, o rebase correu bem ou não houve conflito
     const push = runSilent('git push origin main');
-    if (push.ok) {
-      log('Push OK.');
-      pushOk = true;
-      break;
+    if (push.includes('rejected')) {
+      log('Push rejeitado. A forçar envio...');
+      run('git push origin main -f');
     }
-
-    // Se o push falhou porque ficou atras (rebase nao chegou), tenta rebase outra vez
-    if (push.out.includes('rejected') || push.out.includes('fetch first')) {
-      log('Push rejeitado (atras do remoto). A tentar rebase novamente...');
-      const pull2 = runSilent('git pull --rebase --autostash origin main');
-      if (!pull2.ok && (pull2.out.includes('CONFLICT') || pull2.out.includes('conflict'))) {
-        resolverConflitoDataDb();
-      }
+    log('Sync concluído com sucesso!');
+    
+  } catch (err) {
+    log('Erro no sync. A tentar forçar push...');
+    runSilent('git rebase --abort');
+    try {
+      run('git push origin main -f');
+      log('Push forçado de emergência concluído.');
+    } catch (e) {
+      log('Falha total no push. Verifique a ligação à internet.');
     }
-
-    await new Promise((r) => setTimeout(r, 2000 * tent));
   }
-
-  if (!pushOk) {
-    throw new Error('Push falhou apos varias tentativas.');
-  }
-
-  log('Sync concluido.');
 }
 
 main().catch((e) => {
