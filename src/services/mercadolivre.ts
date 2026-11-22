@@ -110,10 +110,24 @@ async function fetchViaPlaywright(itemId: string): Promise<ItemData | null> {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForTimeout(2000 + Math.random() * 2000);
     if (page.url().includes('captcha')) {
-      console.log(`  [PW] CAPTCHA detetado. Resolve no Chrome aberto (max 2 min)...`);
+      process.stdout.write('\x07'); // Bipe 1
+      process.stdout.write('\x07'); // Bipe 2
+      process.stdout.write('\x07'); // Bipe 3
+      await page.bringToFront(); // Força o Chrome a ir para a frente
+      console.log(`\n\x1b[41m\x1b[37m 🚨 CAPTCHA DETETADO! VÁ AO CHROME E RESOLVA AGORA! 🚨 \x1b[0m\n`);
+      
+      let resolvido = false;
       for (let i = 0; i < 60; i++) {
         await page.waitForTimeout(2000);
-        if (!page.url().includes('captcha')) break;
+        if (!page.url().includes('captcha')) {
+          resolvido = true;
+          break;
+        }
+      }
+      if (resolvido) {
+        console.log(`  [PW] ✅ CAPTCHA resolvido! A continuar...`);
+      } else {
+        console.log(`  [PW] ❌ Tempo esgotado (2 min). CAPTCHA não resolvido.`);
       }
     }
     await page.waitForSelector('h1.ui-pdp-title, h1', { timeout: 15_000 }).catch(() => {});

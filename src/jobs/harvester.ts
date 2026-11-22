@@ -174,6 +174,23 @@ for (const bm of bookmarks) {
         }
       }
 
+      // [FIX] Validar produto antes de inserir
+      if (!item.price || item.price <= 0) {
+        console.log(`  ⚠️ Preço inválido (R$ ${item.price}) para ${item.title.slice(0, 40)}. Ignorando.`);
+        falhas++;
+        continue;
+      }
+      if (!item.thumbnail || item.thumbnail === '') {
+        console.log(`  ⚠️ Imagem inválida para ${item.title.slice(0, 40)}. Ignorando.`);
+        falhas++;
+        continue;
+      }
+      if (item.title.includes('Por segurança') || item.title.includes('complete esta etapa')) {
+        console.log(`  🚨 Página de CAPTCHA identificada como produto. Ignorando.`);
+        captchaCount++;
+        continue;
+      }
+
       db.prepare(`
         INSERT INTO products
           (external_id, source, name, price, original_price, thumbnail,
