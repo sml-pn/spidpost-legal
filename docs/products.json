@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-22T17:25:29.468Z",
-  "total": 93,
+  "updated_at": "2026-11-22T20:51:13.807Z",
+  "total": 90,
   "produtos": [
     {
       "id": 164,
@@ -1235,34 +1235,6 @@
       "affiliate_url": "https://meli.la/21ta3aJ"
     },
     {
-      "id": 46,
-      "name": "Máquina Profissional Cortar Cabelo E Barba Acabamento Sem Fio Prateado Com Marrom Bivolt 110/220 Cartel Barber Shop Prata Com Marrom",
-      "category": "outros",
-      "price": 0,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 0,00",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_623657-MLA115209781487_072026-AB.webp",
-      "affiliate_url": "https://meli.la/26HYgCU"
-    },
-    {
-      "id": 45,
-      "name": "Compressor Portátil Car Air Pump Digital Com Visor Para Carro Moto Bike Calibrador De Pneu Multifuncional Preto 127/220v",
-      "category": "outros",
-      "price": 0,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 0,00",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_903017-MLA111914906979_052026-AB.webp",
-      "affiliate_url": "https://meli.la/2RfPF2A"
-    },
-    {
       "id": 23,
       "name": "Jogo Talheres Faqueiro Búzios Aço Inox 24 Peças Tramontina Aço Inoxidável",
       "category": "casa",
@@ -1275,20 +1247,6 @@
       "economia_fmt": "R$ 51,56",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_885228-MLA105354697197_012026-F-jogo-talheres-faqueiro-buzios-aco-inox-24-pecas-tramontina-aco-inoxidavel.jpg",
       "affiliate_url": "https://meli.la/2bAXsc9"
-    },
-    {
-      "id": 22,
-      "name": "Kit 10 Potes 750ml Com Tampa Trava Plástico Transparente Para Mantimentos E Alimentos Marmita Organizador De Cozinha Geladeira E Freezer Jogo De Potes Para Organização Ponte Lar Utilidades",
-      "category": "casa",
-      "price": 59.9,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 59,90",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_623314-MLA114702074947_072026-F-kit-10-potes-750ml-com-tampa-trava-plastico-transparente-para-mantimentos-e-alimentos-marmita-organizador-de-cozinha-geladeira-e-freezer-jogo-de-potes-para-organizaco-ponte-lar-utilidades.jpg",
-      "affiliate_url": "https://meli.la/2TXdiYE"
     },
     {
       "id": 20,
