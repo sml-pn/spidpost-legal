@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-22T00:06:32.005Z",
-  "total": 93,
+  "updated_at": "2026-11-22T03:05:43.239Z",
+  "total": 92,
   "produtos": [
     {
       "id": 163,
@@ -29,20 +29,6 @@
       "economia_fmt": "R$ 54,21",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_919215-MLB117653762853_092026-F-oculos-epi-com-lanterna-ativaco-por-sensor-e-recarregavel-transparente.jpg",
       "affiliate_url": "https://meli.la/1WTbKxa"
-    },
-    {
-      "id": 145,
-      "name": "Mineral/vitamina Maxinutri Em Comprimidos Sabor Frutas Vermelhas 3 Kits De 60 Un",
-      "category": "outros",
-      "price": 89.75,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 89,75",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_901594-MLA99441145974_112025-F-mineralvitamina-maxinutri-em-comprimidos-sabor-frutas-vermelhas-3-kits-de-60-un.jpg",
-      "affiliate_url": "https://meli.la/2JDntYe"
     },
     {
       "id": 142,
