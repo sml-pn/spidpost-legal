@@ -16,9 +16,9 @@ import { slotAtual, getPending, setPending, clearPending, proximoBackoff, ensure
 import { uploadImageKit } from '../services/imagekit.js';
 import { renovarToken, enviarParaRascunho } from '../services/tiktok.js';
 
-const MINUTOS_ENTRE_POSTS   = Number(process.env.FORCE_MINUTOS || 60);
+const MINUTOS_ENTRE_POSTS   = Number(process.env.FORCE_MINUTOS || 40);
 const MINUTOS_APERTADO      = Number(process.env.MINUTOS_APERTADO || 60);
-const LIMITE_DIARIO_24H     = Number(process.env.LIMITE_DIARIO || 15);
+const LIMITE_DIARIO_24H     = Number(process.env.LIMITE_DIARIO || 16);
 const HORAS_BACKOFF_NIVEIS  = [3, 6, 12, 24];
 
 // [ANTI-VPU] Pede o video original ao ImageKit (nao gasta o limite de transformacoes de video)
@@ -85,7 +85,7 @@ function montarLegenda(caption: string, hashtags: string, link?: string): string
 function contarPosts24h(): number {
   const r = db.prepare(`
     SELECT COUNT(*) as c FROM posts_log
-    WHERE date(posted_at) = date('now', 'localtime')
+    WHERE date(posted_at, 'localtime') = date('now', 'localtime')
   `).get() as any;
   return r?.c ?? 0;
 }

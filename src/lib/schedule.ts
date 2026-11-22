@@ -13,33 +13,38 @@
 
 import { db } from './db.js';
 
-/** 20 slots nos melhores horarios para compra por impulso (BR). */
-export function obterSlotsHoje(): string[] {
-  const d = new Date();
-  // Gera uma semente única baseada no dia (ex: 20261121)
-  const seed = parseInt(`${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`, 10);
-  
-  // Gerador pseudo-aleatório determinístico (mesmo resultado no mesmo dia)
-  let state = seed;
-  const rand = () => {
-    state = (state * 1103515245 + 12345) % 2147483648;
-    return state / 2147483648;
+/** PRNG deterministico (mesmo dia = mesma sequencia em qualquer maquina). */
+function mulberry32(a: number): () => number {
+  return () => {
+    a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
-
-  // Decide a quantidade de posts (entre 10 e 16)
-  const qtd = 10 + Math.floor(rand() * 7);
-  const mins: number[] = [];
-
-  for (let i = 0; i < qtd; i++) {
-    // Horários entre 08:00 (480) e 23:00 (1380)
-    mins.push(480 + Math.floor(rand() * 900)); 
-  }
-  
-  // Ordena e transforma em HH:MM
-  mins.sort((a, b) => a - b);
-  return mins.map(m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`);
 }
 
+/** 16 slots por dia (POSTS_POR_DIA), horarios aleatorios entre 08:00 e 23:00, sempre >= 40 min entre si. */
+export function obterSlotsHoje(): string[] {
+  const d = new Date();
+  const seed = Number(String(d.getFullYear()) + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0'));
+  const rand = mulberry32(seed);
+  rand(); rand(); rand();
+
+  const qtd = Number(process.env.POSTS_POR_DIA || 16);
+  const inicio = Number(process.env.SLOT_INICIO_MIN || 480);
+  const fim = Number(process.env.SLOT_FIM_MIN || 1380);
+  const gap = Number(process.env.SLOT_GAP_MIN || 40);
+  const folga = Math.max(0, (fim - inicio) - (qtd - 1) * gap);
+
+  const base: number[] = [];
+  for (let i = 0; i < qtd; i++) base.push(Math.floor(rand() * (folga + 1)));
+  base.sort((a, b) => a - b);
+
+  return base.map((b, i) => {
+    const m = inicio + b + i * gap;
+    return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  });
+}
 /** Backoff (minutos) para cada tentativa de retry. */
 export const BACKOFFS_MIN = [3, 10, 30, 60];
 
@@ -78,7 +83,7 @@ export function slotAtual(): string | null {
   const SLOTS_HOJE = obterSlotsHoje();
   const passados = SLOTS_HOJE.filter((s) => {
     const partes = s.split(':');
-    return Number(partes[0]) * 60 + Number(partes[1]) <= minutosAgora;
+    const sm = Number(partes[0]) * 60 + Number(partes[1]); return sm <= minutosAgora && minutosAgora - sm <= Number(process.env.SLOT_TOLERANCIA_MIN || 120);
   });
 
   if (passados.length === 0) return null;

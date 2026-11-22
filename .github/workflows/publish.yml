@@ -1,8 +1,8 @@
-﻿name: SpidPost Publish
+name: SpidPost Publish
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 concurrency:
@@ -80,7 +80,7 @@ jobs:
           IMAGEKIT_PUBLIC_KEY=${{ secrets.IMAGEKIT_PUBLIC_KEY }}
           IMAGEKIT_PRIVATE_KEY=${{ secrets.IMAGEKIT_PRIVATE_KEY }}
           PUBLIC_VIDEO_BASE_URL=${{ secrets.PUBLIC_VIDEO_BASE_URL }}
-          LIMITE_DIARIO=15
+          LIMITE_DIARIO=16
           MINUTOS_APERTADO=60
           EOF
 
