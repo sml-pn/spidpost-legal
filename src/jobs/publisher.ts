@@ -21,6 +21,11 @@ const MINUTOS_APERTADO      = Number(process.env.MINUTOS_APERTADO || 60);
 const LIMITE_DIARIO_24H     = Number(process.env.LIMITE_DIARIO || 15);
 const HORAS_BACKOFF_NIVEIS  = [3, 6, 12, 24];
 
+// [ANTI-VPU] Pede o video original ao ImageKit (nao gasta o limite de transformacoes de video)
+function semVpu(url: string): string {
+  if (!/ik\.imagekit\.io/.test(url) || !/\.mp4(\?|$)/.test(url) || /[?&]tr=/.test(url)) return url;
+  return url + (url.includes('?') ? '&' : '?') + 'tr=orig-true';
+}
 function montarUrl(caminhoLocal: string): string {
   const base = process.env.PUBLIC_VIDEO_BASE_URL;
   if (!base) throw new Error('PUBLIC_VIDEO_BASE_URL nao definida no .env');
@@ -208,7 +213,7 @@ function recuperarPublishingPresos(): number {
 async function _urlOk(url: string | null | undefined): Promise<boolean> {
   if (!url) return false;
   try {
-    const res = await fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(5000) });
+    const res = await fetch(semVpu(url), { method: 'HEAD', signal: AbortSignal.timeout(5000) });
     return res.ok;
   } catch { return false; }
 }
@@ -282,7 +287,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
       SELECT DISTINCT p.* FROM products p
       INNER JOIN renders r ON r.product_id = p.id
       WHERE p.removed_from_ml = 0
-        AND r.status IN ('READY', 'POSTED')
+        AND r.status IN ('READY', 'POSTED') AND r.reel_path NOT LIKE '%feed-%'
         AND (
           p.status IN ('READY', 'PARTIAL')
           OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR p.last_posted_at < datetime('now', '-12 hours')))
@@ -308,7 +313,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
       SELECT DISTINCT p.* FROM products p
       INNER JOIN renders r ON r.product_id = p.id
       WHERE p.removed_from_ml = 0
-        AND r.status IN ('READY', 'POSTED')
+        AND r.status IN ('READY', 'POSTED') AND r.reel_path NOT LIKE '%feed-%'
         AND (
           p.status IN ('READY', 'PARTIAL')
           OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR p.last_posted_at < datetime('now', '-12 hours')))
@@ -348,7 +353,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
     }
 
     // [FASE 2] Verificar se o produto tem pelo menos um render acessível
-    const _prodRenders = db.prepare(`SELECT id, reel_url, status FROM renders WHERE product_id = ? AND status IN ('READY', 'POSTED') AND reel_url IS NOT NULL`).all(c.id) as any[];
+    const _prodRenders = db.prepare(`SELECT id, reel_url, status FROM renders WHERE product_id = ? AND status IN ('READY', 'POSTED') AND reel_url IS NOT NULL AND reel_path NOT LIKE '%feed-%'`).all(c.id) as any[];
     let _temOk = false;
     for (const _pr of _prodRenders) {
       // Se o render já foi POSTED, confiamos que a URL é válida (o IG já a descarregou)
@@ -361,7 +366,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
     }
     if (!_temOk) {
       console.log(`  [fase2] Produto ${c.id} sem renders acessíveis — a passar ao próximo`);
-      db.prepare(`UPDATE products SET status = 'PENDING', error = 'renders_inacessiveis', updated_at = datetime('now') WHERE id = ?`).run(c.id);
+      db.prepare(`UPDATE products SET status = 'READY', updated_at = datetime('now') WHERE id = ?`).run(c.id);
       continue;
     }
 
@@ -381,7 +386,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
   console.log('');
 
   const renders = db.prepare(`
-    SELECT * FROM renders WHERE product_id = ? AND status IN ('READY', 'POSTED') ORDER BY id DESC LIMIT 2
+    SELECT * FROM renders WHERE product_id = ? AND status IN ('READY', 'POSTED') AND reel_path NOT LIKE '%feed-%' ORDER BY id DESC LIMIT 2
   `).all(produto.id) as any[];
 
   const porTipo: Record<string, any> = {};
@@ -408,7 +413,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
   if (porTipo.reel) {
     console.log('[1/3] Publicando Reel...');
     try {
-      const url = (porTipo.reel.reel_url || await uploadPublico(porTipo.reel.reel_path));
+      const url = semVpu(porTipo.reel.reel_url || await uploadPublico(porTipo.reel.reel_path));
       console.log('  URL:', url);
       reelId = await publicarReel({ videoUrl: url, caption });
       publicados.push({ id: porTipo.reel.id, mediaId: reelId! });
@@ -429,7 +434,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
   // ─── Story ───
   if (porTipo.story && !erro2207077) {
     console.log('[2/3] Publicando Story...');
-    const url = (porTipo.story.reel_url || await uploadPublico(porTipo.story.reel_path));
+    const url = semVpu(porTipo.story.reel_url || await uploadPublico(porTipo.story.reel_path));
     console.log('  URL:', url);
     storyId = await publicarStoryComRetry(url);
     if (storyId) publicados.push({ id: porTipo.story.id, mediaId: storyId });
