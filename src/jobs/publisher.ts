@@ -357,8 +357,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
         break;
       }
       if (await _urlOk(_pr.reel_url)) { _temOk = true; break; }
-      console.log(`  [fase2] Render ${_pr.id} URL inacessível — a marcar DELETED`);
-      db.prepare(`UPDATE renders SET status = 'DELETED' WHERE id = ?`).run(_pr.id);
+      console.log(`  [fase2] Render ${_pr.id} URL inacessível (tentará de novo no próximo ciclo)`);
     }
     if (!_temOk) {
       console.log(`  [fase2] Produto ${c.id} sem renders acessíveis — a passar ao próximo`);

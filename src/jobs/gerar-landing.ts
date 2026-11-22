@@ -35,6 +35,7 @@ async function main() {
       AND (error IS NULL OR error NOT LIKE '%sem_imagem%')
       AND affiliate_url LIKE '%meli.la%'
       AND thumbnail LIKE 'http%'
+  AND price > 0
     ORDER BY COALESCE(last_posted_at, created_at) DESC
     LIMIT 200
   `).all() as any[];
