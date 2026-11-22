@@ -23,7 +23,7 @@ function mulberry32(a: number): () => number {
   };
 }
 
-/** 16 slots por dia (POSTS_POR_DIA), horarios aleatorios entre 08:00 e 23:00, sempre >= 40 min entre si. */
+/** 16 slots por dia (POSTS_POR_DIA), horarios aleatorios entre 06:00 e 23:00, sempre >= 40 min entre si. */
 export function obterSlotsHoje(): string[] {
   const d = new Date();
   const seed = Number(String(d.getFullYear()) + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0'));
@@ -31,7 +31,7 @@ export function obterSlotsHoje(): string[] {
   rand(); rand(); rand();
 
   const qtd = Number(process.env.POSTS_POR_DIA || 16);
-  const inicio = Number(process.env.SLOT_INICIO_MIN || 480);
+  const inicio = Number(process.env.SLOT_INICIO_MIN || 360);
   const fim = Number(process.env.SLOT_FIM_MIN || 1380);
   const gap = Number(process.env.SLOT_GAP_MIN || 40);
   const folga = Math.max(0, (fim - inicio) - (qtd - 1) * gap);
