@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-23T19:31:19.719Z",
-  "total": 89,
+  "updated_at": "2026-11-23T20:03:16.798Z",
+  "total": 88,
   "produtos": [
     {
       "id": 70,
@@ -1233,20 +1233,6 @@
       "economia_fmt": "R$ 42,49",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_773123-MLB85308858073_052025-F-luz-led-jardim-vagalume-energia-solar-12-luzes-decorativo.jpg",
       "affiliate_url": "https://meli.la/21ta3aJ"
-    },
-    {
-      "id": 23,
-      "name": "Jogo Talheres Faqueiro Búzios Aço Inox 24 Peças Tramontina Aço Inoxidável",
-      "category": "casa",
-      "price": 57.43,
-      "original_price": 108.99,
-      "desconto": 47,
-      "economia": 51.559999999999995,
-      "preco_fmt": "R$ 57,43",
-      "original_fmt": "R$ 108,99",
-      "economia_fmt": "R$ 51,56",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_885228-MLA105354697197_012026-F-jogo-talheres-faqueiro-buzios-aco-inox-24-pecas-tramontina-aco-inoxidavel.jpg",
-      "affiliate_url": "https://meli.la/2bAXsc9"
     }
   ]
 }
