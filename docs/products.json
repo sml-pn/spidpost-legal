@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-23T03:11:45.055Z",
-  "total": 91,
+  "updated_at": "2026-11-23T13:00:12.018Z",
+  "total": 90,
   "produtos": [
     {
       "id": 69,
@@ -1261,20 +1261,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_623314-MLA114702074947_072026-F-kit-10-potes-750ml-com-tampa-trava-plastico-transparente-para-mantimentos-e-alimentos-marmita-organizador-de-cozinha-geladeira-e-freezer-jogo-de-potes-para-organizaco-ponte-lar-utilidades.jpg",
       "affiliate_url": "https://meli.la/2TXdiYE"
-    },
-    {
-      "id": 20,
-      "name": "Caixinha Som Karaokê 2 Microfones Bluetooth Infantil Adulto Cor Rosa-tec 127/220v",
-      "category": "outros",
-      "price": 34.99,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 34,99",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_790421-MLA103207255670_012026-F-caixinha-som-karaok-2-microfones-bluetooth-infantil-adulto-cor-rosa-tec-127220v.jpg",
-      "affiliate_url": "https://meli.la/147uMPA"
     }
   ]
 }
