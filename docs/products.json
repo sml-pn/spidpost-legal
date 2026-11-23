@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-23T21:31:42.840Z",
+  "updated_at": "2026-11-23T22:02:35.538Z",
   "total": 88,
   "produtos": [
+    {
+      "id": 130,
+      "name": "Cadeira De Escritório Gamer Nitro Ergonômica Estofado Couro Sintético Reclinável Altura Ajustável Apoio Para Pés Cor Verde Luvinco",
+      "category": "casa",
+      "price": 467.91,
+      "original_price": 899.9,
+      "desconto": 48,
+      "economia": 431.98999999999995,
+      "preco_fmt": "R$ 467,91",
+      "original_fmt": "R$ 899,90",
+      "economia_fmt": "R$ 431,99",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_743250-MLA100927167560_122025-F-cadeira-de-escritorio-gamer-nitro-ergonmica-estofado-couro-sintetico-reclinavel-altura-ajustavel-apoio-para-pes-cor-verde-luvinco.jpg",
+      "affiliate_url": "https://meli.la/24o1ftF"
+    },
     {
       "id": 115,
       "name": "Kit Violao Giannini Eletroacustico Cordas Nylon Destro Flat Cutaway Nailon Profissional Eletrico Acustico Estudo... Basswood Laranja-claro",
@@ -225,20 +239,6 @@
       "economia_fmt": "R$ 27,00",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687842-CBT116823524902_092026-F-boneco-papai-noel-decorativo-sentado-33-cm.jpg",
       "affiliate_url": "https://meli.la/1QKVseh"
-    },
-    {
-      "id": 130,
-      "name": "Cadeira De Escritório Gamer Nitro Ergonômica Estofado Couro Sintético Reclinável Altura Ajustável Apoio Para Pés Cor Verde Luvinco",
-      "category": "casa",
-      "price": 467.91,
-      "original_price": 899.9,
-      "desconto": 48,
-      "economia": 431.98999999999995,
-      "preco_fmt": "R$ 467,91",
-      "original_fmt": "R$ 899,90",
-      "economia_fmt": "R$ 431,99",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_743250-MLA100927167560_122025-F-cadeira-de-escritorio-gamer-nitro-ergonmica-estofado-couro-sintetico-reclinavel-altura-ajustavel-apoio-para-pes-cor-verde-luvinco.jpg",
-      "affiliate_url": "https://meli.la/24o1ftF"
     },
     {
       "id": 161,
