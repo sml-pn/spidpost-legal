@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-23T13:00:12.018Z",
-  "total": 90,
+  "updated_at": "2026-11-23T18:00:18.655Z",
+  "total": 89,
   "produtos": [
     {
       "id": 69,
@@ -1247,20 +1247,6 @@
       "economia_fmt": "R$ 51,56",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_885228-MLA105354697197_012026-F-jogo-talheres-faqueiro-buzios-aco-inox-24-pecas-tramontina-aco-inoxidavel.jpg",
       "affiliate_url": "https://meli.la/2bAXsc9"
-    },
-    {
-      "id": 22,
-      "name": "Kit 10 Potes 750ml Com Tampa Trava Plástico Transparente Para Mantimentos E Alimentos Marmita Organizador De Cozinha Geladeira E Freezer Jogo De Potes Para Organização Ponte Lar Utilidades",
-      "category": "casa",
-      "price": 59.9,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 59,90",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_623314-MLA114702074947_072026-F-kit-10-potes-750ml-com-tampa-trava-plastico-transparente-para-mantimentos-e-alimentos-marmita-organizador-de-cozinha-geladeira-e-freezer-jogo-de-potes-para-organizaco-ponte-lar-utilidades.jpg",
-      "affiliate_url": "https://meli.la/2TXdiYE"
     }
   ]
 }
