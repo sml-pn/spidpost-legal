@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-23T22:31:35.796Z",
-  "total": 88,
+  "updated_at": "2026-11-23T23:03:14.911Z",
+  "total": 87,
   "produtos": [
     {
       "id": 130,
@@ -211,20 +211,6 @@
       "economia_fmt": "R$ 23,19",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_677943-MLA96969506850_112025-F-protetor-solar-facial-antioleosidade-clareador-fps-90-anasol.jpg",
       "affiliate_url": "https://meli.la/2dF7Aid"
-    },
-    {
-      "id": 116,
-      "name": "Pc Gamer Completo Mcl, Amd Ryzen 5 3400g, Rx Vega 11, 16gb Ddr4, Ssd 480gb, Combo De Periféricos + Monitor 480 Gb 16 Gb Radeon Rx Vega 11 Graphics",
-      "category": "outros",
-      "price": 3119,
-      "original_price": 4464,
-      "desconto": 30,
-      "economia": 1345,
-      "preco_fmt": "R$ 3.119,00",
-      "original_fmt": "R$ 4.464,00",
-      "economia_fmt": "R$ 1.345,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687288-MLA105003043944_012026-F-pc-gamer-completo-mcl-amd-ryzen-5-3400g-rx-vega-11-16gb-ddr4-ssd-480gb-combo-de-perifericos-monitor-480-gb-16-gb-radeon-rx-vega-11-graphics.jpg",
-      "affiliate_url": "https://meli.la/1goKWyZ"
     },
     {
       "id": 131,
