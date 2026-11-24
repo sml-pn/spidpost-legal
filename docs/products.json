@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-24T16:01:39.719Z",
-  "total": 83,
+  "updated_at": "2026-11-24T16:34:03.375Z",
+  "total": 82,
   "produtos": [
     {
       "id": 133,
@@ -71,20 +71,6 @@
       "economia_fmt": "R$ 19,31",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_730780-MLA114209692899_072026-F-carrinho-de-controle-remoto-big-monster-truck-laranja-solta-fumaca-vapor-d-agua-luzes-bateria-recarregavel-usb-infantil-rinoceronte.jpg",
       "affiliate_url": "https://meli.la/1zNPcaJ"
-    },
-    {
-      "id": 69,
-      "name": "Carrinho Controle Remoto Recarregavel Rally Binquedo Jipe Max Carro Bateria Off Road Big Foot Estilo 4x4 Infantil Trilha Lovelaland Colorido Speed Max",
-      "category": "brinquedos",
-      "price": 67.31,
-      "original_price": 127,
-      "desconto": 47,
-      "economia": 59.69,
-      "preco_fmt": "R$ 67,31",
-      "original_fmt": "R$ 127,00",
-      "economia_fmt": "R$ 59,69",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_677989-MLA113313152319_062026-F-carrinho-controle-remoto-recarregavel-rally-binquedo-jipe-max-carro-bateria-off-road-big-foot-estilo-4x4-infantil-trilha-lovelaland-colorido-speed-max.jpg",
-      "affiliate_url": "https://meli.la/2hHYghw"
     },
     {
       "id": 164,
