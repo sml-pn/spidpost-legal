@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-24T20:01:35.183Z",
-  "total": 80,
+  "updated_at": "2026-11-24T20:33:31.215Z",
+  "total": 79,
   "produtos": [
     {
       "id": 149,
@@ -43,20 +43,6 @@
       "economia_fmt": "R$ 527,01",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740792-MLB104314791914_012026-F-computador-completo-i5-16gb-ssd-512gb-monitor-mouse-teclado-512-gb-16-gb-intel-hd-graphics.jpg",
       "affiliate_url": "https://meli.la/2BcKKUM"
-    },
-    {
-      "id": 130,
-      "name": "Cadeira De Escritório Gamer Nitro Ergonômica Estofado Couro Sintético Reclinável Altura Ajustável Apoio Para Pés Cor Verde Luvinco",
-      "category": "casa",
-      "price": 467.91,
-      "original_price": 899.9,
-      "desconto": 48,
-      "economia": 431.98999999999995,
-      "preco_fmt": "R$ 467,91",
-      "original_fmt": "R$ 899,90",
-      "economia_fmt": "R$ 431,99",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_743250-MLA100927167560_122025-F-cadeira-de-escritorio-gamer-nitro-ergonmica-estofado-couro-sintetico-reclinavel-altura-ajustavel-apoio-para-pes-cor-verde-luvinco.jpg",
-      "affiliate_url": "https://meli.la/24o1ftF"
     },
     {
       "id": 164,
