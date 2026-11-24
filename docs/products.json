@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-24T00:44:58.063Z",
-  "total": 87,
+  "updated_at": "2026-11-24T01:03:04.074Z",
+  "total": 86,
   "produtos": [
     {
       "id": 130,
@@ -211,20 +211,6 @@
       "economia_fmt": "R$ 23,19",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_677943-MLA96969506850_112025-F-protetor-solar-facial-antioleosidade-clareador-fps-90-anasol.jpg",
       "affiliate_url": "https://meli.la/2dF7Aid"
-    },
-    {
-      "id": 131,
-      "name": "Boneco Papai Noel Decorativo Sentado 33 Cm",
-      "category": "casa",
-      "price": 38.62,
-      "original_price": 65.62,
-      "desconto": 41,
-      "economia": 27.000000000000007,
-      "preco_fmt": "R$ 38,62",
-      "original_fmt": "R$ 65,62",
-      "economia_fmt": "R$ 27,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_687842-CBT116823524902_092026-F-boneco-papai-noel-decorativo-sentado-33-cm.jpg",
-      "affiliate_url": "https://meli.la/1QKVseh"
     },
     {
       "id": 161,
