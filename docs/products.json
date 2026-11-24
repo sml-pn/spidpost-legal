@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-24T09:01:41.717Z",
+  "updated_at": "2026-11-24T09:33:53.395Z",
   "total": 86,
   "produtos": [
+    {
+      "id": 118,
+      "name": "Computador Completo I5 16gb Ssd 512gb Monitor Mouse Teclado 512 Gb 16 Gb Intel Hd Graphics",
+      "category": "outros",
+      "price": 1719.99,
+      "original_price": 2247,
+      "desconto": 23,
+      "economia": 527.01,
+      "preco_fmt": "R$ 1.719,99",
+      "original_fmt": "R$ 2.247,00",
+      "economia_fmt": "R$ 527,01",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740792-MLB104314791914_012026-F-computador-completo-i5-16gb-ssd-512gb-monitor-mouse-teclado-512-gb-16-gb-intel-hd-graphics.jpg",
+      "affiliate_url": "https://meli.la/2BcKKUM"
+    },
     {
       "id": 130,
       "name": "Cadeira De Escritório Gamer Nitro Ergonômica Estofado Couro Sintético Reclinável Altura Ajustável Apoio Para Pés Cor Verde Luvinco",
@@ -183,20 +197,6 @@
       "economia_fmt": "R$ 67,00",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_927532-MLA99344979752_112025-F-protetor-solar-anti-idade-biosole-super-age-ada-tina-fps-90-40ml.jpg",
       "affiliate_url": "https://meli.la/2avYU6B"
-    },
-    {
-      "id": 118,
-      "name": "Computador Completo I5 16gb Ssd 512gb Monitor Mouse Teclado 512 Gb 16 Gb Intel Hd Graphics",
-      "category": "outros",
-      "price": 1719.99,
-      "original_price": 2247,
-      "desconto": 23,
-      "economia": 527.01,
-      "preco_fmt": "R$ 1.719,99",
-      "original_fmt": "R$ 2.247,00",
-      "economia_fmt": "R$ 527,01",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_740792-MLB104314791914_012026-F-computador-completo-i5-16gb-ssd-512gb-monitor-mouse-teclado-512-gb-16-gb-intel-hd-graphics.jpg",
-      "affiliate_url": "https://meli.la/2BcKKUM"
     },
     {
       "id": 133,
