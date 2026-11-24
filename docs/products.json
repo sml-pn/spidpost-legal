@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-24T15:01:35.817Z",
-  "total": 84,
+  "updated_at": "2026-11-24T15:33:02.111Z",
+  "total": 83,
   "produtos": [
     {
       "id": 133,
@@ -169,20 +169,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_802434-MLA113767191251_062026-F-vitamina-b12-metilcobalamina-mastigavel-maxinutri-60-comp-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/1RcsVHx"
-    },
-    {
-      "id": 122,
-      "name": "Kit Gamer Rgb Snow Teclado Mouse 3600 Dpi Headset Mousepad Branco",
-      "category": "outros",
-      "price": 130.19,
-      "original_price": 155,
-      "desconto": 16,
-      "economia": 24.810000000000002,
-      "preco_fmt": "R$ 130,19",
-      "original_fmt": "R$ 155,00",
-      "economia_fmt": "R$ 24,81",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_793704-MLB113186638758_072026-F-kit-gamer-rgb-snow-teclado-mouse-3600-dpi-headset-mousepad-branco.jpg",
-      "affiliate_url": "https://meli.la/1kmWXBq"
     },
     {
       "id": 161,
