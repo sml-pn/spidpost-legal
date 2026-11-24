@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-24T14:01:30.259Z",
-  "total": 85,
+  "updated_at": "2026-11-24T14:33:46.302Z",
+  "total": 84,
   "produtos": [
     {
       "id": 133,
@@ -183,20 +183,6 @@
       "economia_fmt": "R$ 24,81",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_793704-MLB113186638758_072026-F-kit-gamer-rgb-snow-teclado-mouse-3600-dpi-headset-mousepad-branco.jpg",
       "affiliate_url": "https://meli.la/1kmWXBq"
-    },
-    {
-      "id": 134,
-      "name": "Protetor Solar Anti-idade Biosole Super Age Ada Tina Fps 90 40ml",
-      "category": "beleza",
-      "price": 98,
-      "original_price": 165,
-      "desconto": 41,
-      "economia": 67,
-      "preco_fmt": "R$ 98,00",
-      "original_fmt": "R$ 165,00",
-      "economia_fmt": "R$ 67,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_927532-MLA99344979752_112025-F-protetor-solar-anti-idade-biosole-super-age-ada-tina-fps-90-40ml.jpg",
-      "affiliate_url": "https://meli.la/2avYU6B"
     },
     {
       "id": 161,
