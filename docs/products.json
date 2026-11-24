@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-24T18:01:44.368Z",
-  "total": 82,
+  "updated_at": "2026-11-24T18:32:58.300Z",
+  "total": 81,
   "produtos": [
     {
       "id": 149,
@@ -71,20 +71,6 @@
       "economia_fmt": "R$ 466,42",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_822335-MLA117333654648_102026-F-kit-violao-giannini-eletroacustico-cordas-nylon-destro-flat-cutaway-nailon-profissional-eletrico-acustico-estudo-basswood-laranja-claro.jpg",
       "affiliate_url": "https://meli.la/1jA88E7"
-    },
-    {
-      "id": 70,
-      "name": "Carrinho De Controle Remoto Big Monster Truck Laranja Solta Fumaça Vapor D Água Luzes Bateria Recarregável Usb Infantil... Rinoceronte",
-      "category": "brinquedos",
-      "price": 97.14,
-      "original_price": 116.45,
-      "desconto": 17,
-      "economia": 19.310000000000002,
-      "preco_fmt": "R$ 97,14",
-      "original_fmt": "R$ 116,45",
-      "economia_fmt": "R$ 19,31",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_730780-MLA114209692899_072026-F-carrinho-de-controle-remoto-big-monster-truck-laranja-solta-fumaca-vapor-d-agua-luzes-bateria-recarregavel-usb-infantil-rinoceronte.jpg",
-      "affiliate_url": "https://meli.la/1zNPcaJ"
     },
     {
       "id": 164,
