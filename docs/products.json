@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-24T19:01:17.623Z",
-  "total": 81,
+  "updated_at": "2026-11-24T19:32:35.968Z",
+  "total": 80,
   "produtos": [
     {
       "id": 149,
@@ -57,20 +57,6 @@
       "economia_fmt": "R$ 431,99",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_743250-MLA100927167560_122025-F-cadeira-de-escritorio-gamer-nitro-ergonmica-estofado-couro-sintetico-reclinavel-altura-ajustavel-apoio-para-pes-cor-verde-luvinco.jpg",
       "affiliate_url": "https://meli.la/24o1ftF"
-    },
-    {
-      "id": 115,
-      "name": "Kit Violao Giannini Eletroacustico Cordas Nylon Destro Flat Cutaway Nailon Profissional Eletrico Acustico Estudo... Basswood Laranja-claro",
-      "category": "outros",
-      "price": 761,
-      "original_price": 1227.42,
-      "desconto": 38,
-      "economia": 466.4200000000001,
-      "preco_fmt": "R$ 761,00",
-      "original_fmt": "R$ 1.227,42",
-      "economia_fmt": "R$ 466,42",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_822335-MLA117333654648_102026-F-kit-violao-giannini-eletroacustico-cordas-nylon-destro-flat-cutaway-nailon-profissional-eletrico-acustico-estudo-basswood-laranja-claro.jpg",
-      "affiliate_url": "https://meli.la/1jA88E7"
     },
     {
       "id": 164,
