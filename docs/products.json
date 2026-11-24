@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-24T17:01:25.062Z",
+  "updated_at": "2026-11-24T17:33:00.005Z",
   "total": 82,
   "produtos": [
+    {
+      "id": 149,
+      "name": "Creatina Integralmédica Hardcore Pote 300g Sem Sabor Sem Sabor",
+      "category": "outros",
+      "price": 78.9,
+      "original_price": null,
+      "desconto": 0,
+      "economia": 0,
+      "preco_fmt": "R$ 78,90",
+      "original_fmt": null,
+      "economia_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_606159-MLB117878897189_092026-F-creatina-integralmedica-hardcore-pote-300g-sem-sabor-sem-sabor.jpg",
+      "affiliate_url": "https://meli.la/2qfp3MH"
+    },
     {
       "id": 133,
       "name": "Protetor Solar Facial Antioleosidade Clareador Fps 90 Anasol",
@@ -603,20 +617,6 @@
       "economia_fmt": "R$ 24,90",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_616142-MLB117844811084_102026-F-varal-de-cho-giratorio-em-aluminio-reforcado-11-cordas-prateado.jpg",
       "affiliate_url": "https://meli.la/172bY99"
-    },
-    {
-      "id": 149,
-      "name": "Creatina Integralmédica Hardcore Pote 300g Sem Sabor Sem Sabor",
-      "category": "outros",
-      "price": 78.9,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 78,90",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_606159-MLB117878897189_092026-F-creatina-integralmedica-hardcore-pote-300g-sem-sabor-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/2qfp3MH"
     },
     {
       "id": 85,
