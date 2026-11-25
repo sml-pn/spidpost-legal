@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-11-25T13:01:36.932Z",
-  "total": 77,
+  "updated_at": "2026-11-25T13:32:47.018Z",
+  "total": 76,
   "produtos": [
-    {
-      "id": 149,
-      "name": "Creatina Integralmédica Hardcore Pote 300g Sem Sabor Sem Sabor",
-      "category": "outros",
-      "price": 78.9,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 78,90",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_606159-MLB117878897189_092026-F-creatina-integralmedica-hardcore-pote-300g-sem-sabor-sem-sabor.jpg",
-      "affiliate_url": "https://meli.la/2qfp3MH"
-    },
     {
       "id": 164,
       "name": "Hud Head Up Display Obd2 Gps Velocimetro Turbo Alarme P6",
