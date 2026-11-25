@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-25T20:01:38.717Z",
-  "total": 75,
+  "updated_at": "2026-11-25T20:32:37.459Z",
+  "total": 74,
   "produtos": [
     {
       "id": 151,
@@ -239,20 +239,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_694884-MLA117364925228_102026-F-patinete-eletrico-dobravel-400w-30kmh-suporta-120kg-pneu-85-pol-bluetooth-portatil-para-mobilidade-urbana-preto-com-vermelho.jpg",
       "affiliate_url": "https://meli.la/1TDYN5Q"
-    },
-    {
-      "id": 158,
-      "name": "Caixinha Som Karaokê 2 Microfones Tec Bluetooth Infantil Adulto Cor Azul-aço Azul-celeste 127/220v",
-      "category": "outros",
-      "price": 39.5,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 39,50",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_608836-MLA114264673389_072026-F-caixinha-som-karaok-2-microfones-tec-bluetooth-infantil-adulto-cor-azul-aco-azul-celeste-127220v.jpg",
-      "affiliate_url": "https://meli.la/159mkqk"
     },
     {
       "id": 155,
