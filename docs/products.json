@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-25T18:01:33.693Z",
+  "updated_at": "2026-11-25T18:33:48.158Z",
   "total": 76,
   "produtos": [
+    {
+      "id": 151,
+      "name": "Bicicleta Ergométrica Spinning Mopower Indoor Pro 20kg Preto 1.2v",
+      "category": "esporte",
+      "price": 369.55,
+      "original_price": 879.9,
+      "desconto": 58,
+      "economia": 510.34999999999997,
+      "preco_fmt": "R$ 369,55",
+      "original_fmt": "R$ 879,90",
+      "economia_fmt": "R$ 510,35",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_885539-MLA120424174815_102026-F-bicicleta-ergometrica-spinning-mopower-indoor-pro-20kg-preto-12v.jpg",
+      "affiliate_url": "https://meli.la/16Uidew"
+    },
     {
       "id": 164,
       "name": "Hud Head Up Display Obd2 Gps Velocimetro Turbo Alarme P6",
@@ -295,20 +309,6 @@
       "economia_fmt": "R$ 5,12",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_991739-MLB112380535307_052026-F-tela-mosquiteiro-120x5m-branca-porta-janela-estufa-horta-branco.jpg",
       "affiliate_url": "https://meli.la/19cRaNj"
-    },
-    {
-      "id": 151,
-      "name": "Bicicleta Ergométrica Spinning Mopower Indoor Pro 20kg Preto 1.2v",
-      "category": "esporte",
-      "price": 369.55,
-      "original_price": 879.9,
-      "desconto": 58,
-      "economia": 510.34999999999997,
-      "preco_fmt": "R$ 369,55",
-      "original_fmt": "R$ 879,90",
-      "economia_fmt": "R$ 510,35",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_885539-MLA120424174815_102026-F-bicicleta-ergometrica-spinning-mopower-indoor-pro-20kg-preto-12v.jpg",
-      "affiliate_url": "https://meli.la/16Uidew"
     },
     {
       "id": 107,
