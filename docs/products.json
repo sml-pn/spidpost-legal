@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-25T19:01:31.864Z",
-  "total": 76,
+  "updated_at": "2026-11-25T19:32:51.203Z",
+  "total": 75,
   "produtos": [
     {
       "id": 151,
@@ -295,20 +295,6 @@
       "economia_fmt": "R$ 70,30",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_688314-MLA109930695545_042026-F-rolo-tela-mosquiteira-cinza-polietileno-150m-x-10-metros-uv.jpg",
       "affiliate_url": "https://meli.la/2QLgqPj"
-    },
-    {
-      "id": 152,
-      "name": "Tela Mosquiteiro 1,20x5m Branca Porta Janela Estufa Horta Branco",
-      "category": "casa",
-      "price": 28.99,
-      "original_price": 34.11,
-      "desconto": 15,
-      "economia": 5.120000000000001,
-      "preco_fmt": "R$ 28,99",
-      "original_fmt": "R$ 34,11",
-      "economia_fmt": "R$ 5,12",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_991739-MLB112380535307_052026-F-tela-mosquiteiro-120x5m-branca-porta-janela-estufa-horta-branco.jpg",
-      "affiliate_url": "https://meli.la/19cRaNj"
     },
     {
       "id": 107,
