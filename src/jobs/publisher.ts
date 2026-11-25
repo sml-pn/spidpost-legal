@@ -290,7 +290,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
         AND r.status IN ('READY', 'POSTED') AND r.reel_path NOT LIKE '%feed-%'
         AND (
           p.status IN ('READY', 'PARTIAL')
-          OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR p.last_posted_at < datetime('now', '-12 hours')))
+          OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR datetime(p.last_posted_at) < datetime('now', '-12 hours')))
           OR (p.status = 'PENDING' AND p.error IS NULL)
         )
         AND (p.category IS NULL OR p.category != ?)
@@ -316,7 +316,7 @@ const slot = _stale ? 'STALE-MODE' : slotAtual();
         AND r.status IN ('READY', 'POSTED') AND r.reel_path NOT LIKE '%feed-%'
         AND (
           p.status IN ('READY', 'PARTIAL')
-          OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR p.last_posted_at < datetime('now', '-12 hours')))
+          OR (p.status = 'COOLDOWN' AND (p.last_posted_at IS NULL OR datetime(p.last_posted_at) < datetime('now', '-12 hours')))
           OR (p.status = 'PENDING' AND p.error IS NULL)
         )
       ORDER BY 
