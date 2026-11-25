@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-25T11:31:44.605Z",
-  "total": 78,
+  "updated_at": "2026-11-25T12:02:19.108Z",
+  "total": 77,
   "produtos": [
     {
       "id": 149,
@@ -15,20 +15,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_606159-MLB117878897189_092026-F-creatina-integralmedica-hardcore-pote-300g-sem-sabor-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/2qfp3MH"
-    },
-    {
-      "id": 133,
-      "name": "Protetor Solar Facial Antioleosidade Clareador Fps 90 Anasol",
-      "category": "beleza",
-      "price": 51.61,
-      "original_price": 74.8,
-      "desconto": 31,
-      "economia": 23.189999999999998,
-      "preco_fmt": "R$ 51,61",
-      "original_fmt": "R$ 74,80",
-      "economia_fmt": "R$ 23,19",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_677943-MLA96969506850_112025-F-protetor-solar-facial-antioleosidade-clareador-fps-90-anasol.jpg",
-      "affiliate_url": "https://meli.la/2dF7Aid"
     },
     {
       "id": 164,
