@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-26T01:31:23.463Z",
-  "total": 73,
+  "updated_at": "2026-11-26T02:02:39.372Z",
+  "total": 72,
   "produtos": [
     {
       "id": 160,
@@ -253,20 +253,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_694884-MLA117364925228_102026-F-patinete-eletrico-dobravel-400w-30kmh-suporta-120kg-pneu-85-pol-bluetooth-portatil-para-mobilidade-urbana-preto-com-vermelho.jpg",
       "affiliate_url": "https://meli.la/1TDYN5Q"
-    },
-    {
-      "id": 155,
-      "name": "Tela Mosquiteiro Fibra Vidro Lavável Velcro Janela 1,50x1,20 Cinza",
-      "category": "casa",
-      "price": 70.99,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 70,99",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_645704-MLB107348868041_022026-F-tela-mosquiteiro-fibra-vidro-lavavel-velcro-janela-150x120-cinza.jpg",
-      "affiliate_url": "https://meli.la/1fSwMGU"
     },
     {
       "id": 107,
