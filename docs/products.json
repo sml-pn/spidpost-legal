@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-26T21:31:14.101Z",
+  "updated_at": "2026-11-26T22:02:57.343Z",
   "total": 69,
   "produtos": [
+    {
+      "id": 161,
+      "name": "Kit Solar 6000w Com Painel 300w E Inversor 12v Off-grid",
+      "category": "solar",
+      "price": 538.61,
+      "original_price": null,
+      "desconto": 0,
+      "economia": 0,
+      "preco_fmt": "R$ 538,61",
+      "original_fmt": null,
+      "economia_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_754511-CBT112834810945_062026-F-kit-solar-6000w-com-painel-300w-e-inversor-12v-off-grid.jpg",
+      "affiliate_url": "https://meli.la/2ewqB4F"
+    },
     {
       "id": 160,
       "name": "Kit Solar Portátil De 220 V Pico 20000w Off Grid",
@@ -57,20 +71,6 @@
       "economia_fmt": "R$ 226,10",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_632617-MLB120886526465_112026-F-hud-head-up-display-obd2-gps-velocimetro-turbo-alarme-p6.jpg",
       "affiliate_url": "https://meli.la/149cUVg"
-    },
-    {
-      "id": 161,
-      "name": "Kit Solar 6000w Com Painel 300w E Inversor 12v Off-grid",
-      "category": "solar",
-      "price": 538.61,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 538,61",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_754511-CBT112834810945_062026-F-kit-solar-6000w-com-painel-300w-e-inversor-12v-off-grid.jpg",
-      "affiliate_url": "https://meli.la/2ewqB4F"
     },
     {
       "id": 142,
