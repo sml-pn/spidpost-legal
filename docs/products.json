@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-26T10:01:33.919Z",
-  "total": 72,
+  "updated_at": "2026-11-26T10:32:55.758Z",
+  "total": 71,
   "produtos": [
     {
       "id": 161,
@@ -99,20 +99,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_681574-MLB118378828873_092026-F-oculos-proteco-led-recarregavel-usb-250-lumens-tz-7005.jpg",
       "affiliate_url": "https://meli.la/1ppM1yJ"
-    },
-    {
-      "id": 162,
-      "name": "Oculos Epi Com Lanterna Ativação Por Sensor E Recarregável Transparente",
-      "category": "outros",
-      "price": 84.78,
-      "original_price": 138.99,
-      "desconto": 39,
-      "economia": 54.21000000000001,
-      "preco_fmt": "R$ 84,78",
-      "original_fmt": "R$ 138,99",
-      "economia_fmt": "R$ 54,21",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_919215-MLB117653762853_092026-F-oculos-epi-com-lanterna-ativaco-por-sensor-e-recarregavel-transparente.jpg",
-      "affiliate_url": "https://meli.la/1WTbKxa"
     },
     {
       "id": 142,
