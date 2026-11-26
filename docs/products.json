@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-26T14:31:40.314Z",
+  "updated_at": "2026-11-26T15:04:11.388Z",
   "total": 70,
   "produtos": [
+    {
+      "id": 153,
+      "name": "Rolo Tela Mosquiteira Cinza Polietileno 1,50m X 10 Metros Uv",
+      "category": "casa",
+      "price": 68.5,
+      "original_price": 138.8,
+      "desconto": 51,
+      "economia": 70.30000000000001,
+      "preco_fmt": "R$ 68,50",
+      "original_fmt": "R$ 138,80",
+      "economia_fmt": "R$ 70,30",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_688314-MLA109930695545_042026-F-rolo-tela-mosquiteira-cinza-polietileno-150m-x-10-metros-uv.jpg",
+      "affiliate_url": "https://meli.la/2QLgqPj"
+    },
     {
       "id": 163,
       "name": "Óculos Proteção Led Recarregável Usb 250 Lúmens Tz-7005",
@@ -71,20 +85,6 @@
       "economia_fmt": "R$ 239,77",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_900494-CBT105626326077_012026-F-sistema-solar-off-grid-kit-completo-220v-8000w.jpg",
       "affiliate_url": "https://meli.la/2Gk3NRt"
-    },
-    {
-      "id": 153,
-      "name": "Rolo Tela Mosquiteira Cinza Polietileno 1,50m X 10 Metros Uv",
-      "category": "casa",
-      "price": 68.5,
-      "original_price": 138.8,
-      "desconto": 51,
-      "economia": 70.30000000000001,
-      "preco_fmt": "R$ 68,50",
-      "original_fmt": "R$ 138,80",
-      "economia_fmt": "R$ 70,30",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_688314-MLA109930695545_042026-F-rolo-tela-mosquiteira-cinza-polietileno-150m-x-10-metros-uv.jpg",
-      "affiliate_url": "https://meli.la/2QLgqPj"
     },
     {
       "id": 142,
