@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-26T09:01:11.839Z",
+  "updated_at": "2026-11-26T09:33:20.786Z",
   "total": 72,
   "produtos": [
+    {
+      "id": 161,
+      "name": "Kit Solar 6000w Com Painel 300w E Inversor 12v Off-grid",
+      "category": "solar",
+      "price": 538.61,
+      "original_price": null,
+      "desconto": 0,
+      "economia": 0,
+      "preco_fmt": "R$ 538,61",
+      "original_fmt": null,
+      "economia_fmt": null,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_754511-CBT112834810945_062026-F-kit-solar-6000w-com-painel-300w-e-inversor-12v-off-grid.jpg",
+      "affiliate_url": "https://meli.la/2ewqB4F"
+    },
     {
       "id": 160,
       "name": "Kit Solar Portátil De 220 V Pico 20000w Off Grid",
@@ -141,20 +155,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_802434-MLA113767191251_062026-F-vitamina-b12-metilcobalamina-mastigavel-maxinutri-60-comp-sem-sabor.jpg",
       "affiliate_url": "https://meli.la/1RcsVHx"
-    },
-    {
-      "id": 161,
-      "name": "Kit Solar 6000w Com Painel 300w E Inversor 12v Off-grid",
-      "category": "solar",
-      "price": 538.61,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 538,61",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_754511-CBT112834810945_062026-F-kit-solar-6000w-com-painel-300w-e-inversor-12v-off-grid.jpg",
-      "affiliate_url": "https://meli.la/2ewqB4F"
     },
     {
       "id": 128,
