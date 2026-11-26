@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-26T15:40:48.850Z",
-  "total": 70,
+  "updated_at": "2026-11-26T16:02:41.546Z",
+  "total": 69,
   "produtos": [
     {
       "id": 153,
@@ -71,20 +71,6 @@
       "economia_fmt": "R$ 248,41",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_785846-CBT110980338499_042026-F-kit-solar-portatil-de-220-v-pico-20000w-off-grid.jpg",
       "affiliate_url": "https://meli.la/2XEP28o"
-    },
-    {
-      "id": 159,
-      "name": "Sistema Solar Off-grid Kit Completo 220v 8000w",
-      "category": "solar",
-      "price": 505.05,
-      "original_price": 744.82,
-      "desconto": 32,
-      "economia": 239.77000000000004,
-      "preco_fmt": "R$ 505,05",
-      "original_fmt": "R$ 744,82",
-      "economia_fmt": "R$ 239,77",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_900494-CBT105626326077_012026-F-sistema-solar-off-grid-kit-completo-220v-8000w.jpg",
-      "affiliate_url": "https://meli.la/2Gk3NRt"
     },
     {
       "id": 142,
