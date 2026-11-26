@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-26T13:31:25.120Z",
-  "total": 71,
+  "updated_at": "2026-11-26T14:02:42.386Z",
+  "total": 70,
   "produtos": [
     {
       "id": 163,
@@ -85,20 +85,6 @@
       "economia_fmt": "R$ 70,30",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_688314-MLA109930695545_042026-F-rolo-tela-mosquiteira-cinza-polietileno-150m-x-10-metros-uv.jpg",
       "affiliate_url": "https://meli.la/2QLgqPj"
-    },
-    {
-      "id": 151,
-      "name": "Bicicleta Ergométrica Spinning Mopower Indoor Pro 20kg Preto 1.2v",
-      "category": "esporte",
-      "price": 369.55,
-      "original_price": 879.9,
-      "desconto": 58,
-      "economia": 510.34999999999997,
-      "preco_fmt": "R$ 369,55",
-      "original_fmt": "R$ 879,90",
-      "economia_fmt": "R$ 510,35",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_885539-MLA120424174815_102026-F-bicicleta-ergometrica-spinning-mopower-indoor-pro-20kg-preto-12v.jpg",
-      "affiliate_url": "https://meli.la/16Uidew"
     },
     {
       "id": 142,
