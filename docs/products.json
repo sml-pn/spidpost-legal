@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-25T23:31:26.278Z",
-  "total": 74,
+  "updated_at": "2026-11-26T00:02:18.605Z",
+  "total": 73,
   "produtos": [
     {
       "id": 159,
@@ -267,20 +267,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_645704-MLB107348868041_022026-F-tela-mosquiteiro-fibra-vidro-lavavel-velcro-janela-150x120-cinza.jpg",
       "affiliate_url": "https://meli.la/1fSwMGU"
-    },
-    {
-      "id": 154,
-      "name": "Tela Mosquiteiro Com Velcro Em Toda A Borda Veda 100 % Cinza",
-      "category": "casa",
-      "price": 47.34,
-      "original_price": 78.9,
-      "desconto": 40,
-      "economia": 31.560000000000002,
-      "preco_fmt": "R$ 47,34",
-      "original_fmt": "R$ 78,90",
-      "economia_fmt": "R$ 31,56",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_983991-MLA112893347435_062026-F-tela-mosquiteiro-com-velcro-em-toda-a-borda-veda-100-cinza.jpg",
-      "affiliate_url": "https://meli.la/21hesCJ"
     },
     {
       "id": 107,
