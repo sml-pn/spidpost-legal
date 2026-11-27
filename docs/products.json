@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-27T19:31:14.313Z",
-  "total": 69,
+  "updated_at": "2026-11-27T20:02:39.033Z",
+  "total": 68,
   "produtos": [
     {
       "id": 80,
@@ -771,20 +771,6 @@
       "economia_fmt": "R$ 3,69",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_625808-MLB116206856437_082026-F-suporte-celular-retrovisor-carro-360-universal-anti-queda-preto.jpg",
       "affiliate_url": "https://meli.la/1tqUUVV"
-    },
-    {
-      "id": 21,
-      "name": "Kit 4 Prateleiras De Parede Em Madeira Macica E Ferro Preto Preto E Madeira",
-      "category": "casa",
-      "price": 79.9,
-      "original_price": 99.9,
-      "desconto": 20,
-      "economia": 20,
-      "preco_fmt": "R$ 79,90",
-      "original_fmt": "R$ 99,90",
-      "economia_fmt": "R$ 20,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_616442-MLB112076511739_052026-F-kit-4-prateleiras-de-parede-em-madeira-macica-e-ferro-preto-preto-e-madeira.jpg",
-      "affiliate_url": "https://meli.la/2hC1Jyv"
     },
     {
       "id": 17,
