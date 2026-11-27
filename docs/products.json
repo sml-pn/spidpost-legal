@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-27T18:40:54.896Z",
+  "updated_at": "2026-11-27T19:03:41.946Z",
   "total": 69,
   "produtos": [
+    {
+      "id": 80,
+      "name": "Impressora 3d Bambu Lab A1 Mini Sem Ams",
+      "category": "outros",
+      "price": 1804.21,
+      "original_price": 2899,
+      "desconto": 38,
+      "economia": 1094.79,
+      "preco_fmt": "R$ 1.804,21",
+      "original_fmt": "R$ 2.899,00",
+      "economia_fmt": "R$ 1.094,79",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923398-MLB116025255233_082026-F-impressora-3d-bambu-lab-a1-mini-sem-ams.jpg",
+      "affiliate_url": "https://meli.la/2DJudzj"
+    },
     {
       "id": 163,
       "name": "Óculos Proteção Led Recarregável Usb 250 Lúmens Tz-7005",
@@ -617,20 +631,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_612709-MLB117049020210_102026-F-quadro-decorativo-abstrato-geometrico-ecom-quadros-carvalho-infinite.jpg",
       "affiliate_url": "https://meli.la/2HhKN17"
-    },
-    {
-      "id": 80,
-      "name": "Impressora 3d Bambu Lab A1 Mini Sem Ams",
-      "category": "outros",
-      "price": 1804.21,
-      "original_price": 2899,
-      "desconto": 38,
-      "economia": 1094.79,
-      "preco_fmt": "R$ 1.804,21",
-      "original_fmt": "R$ 2.899,00",
-      "economia_fmt": "R$ 1.094,79",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_923398-MLB116025255233_082026-F-impressora-3d-bambu-lab-a1-mini-sem-ams.jpg",
-      "affiliate_url": "https://meli.la/2DJudzj"
     },
     {
       "id": 64,
