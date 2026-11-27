@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-27T10:01:29.514Z",
-  "total": 68,
+  "updated_at": "2026-11-27T10:32:52.961Z",
+  "total": 67,
   "produtos": [
     {
       "id": 163,
@@ -43,20 +43,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_754511-CBT112834810945_062026-F-kit-solar-6000w-com-painel-300w-e-inversor-12v-off-grid.jpg",
       "affiliate_url": "https://meli.la/2ewqB4F"
-    },
-    {
-      "id": 160,
-      "name": "Kit Solar Portátil De 220 V Pico 20000w Off Grid",
-      "category": "solar",
-      "price": 1459.01,
-      "original_price": 1707.42,
-      "desconto": 15,
-      "economia": 248.41000000000008,
-      "preco_fmt": "R$ 1.459,01",
-      "original_fmt": "R$ 1.707,42",
-      "economia_fmt": "R$ 248,41",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_785846-CBT110980338499_042026-F-kit-solar-portatil-de-220-v-pico-20000w-off-grid.jpg",
-      "affiliate_url": "https://meli.la/2XEP28o"
     },
     {
       "id": 142,
