@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-27T22:01:34.863Z",
-  "total": 67,
+  "updated_at": "2026-11-27T22:32:30.897Z",
+  "total": 66,
   "produtos": [
     {
       "id": 80,
@@ -925,20 +925,6 @@
       "economia_fmt": "R$ 25,69",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_966061-CBT113377833254_072026-F-10-unidades-de-luzes-solares-de-led-para-gramado-luzes-de-p-5v-amarelo.jpg",
       "affiliate_url": "https://meli.la/2n18piw"
-    },
-    {
-      "id": 47,
-      "name": "Luz Led Jardim Vagalume Energia Solar 12 Luzes Decorativo",
-      "category": "casa",
-      "price": 44.56,
-      "original_price": 87.05,
-      "desconto": 49,
-      "economia": 42.489999999999995,
-      "preco_fmt": "R$ 44,56",
-      "original_fmt": "R$ 87,05",
-      "economia_fmt": "R$ 42,49",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_773123-MLB85308858073_052025-F-luz-led-jardim-vagalume-energia-solar-12-luzes-decorativo.jpg",
-      "affiliate_url": "https://meli.la/21ta3aJ"
     }
   ]
 }
