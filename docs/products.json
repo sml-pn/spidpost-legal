@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-27T23:01:24.267Z",
-  "total": 66,
+  "updated_at": "2026-11-27T23:33:41.583Z",
+  "total": 65,
   "produtos": [
     {
       "id": 80,
@@ -883,20 +883,6 @@
       "economia_fmt": "R$ 169,00",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_835915-MLA99872615755_112025-F-ar-condicionado-de-janela-10000-btus-frio-consul-cor-branco-220v.jpg",
       "affiliate_url": "https://meli.la/2FdtweT"
-    },
-    {
-      "id": 50,
-      "name": "Kit Ferramentas Maleta Jogo Multifuncional 23 Peças Rosa Rosa",
-      "category": "ferramentas",
-      "price": 52.99,
-      "original_price": 99.99,
-      "desconto": 47,
-      "economia": 46.99999999999999,
-      "preco_fmt": "R$ 52,99",
-      "original_fmt": "R$ 99,99",
-      "economia_fmt": "R$ 47,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_615636-MLB96607648316_112025-F-kit-ferramentas-maleta-jogo-multifuncional-23-pecas-rosa-rosa.jpg",
-      "affiliate_url": "https://meli.la/1fewkCL"
     },
     {
       "id": 49,
