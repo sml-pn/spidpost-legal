@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-27T21:01:31.162Z",
-  "total": 68,
+  "updated_at": "2026-11-27T21:33:46.564Z",
+  "total": 67,
   "produtos": [
     {
       "id": 80,
@@ -771,20 +771,6 @@
       "economia_fmt": "R$ 3,69",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_625808-MLB116206856437_082026-F-suporte-celular-retrovisor-carro-360-universal-anti-queda-preto.jpg",
       "affiliate_url": "https://meli.la/1tqUUVV"
-    },
-    {
-      "id": 17,
-      "name": "Balança Digital Bioimpedância Profissional Smart Imc 180kg Bluetooth Corporal Aparelho Alta Capacidade Aplicativo App Para Android E Para Ios Balança De Banheiro Academia Preto 3v",
-      "category": "outros",
-      "price": 29.61,
-      "original_price": 84.9,
-      "desconto": 65,
-      "economia": 55.290000000000006,
-      "preco_fmt": "R$ 29,61",
-      "original_fmt": "R$ 84,90",
-      "economia_fmt": "R$ 55,29",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_750371-MLA116617370667_082026-F-balanca-digital-bioimpedncia-profissional-smart-imc-180kg-bluetooth-corporal-aparelho-alta-capacidade-aplicativo-app-para-android-e-para-ios-balanca-de-banheiro-academia-preto-3v.jpg",
-      "affiliate_url": "https://meli.la/2J4pMth"
     },
     {
       "id": 58,
