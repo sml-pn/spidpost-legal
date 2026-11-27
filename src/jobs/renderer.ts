@@ -59,6 +59,10 @@ async function garantirPastas() {
 async function main() {
   console.log('Renderer iniciado...\n');
   await garantirPastas();
+  // [LIMPEZA] Varredura inicial: remove residuos de execucoes interrompidas (o registo no banco so e criado depois do upload)
+  for (const _d of [TEMP_DIR, REELS_DIR, FEED_DIR, STORIES_DIR]) {
+    for (const _n of await fs.readdir(_d).catch(() => [] as string[])) await fs.unlink(path.join(_d, _n)).catch(() => {});
+  }
 
   const produto = db.prepare(`
     SELECT * FROM products
