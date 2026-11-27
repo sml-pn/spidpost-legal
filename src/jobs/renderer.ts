@@ -31,6 +31,19 @@ async function uploadComRetry(path: string, folder: string, nome: string): Promi
   throw new Error(`Upload do ${nome} falhou apos 5 tentativas`);
 }
 
+// [LIMPEZA] Confirma que o ficheiro esta mesmo no ImageKit (pede o original, sem gastar o limite de video)
+async function confirmarNoImageKit(url: string): Promise<boolean> {
+  const u = /\.mp4(\?|$)/.test(url) && !/[?&]tr=/.test(url) ? url + (url.includes('?') ? '&' : '?') + 'tr=orig-true' : url;
+  for (let i = 1; i <= 3; i++) {
+    try {
+      const r = await fetch(u, { headers: { Range: 'bytes=0-0' }, signal: AbortSignal.timeout(15000) });
+      if (r.status === 200 || r.status === 206) return true;
+    } catch {}
+    await new Promise((res) => setTimeout(res, i * 2000));
+  }
+  return false;
+}
+
 const RENDERS_DIR = path.join(process.cwd(), 'renders');
 const TEMP_DIR = path.join(RENDERS_DIR, 'temp');
 const REELS_DIR = path.join(RENDERS_DIR, 'reels');
@@ -99,6 +112,7 @@ async function main() {
   const reelPath = path.join(REELS_DIR, `reel-${produto.id}-${variacao}.mp4`);
   const storyPath = path.join(STORIES_DIR, `story-${produto.id}-${variacao}.mp4`);
   const feedPath = path.join(FEED_DIR, `feed-${produto.id}-${variacao}.jpg`);
+  let _manter = false;
 
   try {
     console.log('[1/5] Gerando roteiro via Gemini...');
@@ -157,6 +171,8 @@ async function main() {
     const reelUrl = await uploadComRetry(reelPath, 'reels', 'reel');
     const storyUrl = await uploadComRetry(storyPath, 'stories', 'story');
     const feedUrl = await uploadComRetry(feedPath, 'feed', 'feed');
+    const _conf = await Promise.all([confirmarNoImageKit(reelUrl), confirmarNoImageKit(storyUrl), confirmarNoImageKit(feedUrl)]);
+    if (!_conf.every(Boolean)) { _manter = true; console.log('  [limpeza] ATENCAO: upload nao confirmado no ImageKit - ficheiros locais mantidos'); }
 
     const insertRender = db.prepare(`
       INSERT INTO renders
@@ -179,6 +195,11 @@ async function main() {
   } finally {
     await fs.unlink(imagemPath).catch(() => {});
     await fs.unlink(audioPath).catch(() => {});
+    if (!_manter) {
+      for (const _f of [reelPath, storyPath, feedPath]) await fs.unlink(_f).catch(() => {});
+      for (const _n of await fs.readdir(TEMP_DIR).catch(() => [] as string[])) await fs.unlink(path.join(TEMP_DIR, _n)).catch(() => {});
+      console.log('  [limpeza] videos, imagens e audios locais apagados (upload confirmado no ImageKit)');
+    }
     console.log('\nTemporarios limpos.');
   }
 }
