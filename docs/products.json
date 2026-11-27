@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-27T12:01:18.211Z",
-  "total": 66,
+  "updated_at": "2026-11-27T12:34:14.256Z",
+  "total": 65,
   "produtos": [
     {
       "id": 163,
@@ -15,20 +15,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_681574-MLB118378828873_092026-F-oculos-proteco-led-recarregavel-usb-250-lumens-tz-7005.jpg",
       "affiliate_url": "https://meli.la/1ppM1yJ"
-    },
-    {
-      "id": 164,
-      "name": "Hud Head Up Display Obd2 Gps Velocimetro Turbo Alarme P6",
-      "category": "automotivo",
-      "price": 219.9,
-      "original_price": 446,
-      "desconto": 51,
-      "economia": 226.1,
-      "preco_fmt": "R$ 219,90",
-      "original_fmt": "R$ 446,00",
-      "economia_fmt": "R$ 226,10",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_632617-MLB120886526465_112026-F-hud-head-up-display-obd2-gps-velocimetro-turbo-alarme-p6.jpg",
-      "affiliate_url": "https://meli.la/149cUVg"
     },
     {
       "id": 142,
