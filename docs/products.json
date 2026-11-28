@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-28T10:31:25.119Z",
-  "total": 62,
+  "updated_at": "2026-11-28T11:02:53.167Z",
+  "total": 61,
   "produtos": [
     {
       "id": 80,
@@ -855,20 +855,6 @@
       "economia_fmt": null,
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_931045-MLA99468092194_112025-F-ar-condicionado-janela-8500-btus-frio-branco-hisense-220v.jpg",
       "affiliate_url": "https://meli.la/34bU8k5"
-    },
-    {
-      "id": 52,
-      "name": "Ar Condicionado Janela Hisense 7500 Btu Frio Eletrônico 127v 110v",
-      "category": "outros",
-      "price": 1498.23,
-      "original_price": 1678,
-      "desconto": 11,
-      "economia": 179.76999999999998,
-      "preco_fmt": "R$ 1.498,23",
-      "original_fmt": "R$ 1.678,00",
-      "economia_fmt": "R$ 179,77",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_676193-MLB115196353013_072026-F-ar-condicionado-janela-hisense-7500-btu-frio-eletrnico-127v-110v.jpg",
-      "affiliate_url": "https://meli.la/2RAX3bb"
     }
   ]
 }
