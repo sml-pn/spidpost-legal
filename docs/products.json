@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-28T09:31:33.833Z",
-  "total": 63,
+  "updated_at": "2026-11-28T10:03:01.376Z",
+  "total": 62,
   "produtos": [
     {
       "id": 80,
@@ -869,20 +869,6 @@
       "economia_fmt": "R$ 179,77",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_676193-MLB115196353013_072026-F-ar-condicionado-janela-hisense-7500-btu-frio-eletrnico-127v-110v.jpg",
       "affiliate_url": "https://meli.la/2RAX3bb"
-    },
-    {
-      "id": 49,
-      "name": "4 Luminaria Espeto Jardim Solar Fotocélula Ip65 Grama Chão Estrutura Amarelo 1.2v",
-      "category": "casa",
-      "price": 53,
-      "original_price": 59.99,
-      "desconto": 12,
-      "economia": 6.990000000000002,
-      "preco_fmt": "R$ 53,00",
-      "original_fmt": "R$ 59,99",
-      "economia_fmt": "R$ 6,99",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_716498-MLA108915638582_032026-F-4-luminaria-espeto-jardim-solar-fotocelula-ip65-grama-cho-estrutura-amarelo-12v.jpg",
-      "affiliate_url": "https://meli.la/1jqthXV"
     }
   ]
 }
