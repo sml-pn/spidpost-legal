@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-11-28T12:31:44.057Z",
-  "total": 60,
+  "updated_at": "2026-11-28T13:02:23.917Z",
+  "total": 59,
   "produtos": [
-    {
-      "id": 163,
-      "name": "Óculos Proteção Led Recarregável Usb 250 Lúmens Tz-7005",
-      "category": "outros",
-      "price": 53.99,
-      "original_price": null,
-      "desconto": 0,
-      "economia": 0,
-      "preco_fmt": "R$ 53,99",
-      "original_fmt": null,
-      "economia_fmt": null,
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_681574-MLB118378828873_092026-F-oculos-proteco-led-recarregavel-usb-250-lumens-tz-7005.jpg",
-      "affiliate_url": "https://meli.la/1ppM1yJ"
-    },
     {
       "id": 168,
       "name": "Mini Moto Elétrica Infantil 6v Preto Triciclo 3 Rodas Com Luz E Sons",
