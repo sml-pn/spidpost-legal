@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-28T01:01:20.800Z",
-  "total": 64,
+  "updated_at": "2026-11-28T01:32:47.008Z",
+  "total": 63,
   "produtos": [
     {
       "id": 80,
@@ -869,20 +869,6 @@
       "economia_fmt": "R$ 179,77",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_676193-MLB115196353013_072026-F-ar-condicionado-janela-hisense-7500-btu-frio-eletrnico-127v-110v.jpg",
       "affiliate_url": "https://meli.la/2RAX3bb"
-    },
-    {
-      "id": 51,
-      "name": "Ar Condicionado De Janela 10.000 Btus Frio - Consul Cor Branco 220v",
-      "category": "outros",
-      "price": 2479.9,
-      "original_price": 2648.9,
-      "desconto": 6,
-      "economia": 169,
-      "preco_fmt": "R$ 2.479,90",
-      "original_fmt": "R$ 2.648,90",
-      "economia_fmt": "R$ 169,00",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_835915-MLA99872615755_112025-F-ar-condicionado-de-janela-10000-btus-frio-consul-cor-branco-220v.jpg",
-      "affiliate_url": "https://meli.la/2FdtweT"
     },
     {
       "id": 49,
