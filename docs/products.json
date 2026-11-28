@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-28T00:01:18.113Z",
-  "total": 65,
+  "updated_at": "2026-11-28T00:33:26.533Z",
+  "total": 64,
   "produtos": [
     {
       "id": 80,
@@ -897,20 +897,6 @@
       "economia_fmt": "R$ 6,99",
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_716498-MLA108915638582_032026-F-4-luminaria-espeto-jardim-solar-fotocelula-ip65-grama-cho-estrutura-amarelo-12v.jpg",
       "affiliate_url": "https://meli.la/1jqthXV"
-    },
-    {
-      "id": 48,
-      "name": "10 Unidades De Luzes Solares De Led Para Gramado, Luzes De P 5v Amarelo",
-      "category": "casa",
-      "price": 34.16,
-      "original_price": 59.85,
-      "desconto": 43,
-      "economia": 25.690000000000005,
-      "preco_fmt": "R$ 34,16",
-      "original_fmt": "R$ 59,85",
-      "economia_fmt": "R$ 25,69",
-      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_966061-CBT113377833254_072026-F-10-unidades-de-luzes-solares-de-led-para-gramado-luzes-de-p-5v-amarelo.jpg",
-      "affiliate_url": "https://meli.la/2n18piw"
     }
   ]
 }
